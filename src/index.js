@@ -1,1 +1,2 @@
-import './js/temp'
+import './js/categories';
+import './js/getMostPopoularProduct';
