@@ -10,10 +10,6 @@ function fetchPopularNews() {
     .then(response => response.data);
 }
 
-// function fetchNewsBySearchValue() {
-//   return axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=ukraine&api-key=${key}`).then(response => response.data);
-// }
-
 fetchPopularNews()
   .then(data => console.log(data))
   .catch(error => console.error(error));
