@@ -1,0 +1,76 @@
+.weather__card {
+  padding: 32px 36px;
+  width: 288px;
+  background-color: #4440f7;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.weather__header {
+  padding-top: 5px;
+  padding-bottom: 14px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.weather__temp {
+  font-size: 42px;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.weather__wrapper {
+  border-left: 1px solid #ffffff;
+  padding-left: 11px;
+}
+
+.weather__status {
+  margin-bottom: 5px;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #ffffff;
+}
+
+.weather__location {
+  padding: 8px 9px;
+  background: rgba(254, 254, 255, 0.3);
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #ffffff;
+}
+
+.wheather__icon {
+  width: 128px;
+  height: 121px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+}
+
+.weather__data {
+  margin-bottom: 18px;
+}
+
+.weather__date {
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 33px;
+  color: #ffffff;
+}
+
+.weather__link {
+  display: inline-block;
+  padding: 10px 12px;
+  background-color: rgba(254, 254, 255, 0.3);
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+  color: #ffffff;
+}
