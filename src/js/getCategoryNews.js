@@ -1,8 +1,10 @@
 import { getCategoryNewsAPI } from './api/news-api.js';
 //import function rendering cardNews
+//import offset
 
-export async function getCategoryNews(category) {
-  const getCategotyNews = await getCategoryNewsAPI(category);
+
+export async function getCategoryNews(category, offset) {
+  const getCategotyNews = await getCategoryNewsAPI(category, offset);
   const dataNews = getCategotyNews.results;
   console.log('Arr objects current category News', dataNews);
   const filteredNews = filterDateNews(dataNews, '2023-2-10'); // get Date from Calendar
