@@ -1,4 +1,4 @@
-import Notiflix from "notiflix";
+/*import Notiflix from "notiflix";
 import SearchNews from "./api-searchnews";
 
 
@@ -23,4 +23,4 @@ function onError(err) {
     console.log (err);
 }
 getNews();
-
+*/
