@@ -1,27 +1,14 @@
-import {getCategoriesAPI} from './API.js';
-import {getCategoryNews} from './getCategoryNews.js'
+import { getCategoryNews } from './getCategoryNews.js';
+import { markupCategories } from './markups/markupCategoriesNews.js';
 //import function get Date from Calendar
 
 const categoriesMenu = document.querySelector('.category__menu');
 const categoriesBtn = document.querySelector('.category__btn');
 
-markupCategories();
+markupCategories(categoriesMenu);
 
 categoriesBtn.addEventListener('click', onToggleCategoriesMenu);
 categoriesMenu.addEventListener('click', onSearchNews);
-
-
-async function markupCategories() {
-  const getCategories = await getCategoriesAPI();
-  const categories = getCategories.results;
-  categoriesMenu.innerHTML = categories
-    .map(({ section, display_name }) => {
-      return `<li class='category__item'><button class="btn-item" data-btn=${encoded(
-        section
-      )}>${display_name}</button></li>`;
-    })
-    .join(' ');
-}
 
 function onToggleCategoriesMenu() {
   const isMenuOpen =
@@ -50,9 +37,3 @@ function onSearchNews(event) {
   const currentButtonCategory = event.target.dataset.btn;
   getCategoryNews(currentButtonCategory);
 }
-
-function encoded(string) {
-  return encodeURIComponent(string);
-}
-
-

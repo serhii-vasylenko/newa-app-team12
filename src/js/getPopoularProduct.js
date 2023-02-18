@@ -1,4 +1,4 @@
-import {getPopularNewsAPI} from './API.js';
+import {getPopularNewsAPI} from './api/news-api.js';
 //import function markup News
 
  async function getPopoularProduct () {
