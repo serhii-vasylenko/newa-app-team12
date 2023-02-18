@@ -1,27 +1,26 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Favorite</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Poppins&family=Roboto&display=swap"
       rel="stylesheet"
     />
-    <title>News</title>
     <link rel="stylesheet" href="./sass/index.scss" />
-    <script type="module" src="./index.js"></script>
   </head>
   <body>
     <!-- <include src="./partials/header.html"></include> -->
-    <include src="./partials/mobile-menu.html"></include>
     <main>
-      <include src="./partials/navigate-news.html"></include>
-      <!-- <include src="./partials/weather.html"></include> -->
-      <include src="./partials/pagination.html"></include>
-      <include src="./partials/not-found.html"></include>
+      <section class="gallery">
+        <ul class="gallery-list"></ul>
+      </section>
     </main>
     <include src="./partials/footer.html"></include>
+    <script src="favorite.js" type="module"></script>
   </body>
 </html>

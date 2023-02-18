@@ -2,6 +2,12 @@
 
 @import './base/reset';
 @import './base/common';
-@import './components/pagination';
-@import './components/weather';
+@import './base/mobile-menu';
 
+@import './components/pagination';
+@import './components/categories';
+@import './components/navigate-news';
+@import './components/weather';
+@import './components/container';
+@import './components/footer';
+@import './components/not-found';
