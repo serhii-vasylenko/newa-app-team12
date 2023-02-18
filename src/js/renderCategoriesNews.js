@@ -1,6 +1,6 @@
-import {getCategoriesAPI, getCategoryNewsAPI} from './API.js';
+import {getCategoriesAPI} from './API.js';
+import {getCategoryNews} from './getCategoryNews.js'
 //import function get Date from Calendar
-//import function rendering cardNews
 
 const categoriesMenu = document.querySelector('.category__menu');
 const categoriesBtn = document.querySelector('.category__btn');
@@ -12,7 +12,7 @@ categoriesMenu.addEventListener('click', onSearchNews);
 
 
 async function markupCategories() {
-  const getCategories = await getCategoriesAPI(); //'content', 'section-list'
+  const getCategories = await getCategoriesAPI();
   const categories = getCategories.results;
   categoriesMenu.innerHTML = categories
     .map(({ section, display_name }) => {
@@ -51,33 +51,8 @@ function onSearchNews(event) {
   getCategoryNews(currentButtonCategory);
 }
 
-async function getCategoryNews(category) {
-  const getCategotyNews = await getCategoryNewsAPI(category); 
-  const dataNews = getCategotyNews.results;
-  console.log(
-    'Arr objects current category News',
-    dataNews
-  );
-  const filteredNews = filterDateNews(dataNews, '2023-2-10'); // get Date from Calendar
-  console.log(
-    'filter NewsArr to Date',
-    filteredNews  
-  );
-
-  //   markupNews(filteredNews)          / get name function for markup
-}
-
 function encoded(string) {
   return encodeURIComponent(string);
 }
 
-function filterDateNews(arrNews, selectedDate) {
-  return arrNews.filter(news => {
-    return dateConversion(news.published_date) === selectedDate;
-  });
-}
 
-function dateConversion(getDate) {
-  const date = new Date(getDate);
-  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-}
