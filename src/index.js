@@ -1,5 +1,3 @@
-import './js/temp'
-
 import './js/renderCategoriesNews';
 import './js/getPopoularProduct';
 import './js/getSearchNews';
