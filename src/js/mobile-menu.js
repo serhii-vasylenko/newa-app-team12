@@ -1,28 +1,39 @@
-// (() => {
-//   const refs = {
-//     mobileMenu: document.querySelector('.js-menu-container'),
-// openMenu: document.querySelector('.js-open-menu'),
-// closeMenu: document.querySelector('.js-close-menu'),
-//   };
-
-//   refs.openMenu.addEventListener('click', toggleModal);
-//   refs.closeMenu.addEventListener('click', toggleModal);
-
-//   function toggleModal() {
-//     refs.mobileMenu.classList.toggle('is-open');
-//   }
-// })();
-
-
 const mobileMenu = document.querySelector('.js-menu-container');
 const openMenu = document.querySelector('.js-open-menu');
 const closeMenu = document.querySelector('.js-close-menu');
-const themeContainer = document.querySelector('.theme');
+// const chekBox = document.querySelector('.theme');
 
+const bodyScrollLock = require('body-scroll-lock');
+// import debounce from 'lodash.debounce';
 const toggleMenu = () => {
-  mobileMenu.classList.toggle('is-open');
+  const openMobileMenu =
+    openMenu.getAttribute('aria-expanded') === 'true' || false;
+    openMenu.setAttribute('aria-expanded', !openMobileMenu );
+    mobileMenu.classList.toggle('is-open');
+
+  const scrollLockMethod = !openMobileMenu 
+    ? 'disableBodyScroll' : 'enableBodyScroll';
+
+  bodyScrollLock[scrollLockMethod](document.body);
+
+  
+  // if (chekBox.classList.contains('mobile')) {
+  //   chekBox.classList.remove('mobile');
+  // } else if (!chekBox.classList.contains('mobile')) {
+  //   const debouncedChekBox = debounce(() => {
+  //     chekBox.classList.add('mobile');
+  //   }, 250);
+
+  //   debouncedChekBox();
+  // }
+  
+  
 };
+
+// const toggleMenu = () => {
+//   mobileMenu.classList.toggle('is-open');
+
+// };
 
 openMenu.addEventListener('click', toggleMenu);
 closeMenu.addEventListener('click', toggleMenu);
-
