@@ -1,4 +1,4 @@
-import { getSearchNewsAPI } from './API.js';
+import { getSearchNewsAPI } from './api/news-api.js';
 
 // example function search News
 
