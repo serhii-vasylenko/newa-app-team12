@@ -1,2 +1,3 @@
 import './js/categories';
-import './js/getMostPopoularProduct';
+import './js/getPopoularProduct';
+import './js/getSearchNews';

@@ -1,4 +1,4 @@
-import API from './API.js';
+import {getCategoriesAPI, getCategoryNewsAPI} from './API.js';
 //import function get Date from Calendar
 //import function rendering cardNews
 
@@ -12,7 +12,7 @@ categoriesMenu.addEventListener('click', onSearchNews);
 
 
 async function markupCategories() {
-  const getCategories = await API('content', 'section-list');
+  const getCategories = await getCategoriesAPI(); //'content', 'section-list'
   const categories = getCategories.results;
   categoriesMenu.innerHTML = categories
     .map(({ section, display_name }) => {
@@ -52,16 +52,16 @@ function onSearchNews(event) {
 }
 
 async function getCategoryNews(category) {
-  const getCategotyNews = await API('content/all', category);
+  const getCategotyNews = await getCategoryNewsAPI(category); 
   const dataNews = getCategotyNews.results;
   console.log(
     'Arr objects current category News',
     dataNews
   );
-  const filteredNews = filterDateNews(dataNews, '2023-2-17'); // get Date from Calendar
+  const filteredNews = filterDateNews(dataNews, '2023-2-10'); // get Date from Calendar
   console.log(
     'filter NewsArr to Date',
-    filteredNews
+    filteredNews  
   );
 
   //   markupNews(filteredNews)          / get name function for markup
