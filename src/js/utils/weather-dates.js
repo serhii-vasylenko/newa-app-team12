@@ -36,6 +36,7 @@ function getDateToWeek() {
 
   dates.forEach(date => {
     let dateWeek = date.toLocaleString('en-EN', options);
+    console.log(dateWeek);
     dateToWeek.push(dateWeek);
   });
 }

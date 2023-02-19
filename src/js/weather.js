@@ -13,9 +13,11 @@ function onSubmit(e) {
 }
 
 function onClick() {
+  console.log('rere');
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(onSuccessToWeek, onError);
     }
+
 }
 
-export { onClick, onSubmit};
+export { onClick };

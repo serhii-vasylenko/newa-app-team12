@@ -1,9 +1,9 @@
 // const LINK_TO_WEEK = 'https://sinoptik.ua/';
-import { months, days, weekDay, dateToWeek } from '../utils/weather-dates';
+import { months, days, weekDay, dateToWeek } from '../utils.js/weather-dates';
 import { onClick } from '../weather';
-import { onSubmit } from '../weather';
 
 const weatherCardEl = document.getElementById('weather');
+
 
 function getMarkupWeather({ data }) {
   const today = new Date();
@@ -37,46 +37,29 @@ function getMarkupWeather({ data }) {
 
 function getMarkupWeatherToWeek({ data }) {
   const templateLocationToWeek = `
-      <button class="weather__btn weather__btn-close" type="button">close</button>
-    <h2 class="weather__location weather__location-week">region: ${data.timezone}</h2>`;
-
+      <button class="weather__btn-week" type="button">close</button>
+    <h2 class="weather__location-week">region: ${data.timezone}</h2>`;
+  
   const parts = [];
   for (let i = 0; i < data.daily.length - 1; i += 1) {
     let tempDay = Math.round(data.daily[i].temp.day);
     let tempNight = Math.round(data.daily[i].temp.night);
-    const templateListToWeek = `<table class="weather__table">
-      <tr>
-        <td class="weather__week">${weekDay[i]},<br>${dateToWeek[i]}
-        </td>
-        <td class="weather__week">
-          <img
-            class="wheather__icon-week"
-            src="http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png"
-            alt="${data.daily[i].weather[0].main}"
-          />
-          <td class="weather__week">
-            ${tempDay} / ${tempNight}&#8451;
-          </td>
-          <td class="weather__week weather__week-last">${data.daily[i].weather[0].main}</td>
-        </td>
-      </tr>
-    </table>`;
+    const templateListToWeek = `<div class="weather__element">
+    <p class="weather__data-week">
+    ${weekDay[i]}, ${dateToWeek[i]}
+    </p>
+      <img
+        class="wheather__icon-week"
+        src="http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png"
+        alt="${data.daily[i].weather[0].main}"
+      />
+      <p class="weather__temp-week">${tempDay}/${tempNight}&#8451;</p>
+      <p class="weather__status-week">${data.daily[i].weather[0].main}</p>
+    </div>
+`;
     parts.push(templateListToWeek);
   }
   weatherCardEl.innerHTML = templateLocationToWeek + parts;
-  addClassToCard();
-  removeClassToCard();
-}
-
-function addClassToCard() {
-  const weekWidget = document.querySelector('table');
-  weekWidget.classList.add('.is-active');
-}
-
-function removeClassToCard() {
-  const clouseWeekWidget = document.querySelector('.weather__btn-close');
-  clouseWeekWidget.addEventListener('click', onSubmit)
-  // weekWidget.classList.remove('.is-active')
 }
 
 export { getMarkupWeather, getMarkupWeatherToWeek };

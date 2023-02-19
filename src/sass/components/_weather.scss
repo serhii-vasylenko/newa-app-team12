@@ -1,8 +1,7 @@
 .weather__card {
-  position: relative;
-  padding: 32px 30px;
+  padding: 32px 36px;
   width: 288px;
-  background-color: $accent-color;
+  background-color: #4440f7;
   border-radius: 4px;
   text-align: center;
 }
@@ -19,26 +18,31 @@
 
 .weather__temp {
   font-size: 42px;
-  color: $widget-text-color;
+  font-weight: 400;
+  color: #ffffff;
 }
 
 .weather__wrapper {
-  border-left: 1px solid $widget-text-color;
+  border-left: 1px solid #ffffff;
   padding-left: 11px;
 }
 
 .weather__status {
   margin-bottom: 5px;
   font-size: 24px;
-  line-height: 1.17;
-  color: $widget-text-color;
+  font-weight: 400;
+  line-height: 28px;
+  color: #ffffff;
 }
 
 .weather__location {
   padding: 8px 9px;
   background: rgba(254, 254, 255, 0.3);
   border-radius: 10px;
-  color: $widget-text-color;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #ffffff;
 }
 
 .wheather__icon {
@@ -56,70 +60,17 @@
 .weather__date {
   font-weight: 400;
   font-size: 28px;
-  line-height: 1.18;
-  color: $widget-text-color;
+  line-height: 33px;
+  color: #ffffff;
 }
 
-.weather__btn {
+.weather__link {
   display: inline-block;
-  padding: 8px 14px;
+  padding: 10px 12px;
   background-color: rgba(254, 254, 255, 0.3);
   border-radius: 10px;
-  border: none;
-  font-size: 16px;
-  line-height: 1.19;
-  color: $widget-text-color;
-  cursor: pointer;
-}
-// weather to week
-.weather__table {
-  width: 100%;
-  margin: 0;
-}
-
-.weather__btn-close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  padding: 8px 10px;
-  background-color: rgba(254, 254, 255, 0.3);
-  color: $widget-text-color;
-  border: 1px solid $accent-color;
-  font-size: 12px;
-  line-height: 1.33;
-}
-
-.weather__btn:hover,
-.weather__btn:focus {
-  background-color: $widget-text-color;
-  color: $lt-switcher-color;
-}
-
-.weather__location-week {
-  margin-top: 15px;
-  margin-bottom: 10px;
-  background-color: transparent;
-}
-
-.weather__week {
-  color: $widget-text-color;
-  font-size: 12px;
-  min-width: 50px;
-  text-align: left;
-}
-
-.weather__week-last {
-  text-align: right;
-}
-
-.wheather__icon-week {
-  width: 50px;
-  height: 50px;
-}
-
-// class for list weather to week
-.is-active {
-  position: absolute;
-  top: 0;
-  right: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+  color: #ffffff;
 }
