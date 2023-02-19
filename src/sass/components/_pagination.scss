@@ -22,7 +22,7 @@
   cursor: pointer;
   transition: background-color $animation, color $animation;
 
-  &:hover,
+  &:hover:not([disabled]),
   &:focus {
     color: $dt-main-text-color;
     background-color: $accent-color;
@@ -37,6 +37,7 @@
   }
 
   &:disabled {
+    cursor: not-allowed;;
     background-color: $lt-body-color;
     border-color: $dt-main-text-color;
   }
