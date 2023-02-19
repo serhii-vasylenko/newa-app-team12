@@ -30,6 +30,16 @@ const toggleMenu = () => {
   
 };
 
+const title = document.querySelector('meta[name="description"]').content.toLowerCase();
+const links = document.querySelectorAll('.nav-mobile__link');
+
+links.forEach(link => {
+  if (link.innerText.toLowerCase() === title) {
+    link.classList.add('nav-mobile__link--current');
+  }
+});
+
+
 // const toggleMenu = () => {
 //   mobileMenu.classList.toggle('is-open');
 
