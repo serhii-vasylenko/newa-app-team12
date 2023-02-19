@@ -17,18 +17,28 @@ const toggleMenu = () => {
   bodyScrollLock[scrollLockMethod](document.body);
 
   
-  // if (chekBox.classList.contains('mobile')) {
-  //   chekBox.classList.remove('mobile');
-  // } else if (!chekBox.classList.contains('mobile')) {
-  //   const debouncedChekBox = debounce(() => {
-  //     chekBox.classList.add('mobile');
-  //   }, 250);
+  if (chekBox.classList.contains('mobile')) {
+    chekBox.classList.remove('mobile');
+  } else if (!chekBox.classList.contains('mobile')) {
+    const debouncedChekBox = debounce(() => {
+      chekBox.classList.add('mobile');
+    }, 250);
 
-  //   debouncedChekBox();
-  // }
+    debouncedChekBox();
+  }
   
   
 };
+
+const title = document.querySelector('meta[name="description"]').content.toLowerCase();
+const links = document.querySelectorAll('.nav-mobile__link');
+
+links.forEach(link => {
+  if (link.innerText.toLowerCase() === title) {
+    link.classList.add('nav-mobile__link--current');
+  }
+});
+
 
 // const toggleMenu = () => {
 //   mobileMenu.classList.toggle('is-open');
