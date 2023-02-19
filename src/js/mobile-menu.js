@@ -17,15 +17,15 @@ const toggleMenu = () => {
   bodyScrollLock[scrollLockMethod](document.body);
 
   
-  if (chekBox.classList.contains('mobile')) {
-    chekBox.classList.remove('mobile');
-  } else if (!chekBox.classList.contains('mobile')) {
-    const debouncedChekBox = debounce(() => {
-      chekBox.classList.add('mobile');
-    }, 250);
+  // if (chekBox.classList.contains('mobile')) {
+  //   chekBox.classList.remove('mobile');
+  // } else if (!chekBox.classList.contains('mobile')) {
+  //   const debouncedChekBox = debounce(() => {
+  //     chekBox.classList.add('mobile');
+  //   }, 250);
 
-    debouncedChekBox();
-  }
+  //   debouncedChekBox();
+  // }
   
   
 };
