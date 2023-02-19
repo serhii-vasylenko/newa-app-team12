@@ -1,7 +1,9 @@
-import { onSuccess, onError } from './api/weather-api';
+import { onSuccess, onSuccessToWeek, onError } from './api/weather-api';
 
 const locationBtn = document.querySelector('#get_location_btn');
 locationBtn.addEventListener('click', onSubmit);
+
+
 
 function onSubmit(e) {
   e.preventDefault;
@@ -9,3 +11,13 @@ function onSubmit(e) {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
   }
 }
+
+function onClick() {
+  console.log('rere');
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(onSuccessToWeek, onError);
+    }
+
+}
+
+export { onClick };
