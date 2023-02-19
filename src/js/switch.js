@@ -1,3 +1,6 @@
+const checkBox = document.querySelector('.theme-switch__checkbox');
+checkBox.addEventListener('change', toggleTheme);
+
 function setTheme(themeName) {
     localStorage.setItem('theme', themeName);
     document.documentElement.className = themeName;
