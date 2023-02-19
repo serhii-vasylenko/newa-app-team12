@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" overflow="hidden" style="position:absolute;width:0;height:0">
+  <defs>
+    <symbol id="icon-magnifier" viewBox="0 0 34 32">
+      <path d="M14.67 26.5c2.96 0 5.83-.94 8.16-2.67l7.33 6.96 2.35-2.24-7.32-6.96A12.2 12.2 0 0 0 28 13.83c0-6.98-5.98-12.66-13.33-12.66S1.33 6.85 1.33 13.83 7.32 26.5 14.67 26.5zm0-22.17c5.51 0 10 4.26 10 9.5s-4.49 9.5-10 9.5-10-4.26-10-9.5 4.48-9.5 10-9.5z"/>
+    </symbol>
+    <symbol id="icon-menu" viewBox="0 0 32 32">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.67" d="M4 16h24M4 8h24M4 24h24"/>
+    </symbol>
+    <symbol id="icon-moon" viewBox="0 0 32 32">
+      <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.53" d="M29.26 17.16a13.26 13.26 0 0 1-26.15 1.67 13.26 13.26 0 0 1 11.73-16.1 10.32 10.32 0 0 0 1 13.43 10.32 10.32 0 0 0 13.42 1v0z"/>
+    </symbol>
+    <symbol id="icon-sun" viewBox="0 0 32 32">
+      <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.29" d="M16 1.78v2.58m0 23.28v2.58M5.94 5.94l1.84 1.84m16.44 16.44 1.84 1.84M1.78 16h2.58m23.28 0h2.58M5.94 26.06l1.84-1.84M24.22 7.78l1.84-1.84M22.46 16a6.46 6.46 0 1 1-12.93 0 6.46 6.46 0 0 1 12.94 0z"/>
+    </symbol>
+  </defs>
+</svg>
