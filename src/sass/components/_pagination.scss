@@ -4,9 +4,11 @@
   justify-content: center;
   gap: 8px;
 }
+
 .pagination__container {
   margin-bottom: 150px;
 }
+
 .pagination__btn {
   display: inline-block;
   font-family: inherit;
@@ -19,20 +21,46 @@
   border-radius: 2px;
   cursor: pointer;
   transition: background-color $animation, color $animation;
+
   &:hover,
   &:focus {
     color: $dt-main-text-color;
     background-color: $accent-color;
   }
 }
+
 .pagination__btn-nav {
   padding: 5px 10px 5px 16px;
+
   &--next {
     padding: 5px 16px 5px 10px;
   }
+
+  &:disabled {
+    background-color: $lt-body-color;
+    border-color: $dt-main-text-color;
+  }
 }
+
 .pagination__btn-num {
   width: 33px;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.pagination__btn-num.active {
+  color: $dt-main-text-color;
+  background-color: $accent-color;
+}
+
+.pagination__btn-points {
+  display: inline-block;
+  font-family: inherit;
+  color: $lt-main-text-color;
+  background-color: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  width: 13px;
+  padding: 5px 0px;
+  border: none;
 }
