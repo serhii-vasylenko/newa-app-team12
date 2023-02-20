@@ -1,20 +1,11 @@
-import { onSuccess, onSuccessToWeek, onError } from './api/weather-api';
-import { addClassToCard, removeClassToCard } from './markups/weather-markup';
+import { onSuccess, onError } from './api/weather-api';
 
-function getGeolocation() {
+const locationBtn = document.querySelector('#get_location_btn');
+locationBtn.addEventListener('click', onSubmit);
 
+function onSubmit(e) {
+  e.preventDefault;
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    removeClassToCard();
   }
 }
-
-function onClick() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(onSuccessToWeek, onError);
-    addClassToCard();
-  }
-}
-
-export { onClick, onSubmit };
-export { getGeolocation };
