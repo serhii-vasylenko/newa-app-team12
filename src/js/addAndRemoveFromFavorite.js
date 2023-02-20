@@ -1,5 +1,4 @@
 const newsGallery = document.querySelector('.news-gallery');
-const newsCards = Array.from(document.querySelectorAll('.card-news__item'));
 
 const storageData = JSON.parse(localStorage.getItem('favorite'))
   ? JSON.parse(localStorage.getItem('favorite'))
@@ -53,7 +52,7 @@ function removeCardFromLocalStorage(target) {
 
 function checkFavCards() {
   // const storageData = JSON.parse(localStorage.getItem("favorite"));
-
+  const newsCards = Array.from(document.querySelectorAll('.card-news__item'));
   if (storageData) {
     const firstElOfStorageObj = storageData.map(obj => obj.firstElOfCard);
 
@@ -70,3 +69,5 @@ function checkFavCards() {
     });
   }
 }
+
+export { checkFavCards };
