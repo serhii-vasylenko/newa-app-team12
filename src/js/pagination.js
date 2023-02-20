@@ -1,4 +1,8 @@
-import { getPopularNewsAPI, getSearchNewsAPI, getCategoryNewsAPI } from './api/news-api.js';
+import {
+  getPopularNewsAPI,
+  getSearchNewsAPI,
+  getCategoryNewsAPI,
+} from './api/news-api.js';
 import cardNews from './../templates/card-news.hbs';
 import getRefs from './get-refs';
 
@@ -8,7 +12,7 @@ const paginationEl = document.getElementById('pagination');
 const paginationContainerEl = document.querySelector('.pagination__container');
 const btnNextPg = document.querySelector('.next-btn');
 const btnPrevPg = document.querySelector('.prev-btn');
-// const searchFormEl = document.querySelector('.search-form');
+const searchFormEl = document.querySelector('.search-form');
 // console.log(paginationEl, btnNextPg, btnPrevPg);
 
 const results = [];
@@ -20,9 +24,12 @@ const valuePage = {
   totalPages: 10,
 };
 
-// searchFormEl.addEventListener('submit', e => {  
-//   renderNewsMarkup(getSearchNewsAPI());
-// })
+searchFormEl.addEventListener('submit', e => {
+  getSearchNewsAPI()
+    .then(data => (arrayNews = data.arrayNews))
+    .then(arrayNews => renderNewsMarkup(arrayNews))
+    .catch(error => console.log(error));
+});
 
 paginationEl.addEventListener('click', e => {
   const ele = e.target;
@@ -34,21 +41,21 @@ paginationEl.addEventListener('click', e => {
   }
 
   getAmountCards();
- 
-  renderNewsMarkup(getPopularNewsAPI());
+
+  renderNewsMarkup(getPopularNewsAPI()); //getPopularNewsAPI()
   goToTop();
 });
 
 paginationContainerEl.addEventListener('click', e => {
   handleButton(e.target);
- 
-  renderNewsMarkup(getPopularNewsAPI());
+
+  renderNewsMarkup(getPopularNewsAPI());   //getPopularNewsAPI()
   goToTop();
 });
 
-async function renderNewsMarkup(data) {
-  const getNews = await data;
-  console.log('getNews', getNews);
+function renderNewsMarkup(data) {
+  const getNews = data;
+  // console.log('getNews', getNews);
 
   valuePage.totalPages = Math.ceil(
     getNews.results.length / valuePage.amountCards
@@ -56,10 +63,7 @@ async function renderNewsMarkup(data) {
   console.log('valuePage.amountCards', valuePage.amountCards);
 
   chunkArray(getNews.results, valuePage.amountCards);
-  console.log(
-    'chunkArray',
-    chunkArray(getNews.results, valuePage.amountCards)
-  );
+  console.log('chunkArray', chunkArray(getNews.results, valuePage.amountCards));
 
   for (let i = 0; i <= results.length; i += 1) {
     console.log(results[i]);
@@ -142,7 +146,6 @@ function goToTop() {
   });
 }
 
-
 // DYNAMIC PAGINATION
 function pagination() {
   const { totalPages, curPage, numLinksTwoSide: delta } = valuePage;
@@ -202,23 +205,16 @@ function renderPage(index, active = '') {
   return ` <button class="pagination__btn pagination__btn-num ${active}"  data-page="${index}">${index}</button>`;
 }
 
-
-
 function getAmountCardsDynamic() {
-  window.matchMedia('(max-width: 767px)').addEventListener('change', e => {
-    if (!e.matches) return;
+  if (window.matchMedia('(max-width: 767px)').matches) {
     valuePage.amountCards = 4;
-  });
-
-  window
-    .matchMedia('(min-width: 768px)' && '(max-width: 1279px)')
-    .addEventListener('change', e => {
-      if (!e.matches) return;
-      valuePage.amountCards = 7;
-    });
-
-  window.matchMedia('(min-width: 1280px)').addEventListener('change', e => {
-    if (!e.matches) return;
+  }
+  if (window.matchMedia('(min-width: 768px) and (max-width: 1279px)').matches) {
+    valuePage.amountCards = 7;
+  }
+  if (window.matchMedia('(min-width: 1280px)').matches) {
     valuePage.amountCards = 8;
-  });
+  }
 }
+
+export { pagination };
