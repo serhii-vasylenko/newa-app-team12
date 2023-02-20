@@ -30,7 +30,7 @@ function chunkArray(arrayData, chunkSize) {
 window.matchMedia('(max-width: 767px)').addEventListener('change', e => {
   if (!e.matches) return;
   valuePage.countPages = 4;
-  chunkArray(arrayData, valuePage.countPages)
+  chunkArray(results, valuePage.countPages)
 });
 
 window
@@ -38,13 +38,13 @@ window
   .addEventListener('change', e => {
     if (!e.matches) return;
     valuePage.countPages = 7;
-    chunkArray(arrayData, valuePage.countPages)
+    chunkArray(results, valuePage.countPages)
   });
 
 window.matchMedia('(min-width: 1280px)').addEventListener('change', e => {
   if (!e.matches) return;
   valuePage.countPages = 8;
-  chunkArray(arrayData, valuePage.countPages)
+  chunkArray(results, valuePage.countPages)
 });
 
 paginationEl.addEventListener('click', e => {
