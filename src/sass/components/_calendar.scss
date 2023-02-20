@@ -8,9 +8,21 @@
 }
 
 .calendar-btn{
-    border: 1px solid $lt-main-text-color;
+    width: 168px;
+    height: 31px;
+
+    border: 1px solid $accent-color;
     border-radius: 20px;
+    background-color: $accent-color;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: $widget-text-color;
 }
+// .material-symbols-rounded{
+//     font-size: 17px;
+// }
 
 .wrapper {
     position: absolute;
@@ -28,43 +40,28 @@
 .calendar-header {
     display: flex;
     align-items: center;
-    padding: 25px 30px 10px;
+    padding: 25px 25px 0px 25px;
     justify-content: space-between;
 }
 
-.calendar-header .icons {
+.icons {
     display: flex;
+    gap: 20px;
 }
 
-.calendar-header .icons span {
-    height: 38px;
-    width: 38px;
-    margin: 0 1px;
-    cursor: pointer;
-    color: #878787;
-    text-align: center;
-    line-height: 38px;
-    font-size: 1.9rem;
-    user-select: none;
-    border-radius: 50%;
-}
-#prev::after{
-    content: '';
-    display: block;
-    background-image: url(/src/images/icons-defs.svg#icon-shevron);
+#prev, #next{
     width: 20px;
     height: auto;
-    color: red;
+    color: $accent-color;
+    font-size: 22px;
+    cursor: pointer;
 }
 .icons span:last-child {
     margin-right: -10px;
 }
 
-.calendar-header .icons span:hover {
-    background: #f2f2f2;
-}
-
 .calendar-header .current-date {
+    display: inline;
     font-weight: 500;
     font-size: 16px;
     line-height: 1.38;
@@ -72,7 +69,10 @@
 }
 
 .calendar-grid {
-    padding: 13px 16px 20px 16px;
+    padding-top: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 20px;
 }
 
 .calendar-grid ul {
@@ -81,10 +81,6 @@
     list-style: none;
     text-align: center;
 }
-
-// .calendar-grid .days {
-//     margin-bottom: 20px;
-// }
 
 .calendar-grid li {
     color: #000000;
@@ -109,8 +105,11 @@
 }
 
 .button{
+    width: 26px;
+    height: 26px;
     border: none;
     border-radius: 50%;
+    padding: 0px;
     background-color: transparent;
 }
 
@@ -124,6 +123,7 @@
 
 .button.inactive {
     color: rgba(60, 60, 67, 0.1);
+    
 }
 
 .button.active {
@@ -149,6 +149,3 @@
 .button.weekend {
     color: #878787;
 }
-// .days li:not(.active):hover::before {
-//     background: #f2f2f2;
-// }
