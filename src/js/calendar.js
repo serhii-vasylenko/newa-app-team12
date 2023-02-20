@@ -38,7 +38,7 @@ function renderCalendar () {
     // let weekend = new Date(currYear, currMonth, 6, 7);
     let liTag = "";
     for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
-        liTag += `<li><button type="button" class="button inactive">${lastDateofLastMonth - i + 1}</button></li>`;
+        liTag += `<li><button type="button" class="button inactive" disabled>${lastDateofLastMonth - i + 1}</button></li>`;
     }
     for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
         // adding active class to li if the current day, month, and year matched
@@ -53,14 +53,15 @@ function renderCalendar () {
     }
     currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
     daysTag.innerHTML = liTag;
-}
-renderCalendar();
-
-const dayBtns = document.querySelectorAll(".button");
-dayBtns.forEach(dayBtn => dayBtn.addEventListener('click', (e) => {
+    const dayBtns = document.querySelectorAll(".button");
+    dayBtns.forEach(dayBtn => dayBtn.addEventListener('click', (e) => {
     btnEl.textContent = `${addLeadingZero(e.target.textContent)}/${addLeadingZero(currMonth + 1)}/${currYear}`;
     wrapperEl.classList.toggle('is-shown');
 }));
+}
+renderCalendar();
+
+
 function addLeadingZero(value) {
     return String(value).padStart(2, '0');
 };
