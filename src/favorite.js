@@ -1,3 +1,6 @@
+import './js/switch';
+import './js/markups/changeCurrentClass';
+
 const gallery = document.querySelector('.favorite-gallery__list');
 
 window.addEventListener('DOMContentLoaded', createGallery);
