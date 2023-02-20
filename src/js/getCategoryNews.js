@@ -2,7 +2,6 @@ import { getCategoryNewsAPI } from './api/news-api.js';
 //import function rendering cardNews
 //import offset
 
-
 export async function getCategoryNews(category, offset) {
   const getCategotyNews = await getCategoryNewsAPI(category, offset);
   const dataNews = getCategotyNews.results;
@@ -14,7 +13,8 @@ export async function getCategoryNews(category, offset) {
 }
 
 function filterDateNews(arrNews, selectedDate) {
-  if (selectedDate === null) {                                     // ???????????????????????????
+  if (selectedDate === null) {
+    // ???????????????????????????
     return arrNews;
   }
   return arrNews.filter(news => {
