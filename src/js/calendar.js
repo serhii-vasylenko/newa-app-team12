@@ -19,13 +19,13 @@ const months = ["January", "February", "March", "April", "May", "June", "July",
 
 async function fetchDays() {
     let days = await calendarDates.getDates(new Date(20));
-    console.log(days);
+    // console.log(days);
 };
 fetchDays();
 
 async function fetchWeeks() {
     let weeks = await calendarDates.getMatrix(new Date());
-    console.log(weeks);
+    // console.log(weeks);
 };
 fetchWeeks();
               
