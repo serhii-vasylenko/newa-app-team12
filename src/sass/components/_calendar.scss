@@ -8,8 +8,14 @@
 }
 
 .calendar-btn{
-    border: 1px solid $lt-main-text-color;
+    border: 1px solid $accent-color;
     border-radius: 20px;
+    background-color: $accent-color;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: $widget-text-color;
 }
 
 .wrapper {

@@ -58,7 +58,8 @@ renderCalendar();
 
 const dayBtns = document.querySelectorAll(".button");
 dayBtns.forEach(dayBtn => dayBtn.addEventListener('click', (e) => {
-    return btnEl.textContent = `${addLeadingZero(e.target.textContent)}/${addLeadingZero(currMonth + 1)}/${currYear}`;
+    btnEl.textContent = `${addLeadingZero(e.target.textContent)}/${addLeadingZero(currMonth + 1)}/${currYear}`;
+    wrapperEl.classList.toggle('is-shown');
 }));
 function addLeadingZero(value) {
     return String(value).padStart(2, '0');
