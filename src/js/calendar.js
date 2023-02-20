@@ -1,3 +1,6 @@
+import CalendarDates from "calendar-dates";
+const calendarDates = new CalendarDates();
+
 const daysTag = document.querySelector(".days");
 const currentDate = document.querySelector(".current-date");
 const prevNextIcon = document.querySelectorAll(".icons span");
@@ -12,13 +15,26 @@ let currYear = date.getFullYear();
 let currMonth = date.getMonth();
 const months = ["January", "February", "March", "April", "May", "June", "July",
                 "August", "September", "October", "November", "December"];
+
+async function fetchDays() {
+    let days = await calendarDates.getDates(new Date(20));
+    console.log(days);
+};
+fetchDays();
+
+async function fetchWeeks() {
+    let weeks = await calendarDates.getMatrix(new Date());
+    console.log(weeks);
+};
+fetchWeeks();
               
 
-const renderCalendar = () => {
+function renderCalendar () {
     let firstDayofMonth = new Date(currYear, currMonth, 0).getDay(); // getting first day of month
     let lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(); // getting last date of month
     let lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(); // getting last day of month
     let lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // getting last date of previous month
+    // let weekend = new Date(currYear, currMonth, 6, 7);
     let liTag = "";
     for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
         liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
@@ -26,8 +42,10 @@ const renderCalendar = () => {
     for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
         // adding active class to li if the current day, month, and year matched
         let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
-                     && currYear === new Date().getFullYear() ? "active" : "";
-        liTag += `<li class="${isToday}">${i}</li>`;
+            && currYear === new Date().getFullYear() ? "active" : "";
+        let isWeekend = i === 6 ? "weekend" : "";
+        liTag += `<li class="${isToday} ${isWeekend}">${i}</li>`;
+        
     }
     for (let i = lastDayofMonth; i < 7; i++) { // creating li of next month first days
         liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`
