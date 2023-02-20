@@ -1,25 +1,61 @@
 const paginationEl = document.getElementById('pagination');
 const btnNextPg = document.querySelector('.next-btn');
 const btnPrevPg = document.querySelector('.prev-btn');
-console.log(paginationEl, btnNextPg, btnPrevPg);
+// console.log(paginationEl, btnNextPg, btnPrevPg);
+
+const results = [];
 
 const valuePage = {
   curPage: 1,
   numLinksTwoSide: 1,
-  totalPages: 10,
+  countPages: 0,
+  totalPages: results.length,  
 };
 
 pagination();
 
+// розбиваємо масив отриманих даних
+
+function chunkArray(arrayData, chunkSize) {
+    while (arrayData.length) {
+    results.push(arrayData.splice(0, chunkSize));
+  }
+
+  return results;
+}
+
+// const qqqqqq = chunkArray([1,2,3,4,5,6,7,8], 3);
+// console.log(qqqqqq);
+
+window.matchMedia('(max-width: 767px)').addEventListener('change', e => {
+  if (!e.matches) return;
+  valuePage.countPages = 4;
+  chunkArray(results, valuePage.countPages)
+});
+
+window
+  .matchMedia('(min-width: 768px)' && '(max-width: 1279px)')
+  .addEventListener('change', e => {
+    if (!e.matches) return;
+    valuePage.countPages = 7;
+    chunkArray(results, valuePage.countPages)
+  });
+
+window.matchMedia('(min-width: 1280px)').addEventListener('change', e => {
+  if (!e.matches) return;
+  valuePage.countPages = 8;
+  chunkArray(results, valuePage.countPages)
+});
+
 paginationEl.addEventListener('click', e => {
   const ele = e.target;
-  console.log(ele);
+  // console.log(ele);
   if (ele.dataset.page) {
     const pageNumber = parseInt(e.target.dataset.page, 10);
-    console.log(pageNumber);
+    
     valuePage.curPage = pageNumber;
     pagination(valuePage);
-    console.log(valuePage);
+    
     handleButtonLeft();
     handleButtonRight();
   }
@@ -123,3 +159,4 @@ function handleButtonRight() {
     btnNextPg.disabled = false;
   }
 }
+// window.scrollTo(0, 0);

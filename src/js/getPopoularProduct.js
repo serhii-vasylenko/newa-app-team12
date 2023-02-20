@@ -1,5 +1,5 @@
 import {getPopularNewsAPI} from './api/news-api.js';
-//import function markup News
+import {newslistMarkup} from './markups/weather-markup.js';
 
  async function getPopoularProduct () {
    
