@@ -19,13 +19,13 @@ const months = ["January", "February", "March", "April", "May", "June", "July",
 
 async function fetchDays() {
     let days = await calendarDates.getDates(new Date(20));
-    console.log(days);
+    // console.log(days);
 };
 fetchDays();
 
 async function fetchWeeks() {
     let weeks = await calendarDates.getMatrix(new Date());
-    console.log(weeks);
+    // console.log(weeks);
 };
 fetchWeeks();
               
@@ -58,7 +58,8 @@ renderCalendar();
 
 const dayBtns = document.querySelectorAll(".button");
 dayBtns.forEach(dayBtn => dayBtn.addEventListener('click', (e) => {
-    return btnEl.textContent = `${addLeadingZero(e.target.textContent)}/${addLeadingZero(currMonth + 1)}/${currYear}`;
+    btnEl.textContent = `${addLeadingZero(e.target.textContent)}/${addLeadingZero(currMonth + 1)}/${currYear}`;
+    wrapperEl.classList.toggle('is-shown');
 }));
 function addLeadingZero(value) {
     return String(value).padStart(2, '0');
