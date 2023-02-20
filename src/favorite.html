@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <title>Favorite</title> -->
     <title>Favorite</title>
-    <meta name="description" content="favorite">
+    <meta name="description" content="favorite" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,15 +16,16 @@
     <link rel="stylesheet" href="./sass/index.scss" />
   </head>
   <body>
-    <!-- <include src="./partials/header.html"></include> -->
+    <include src="./partials/header.html"></include>
+    <include src="./partials/mobile-menu.html"></include>
     <main>
-      
-      <section class="gallery">
-        <ul class="gallery-list"></ul>
+      <include src="./partials/not-found.html"></include>
+      <section class="favorite-gallery">
+        <ul class="favorite-gallery__list"></ul>
       </section>
     </main>
     <include src="./partials/footer.html"></include>
-    <include src="./partials/mobile-menu.html"></include>
+
     <script src="favorite.js" type="module"></script>
   </body>
 </html>

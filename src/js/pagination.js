@@ -1,3 +1,5 @@
+import { getPopularNewsAPI } from './api/news-api.js';
+
 const paginationEl = document.getElementById('pagination');
 const btnNextPg = document.querySelector('.next-btn');
 const btnPrevPg = document.querySelector('.prev-btn');
@@ -9,15 +11,19 @@ const valuePage = {
   curPage: 1,
   numLinksTwoSide: 1,
   countPages: 0,
-  totalPages: results.length,  
+  totalPages: 10,
 };
-
+// getPopularNewsAPI();
+// console.log(
+// '🚀 ~ file: pagination.js:17 ~ getPopularNewsAPI:',
+// getPopularNewsAPI
+// );
 pagination();
 
 // розбиваємо масив отриманих даних
 
 function chunkArray(arrayData, chunkSize) {
-    while (arrayData.length) {
+  while (arrayData.length) {
     results.push(arrayData.splice(0, chunkSize));
   }
 
@@ -26,39 +32,84 @@ function chunkArray(arrayData, chunkSize) {
 
 // const qqqqqq = chunkArray([1,2,3,4,5,6,7,8], 3);
 // console.log(qqqqqq);
+function getAmountCards() {
+  if (window.innerWidth < 768) {
+    valuePage.countPages = 4;
+  }
 
-window.matchMedia('(max-width: 767px)').addEventListener('change', e => {
-  if (!e.matches) return;
-  valuePage.countPages = 4;
-  chunkArray(results, valuePage.countPages)
-});
-
-window
-  .matchMedia('(min-width: 768px)' && '(max-width: 1279px)')
-  .addEventListener('change', e => {
-    if (!e.matches) return;
+  if (window.innerWidth > 768 && window.innerWidth < 1280) {
     valuePage.countPages = 7;
-    chunkArray(results, valuePage.countPages)
+  }
+
+  if (window.innerWidth >= 1280) {
+    valuePage.countPages = 8;
+  }
+}
+
+function getAmountCardsDynamic() {
+  window.matchMedia('(max-width: 767px)').addEventListener('change', e => {
+    if (!e.matches) return;
+    valuePage.countPages = 4;
   });
 
-window.matchMedia('(min-width: 1280px)').addEventListener('change', e => {
-  if (!e.matches) return;
-  valuePage.countPages = 8;
-  chunkArray(results, valuePage.countPages)
-});
+  window
+    .matchMedia('(min-width: 768px)' && '(max-width: 1279px)')
+    .addEventListener('change', e => {
+      if (!e.matches) return;
+      valuePage.countPages = 7;
+    });
+
+  window.matchMedia('(min-width: 1280px)').addEventListener('change', e => {
+    if (!e.matches) return;
+    valuePage.countPages = 8;
+  });
+}
+
+getAmountCardsDynamic();
+console.log(
+  '🚀 ~ file: pagination.js:17 ~ getAmountCardsDynamic:',
+  valuePage.countPages
+);
 
 paginationEl.addEventListener('click', e => {
   const ele = e.target;
   // console.log(ele);
+
   if (ele.dataset.page) {
     const pageNumber = parseInt(e.target.dataset.page, 10);
-    
-    valuePage.curPage = pageNumber;
-    pagination(valuePage);
-    
-    handleButtonLeft();
-    handleButtonRight();
-  }
+    valuePage.curPage = pageNumber;    
+  } 
+
+  getAmountCards();
+    console.log('getAmountCards:', valuePage.countPages);
+
+    async function getPopoularProduct() {
+      const getNews = await getPopularNewsAPI();
+      // console.log('getNews.results', getNews.results);
+
+      valuePage.totalPages = Math.ceil(
+        getNews.results.length / valuePage.countPages
+      );
+      // console.log('getNews.results.length', valuePage.totalPages);
+
+      chunkArray(getNews.results, valuePage.countPages);
+      // console.log('chunkArray',chunkArray(getNews.results, valuePage.countPages));
+
+      for (let i = 0; i <= results.length; i += 1) {
+        // console.log(results[i]);
+        if (valuePage.curPage === i + 1) {
+          console.log('page', results[i]);
+          // markupNews(getNews.result)    function markup News
+          break
+        }
+      }
+
+      pagination(valuePage);
+
+      handleButtonLeft();
+      handleButtonRight();
+    }
+    getPopoularProduct();
 });
 
 // DYNAMIC PAGINATION
