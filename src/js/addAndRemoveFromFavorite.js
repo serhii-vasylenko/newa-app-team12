@@ -1,11 +1,12 @@
 const newsGallery = document.querySelector('.news-gallery');
-const newsCards = Array.from(document.querySelectorAll('.news-card'));
+const newsCards = Array.from(document.querySelectorAll('.card-news__item'));
 
 const storageData = JSON.parse(localStorage.getItem('favorite'))
   ? JSON.parse(localStorage.getItem('favorite'))
   : [];
 
 window.addEventListener('DOMContentLoaded', checkFavCards);
+
 newsGallery.addEventListener('click', onCardBtnClick);
 
 function onCardBtnClick({ target }) {
@@ -16,7 +17,7 @@ function onCardBtnClick({ target }) {
     changeAddBtnToRemoveBtn(target);
     const cardMarkup = {
       firstElOfCard: target.parentNode.firstElementChild.outerHTML,
-      markup: target.parentNode.outerHTML,
+      markup: target.parentNode.parentNode.outerHTML,
     };
     // const storageData = JSON.parse(localStorage.getItem("favorite"))
     //   ? JSON.parse(localStorage.getItem("favorite"))
@@ -43,7 +44,7 @@ function removeCardFromLocalStorage(target) {
   // const storageData = JSON.parse(localStorage.getItem("favorite"));
 
   const indexOfDelEl = storageData.findIndex(
-    obj => obj.markup === target.parentNode.outerHTML
+    obj => obj.markup === target.parentNode.parentNode.outerHTML
   );
 
   storageData.splice(indexOfDelEl, 1);
@@ -57,8 +58,11 @@ function checkFavCards() {
     const firstElOfStorageObj = storageData.map(obj => obj.firstElOfCard);
 
     const cardsToChange = newsCards.filter(card =>
-      firstElOfStorageObj.includes(card.firstElementChild.outerHTML)
+      firstElOfStorageObj.includes(
+        card.firstElementChild.firstElementChild.outerHTML
+      )
     );
+
     cardsToChange.map(item => {
       const card = item.querySelector('.addToFavoriteBtn');
 
