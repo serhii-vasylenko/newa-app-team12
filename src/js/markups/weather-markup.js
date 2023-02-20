@@ -1,9 +1,13 @@
 // const LINK_TO_WEEK = 'https://sinoptik.ua/';
 import { months, days, weekDay, dateToWeek } from '../utils/weather-dates';
 import { onClick } from '../weather';
-import { onSubmit } from '../weather';
+// import { onSubmit } from '../weather';
+// эти две ф-ции импортированы для проекта:
+import { getGeolocation } from '../weather';
+import { onError } from '../api/weather-api';
 
-const weatherCardEl = document.getElementById('weather');
+// const weatherCardEl = document.getElementById('weather');
+const weatherWidget = document.getElementById('weather');
 
 function getMarkupWeather({ data }) {
   const today = new Date();
@@ -30,7 +34,7 @@ function getMarkupWeather({ data }) {
   </div>
   <button class="weather__btn" type="button">weather for week</button>
 `;
-  weatherCardEl.innerHTML = template;
+  weatherWidget.innerHTML = template;
   const weekBtn = document.querySelector('.weather__btn');
   weekBtn.addEventListener('click', onClick);
 }
@@ -63,23 +67,69 @@ function getMarkupWeatherToWeek({ data }) {
     </table>`;
     parts.push(templateListToWeek);
   }
-  weatherCardEl.innerHTML = templateLocationToWeek + parts;
-  addClassToCard();
-  removeClassToCard();
+  weatherWidget.innerHTML = templateLocationToWeek + parts;
+    const clouseWeekWidget = document.querySelector('.weather__btn-close');
+    clouseWeekWidget.addEventListener('click', getGeolocation);
+
 }
 
 function addClassToCard() {
-  const weekWidget = document.querySelector('table');
-  weekWidget.classList.add('.is-active');
+  weatherWidget.classList.add('is-active');
 }
 
 function removeClassToCard() {
-  const clouseWeekWidget = document.querySelector('.weather__btn-close');
-  clouseWeekWidget.addEventListener('click', onSubmit)
-  // weekWidget.classList.remove('.is-active')
+  weatherWidget.classList.remove('is-active');
 }
 
 export { getMarkupWeather, getMarkupWeatherToWeek };
-// href="${LINK_TO_WEEK}"
-// target="_blank"
-// rel="noopener noreferrer nofollow"
+
+  
+  
+  
+// для проекта
+import { getPopularNewsAPI } from '../api/news-api';
+let galleryContainer = document.querySelector('.news-gallery');
+
+async function getPopularAndWeather() {
+  onError();
+  getGeolocation();
+
+  let popularNews = await getPopularNewsAPI().then(getMarkupPopNewsAndWeather);
+
+  return popularNews;
+}
+getPopularAndWeather();
+
+function getMarkupPopNewsAndWeather({ results }) {
+  console.log('это популярные новости', results);
+  let cardList = '';
+
+  for (let i = 0; i < results.length; i += 1) {
+    // { section, title, url, published_date} (для примера взят элемент section)
+    cardList += `<li class="exemple-card">${results[i].section}</li>`;
+
+    galleryContainer.insertAdjacentHTML('afterbegin', cardList);
+    galleryContainer.prepend(weatherWidget);
+  }
+  return cardList;
+}
+
+window.onresize = function (event) {
+  let listItems = document.querySelectorAll('.exemple-card');
+
+  if (window.matchMedia('(min-width: 1280px)').matches) {
+    listItems[1].parentNode.insertBefore(
+      weatherWidget,
+      listItems[1].nextSibling
+    );
+  } else if (window.matchMedia('(min-width: 768px)').matches) {
+    listItems[0].parentNode.insertBefore(
+      weatherWidget,
+      listItems[0].nextSibling
+    );
+  } else {
+    galleryContainer.prepend(weatherWidget);
+  }
+};
+
+export { addClassToCard, removeClassToCard };
