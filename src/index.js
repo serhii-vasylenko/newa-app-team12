@@ -10,4 +10,4 @@ import './js/calendar';
 // import './js/api/weather-api';
 // import './js/markups/weather-markup';
 import './js/markups/markupNewsCard';
-// import './js/addAndRemoveFromFavorite';
+import './js/addAndRemoveFromFavorite';
