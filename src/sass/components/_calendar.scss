@@ -1,0 +1,151 @@
+.calendar {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: 'Manrope';
+    font-style: normal;
+}
+
+.calendar-btn{
+    width: 168px;
+    height: 31px;
+
+    border: 1px solid $accent-color;
+    border-radius: 20px;
+    background-color: $accent-color;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: $widget-text-color;
+}
+// .material-symbols-rounded{
+//     font-size: 17px;
+// }
+
+.wrapper {
+    position: absolute;
+    z-index: 999;
+    display: none;
+    width: 250px;
+    height: 250px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+.is-shown {
+    display: block;
+}
+.calendar-header {
+    display: flex;
+    align-items: center;
+    padding: 25px 25px 0px 25px;
+    justify-content: space-between;
+}
+
+.icons {
+    display: flex;
+    gap: 20px;
+}
+
+#prev, #next{
+    width: 20px;
+    height: auto;
+    color: $accent-color;
+    font-size: 22px;
+    cursor: pointer;
+}
+.icons span:last-child {
+    margin-right: -10px;
+}
+
+.calendar-header .current-date {
+    display: inline;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.38;
+    color: #000000;
+}
+
+.calendar-grid {
+    padding-top: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 20px;
+}
+
+.calendar-grid ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    text-align: center;
+}
+
+.calendar-grid li {
+    color: #000000;
+    width: calc(100% / 7);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.weekend{
+    color: red;
+}
+
+.calendar-grid .weeks li {
+    margin-bottom: 14px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.2;
+    text-align: center;
+    cursor: default;
+    color: rgba(60, 60, 67, 0.3);
+}
+
+.button{
+    width: 26px;
+    height: 26px;
+    border: none;
+    border-radius: 50%;
+    padding: 0px;
+    background-color: transparent;
+}
+
+.calendar-grid .button {
+    z-index: 1;
+    cursor: pointer;
+    position: relative;
+    gap: 16px;
+    // margin-top: 30px;
+}
+
+.button.inactive {
+    color: rgba(60, 60, 67, 0.1);
+    
+}
+
+.button.active {
+    color: #fff;
+}
+
+.button::before {
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: 45%;
+    height: 26px;
+    width: 26px;
+    z-index: -1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.button.active::before {
+    background: $accent-color;
+}
+
+.button.weekend {
+    color: #878787;
+}

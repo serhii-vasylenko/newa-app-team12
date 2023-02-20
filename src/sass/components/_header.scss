@@ -200,7 +200,59 @@ button {
     position: relative;
 }
 
+// .search-form__input {
+//     width: 173px;
+//     height: 31px;
+//     border: 1px solid var(--primary-color);
+//     border-radius: 20px;
+//     background-color:var(--primary-bcgcolor);
+//     padding-left: 48px;
+//     padding-right: 15px;
+//     font-family: $theme-switcher-font;
+//     font-weight: 400;
+//     font-size: 12px;
+//     line-height: 1.75;
+//     letter-spacing: 0.02em;
+//     color: var(--primary-color);
+
+//     @media screen and (min-width: $tablet) {
+//         width: 213px;
+//         font-size: 14px;
+//         line-height: 1.71;
+//     }
+
+//     @media screen and (min-width: $desktop) {
+//         width: 288px;
+//     }
+// }
+
 .search-form__input {
+    @media screen and (max-width: $mobile-end) {
+        display: none;
+    }
+
+    @media screen and (min-width: $tablet) {
+        width: 213px;
+        height: 31px;
+        border: 1px solid var(--primary-color);
+        border-radius: 20px;
+        background-color:var(--primary-bcgcolor);
+        padding-left: 48px;
+        padding-right: 15px;
+        font-family: $theme-switcher-font;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.71;
+        letter-spacing: 0.02em;
+        color: var(--primary-color);
+    }
+
+    @media screen and (min-width: $desktop) {
+        width: 288px;
+    }
+}
+
+.search-form__input.active {
     width: 173px;
     height: 31px;
     border: 1px solid var(--primary-color);
@@ -214,28 +266,57 @@ button {
     line-height: 1.75;
     letter-spacing: 0.02em;
     color: var(--primary-color);
+}
 
-    @media screen and (min-width: $tablet) {
-        width: 213px;
-        font-size: 14px;
-        line-height: 1.71;
-    }
-
-    @media screen and (min-width: $desktop) {
-        width: 288px;
+.search-form__input.active .search-form__button {
+    @media screen and (max-width: $mobile-end) {
+        position: absolute;
+        display: inline-block;
+        top: 6px;
+        left: 12px;
+        border: 0;
+        padding: 0;
+        justify-content: center;
+        background-color: transparent;
+        color: var(--primary-color);
     }
 }
 
+// .search-form__button {
+//     position: absolute;
+//     display: inline-block;
+//     top: 6px;
+//     left: 12px;
+//     border: 0;
+//     padding: 0;
+//     justify-content: center;
+//     background-color: transparent;
+//     color: var(--primary-color);
+// }
+
 .search-form__button {
-    position: absolute;
-    display: inline-block;
-    top: 6px;
-    left: 12px;
-    border: 0;
-    padding: 0;
-    justify-content: center;
-    background-color: transparent;
-    color: var(--primary-color);
+    @media screen and (max-width: $mobile-end) {
+        position: relative;
+        display: inline-block;
+        transform: translate(153px, -1px);
+        border: 0;
+        padding: 0;
+        justify-content: center;
+        background-color: transparent;
+        color: var(--primary-color);
+    }
+    
+    @media screen and (min-width: $tablet) {
+        position: absolute;
+        display: inline-block;
+        top: 6px;
+        left: 12px;
+        border: 0;
+        padding: 0;
+        justify-content: center;
+        background-color: transparent;
+        color: var(--primary-color);
+    }
 }
 
 .search-form__icon {
@@ -246,6 +327,15 @@ button {
 .theme-switch {
     @media screen and (max-width: $mobile-end) {
         display: none;
+        // &.mobile {
+        //         display: flex;
+        //         position: absolute;
+        //         z-index: 100;
+        //         bottom: 18;
+        //         opacity: 100%;
+        //         pointer-events: all;
+        //         visibility: inherit;
+        //     }
     }
 
     @media screen and (min-width: $tablet) {
@@ -271,6 +361,7 @@ button {
     @media screen and (min-width: $desktop) {
         display: none;
     }
+      
 }
 
 .theme-switch__darkicon {
@@ -279,12 +370,14 @@ button {
     @media screen and (min-width: $desktop) {
         display: none;
     }
+       
 }
 
 .theme-switch__light {
     @media screen and (max-width: $tablet-end) {
         display: none;
     }
+       
 
     @media screen and (min-width: $desktop) {
     color: var(--themelight-namecolor);
@@ -327,4 +420,22 @@ button {
 
 .theme-switch__checkbox:checked + .theme-switch__slider::before {
     transform: translateX(20px);
+}
+
+.burger-menu {
+    @media screen and (max-width: $mobile-end) {
+        width: 24px;
+        height: 24px;
+        color: var(--primary-color);
+        padding: 3px;
+        margin-left: auto;
+    }
+
+    @media screen and (min-width: $tablet) {
+        display: none;
+    }
+}
+
+.burger-menu__icon {
+    stroke: currentColor;
 }

@@ -7,3 +7,7 @@ import './js/switch';
 import './js/weather';
 import './js/api/weather-api';
 import './js/markups/weather-markup';
+import './js/search';
+import './js/calendar';
+import './js/markups/markupNewsCard';
+import './js/addAndRemoveFromFavorite';

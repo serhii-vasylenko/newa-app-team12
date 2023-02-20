@@ -2,8 +2,9 @@
 .exemple-card {
   position: relative;
   padding: 32px 30px;
+
   width: 288px;
-  background-color: $accent-color;
+  background-color: #4440f7;
   border-radius: 4px;
   text-align: center;
   @media screen and (min-width: 768px) {
@@ -41,7 +42,7 @@
 }
 
 .weather__wrapper {
-  border-left: 1px solid $widget-text-color;
+  border-left: 1px solid #ffffff;
   padding-left: 11px;
 }
 
@@ -116,9 +117,9 @@
   }
 }
 
-.weather__btn {
+.weather__link {
   display: inline-block;
-  padding: 8px 14px;
+  padding: 10px 12px;
   background-color: rgba(254, 254, 255, 0.3);
   border-radius: 10px;
   border: none;

@@ -9,30 +9,67 @@ import { onError } from '../api/weather-api';
 // const weatherCardEl = document.getElementById('weather');
 const weatherWidget = document.getElementById('weather');
 
-function getMarkupWeather({ data }) {
-  const today = new Date();
-  let day = today.getDay();
+let currentDate;
+let currentDay;
+
+function getCurrentDate() {
+  let today = new Date();
   let date = today.getDate();
   let month = today.getMonth();
   let year = today.getFullYear();
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  currentDate = `${date} ${months[month]} ${year}`;
+  return currentDate;
+}
+getCurrentDate();
 
+function getCurrentDay() {
+  let today = new Date();
+  let day = today.getDay();
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  currentDay = `${days[day]}`;
+  return currentDay;
+}
+getCurrentDay();
+
+function getMarkupWeather({ data }) {
+  let location = data.name;
   let temp = Math.round(data.main.temp);
+  let weatherStatus = data.weather[0].main;
+  let weatherIcon = data.weather[0].icon;
 
   let template = `<div class="weather__header">
-    <p class="weather__temp">${temp}&#176;</p>
+    <div class="weather__temp">${temp}&#176;</div>
     <div class="weather__wrapper">
-      <p class="weather__status">${data.weather[0].main}</p>
-      <p class="weather__location">${data.name}</p>
+      <div class="weather__status">${weatherStatus}</div>
+      <div class="weather__location">${location}</div>
     </div>
   </div>
   <div>
-    <img class="wheather__icon" src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="${data.weather[0].main}">
+    <img class="wheather__icon" src="http://openweathermap.org/img/w/${weatherIcon}.png" alt="${weatherStatus}">
   </div>
   <div class="weather__data">
-    <p class="weather__date">${days[day]}</p>
-    <p class="weather__date">${date} ${months[month]} ${year}</p>
+    <div class="weather__date">${currentDay}</div>
+    <div class="weather__date">${currentDate}</div>
   </div>
-  <button class="weather__btn" type="button">weather for week</button>
+  <a class="weather__link"
+    href="${LINK_TO_WEEK}"
+    target="_blank"
+    rel="noopener noreferrer nofollow"
+  >weather for week</a>
 `;
   weatherWidget.innerHTML = template;
   const weekBtn = document.querySelector('.weather__btn');
