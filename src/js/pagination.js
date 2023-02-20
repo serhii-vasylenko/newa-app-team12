@@ -3,87 +3,59 @@ const btnNextPg = document.querySelector('.next-btn');
 const btnPrevPg = document.querySelector('.prev-btn');
 // console.log(paginationEl, btnNextPg, btnPrevPg);
 
-let deleteItems = [];
-let firstItems = [];
-let countPages = 0;
+const results = [];
 
 const valuePage = {
   curPage: 1,
   numLinksTwoSide: 1,
-  totalPages: 10,
+  countPages: 0,
+  totalPages: results.length,  
 };
-
-// функція повертає масив з перших amount елементів і записує всі інші в deleteItems
-function getSliceItems(arr, amount) {
-  // console.log(arr, amount);
-  deleteItems = arr.slice(amount);
-  // console.log(deleteItems);
-  valuePage.totalPages = arr.length / amount;
-  return arr.slice(0, amount);
-}
-
-// функція, яка робить розмітку amount елементів популярних новин при завантаженні
-function getNewsMarkup(arr, amount) {
-  const sliceArray = getSliceItems(arr, amount);
-
-  return (markup = sliceArray.map(item => createOneCard(item)).join(''));
-}
-
-let updateDeleteItems = [];
-// setTimeout(() => {
-//   updateDeleteItems = deleteItems.slice(amount);
-// }, 1500);
-
-paginationEl.addEventListener('click', e => {
-  handleButton(e.target);
-
-  window.matchMedia('(max-width: 767px)').addEventListener('change', e => {
-    if (!e.matches) return;
-    countPages = 4;
-  });
-
-  window
-    .matchMedia('(min-width: 768px)' && '(max-width: 1279px)')
-    .addEventListener('change', e => {
-      if (!e.matches) return;
-      countPages = 7;
-    });
-
-  window.matchMedia('(min-width: 1280px)').addEventListener('change', e => {
-    if (!e.matches) return;
-    countPages = 8;
-  });
-
-  switch (valuePage.curPage) {
-    case 1:
-      newsList.innerHTML = getNewsMarkup(arr, countPages);
-      break;
-    case 2:
-      const sliceItem = deleteItems.slice(0, countPages);
-      updateDeleteItems = deleteItems.slice(countPages);
-
-      const markup2 = render(sliceItem);
-
-      // newsList.innerHTML = markup2;
-      break;
-    case 3:
-
-      break;
-  }
-  // window.scrollTo(0, 0);
-});
 
 pagination();
 
+// розбиваємо масив отриманих даних
+
+function chunkArray(arrayData, chunkSize) {
+    while (arrayData.length) {
+    results.push(arrayData.splice(0, chunkSize));
+  }
+
+  return results;
+}
+
+// const qqqqqq = chunkArray([1,2,3,4,5,6,7,8], 3);
+// console.log(qqqqqq);
+
+window.matchMedia('(max-width: 767px)').addEventListener('change', e => {
+  if (!e.matches) return;
+  valuePage.countPages = 4;
+  chunkArray(arrayData, valuePage.countPages)
+});
+
+window
+  .matchMedia('(min-width: 768px)' && '(max-width: 1279px)')
+  .addEventListener('change', e => {
+    if (!e.matches) return;
+    valuePage.countPages = 7;
+    chunkArray(arrayData, valuePage.countPages)
+  });
+
+window.matchMedia('(min-width: 1280px)').addEventListener('change', e => {
+  if (!e.matches) return;
+  valuePage.countPages = 8;
+  chunkArray(arrayData, valuePage.countPages)
+});
+
 paginationEl.addEventListener('click', e => {
   const ele = e.target;
-  console.log(ele);
+  // console.log(ele);
   if (ele.dataset.page) {
     const pageNumber = parseInt(e.target.dataset.page, 10);
-    console.log(pageNumber);
+    
     valuePage.curPage = pageNumber;
     pagination(valuePage);
-    console.log(valuePage);
+    
     handleButtonLeft();
     handleButtonRight();
   }
@@ -148,11 +120,11 @@ function renderPage(index, active = '') {
   return ` <button class="pagination__btn pagination__btn-num ${active}"  data-page="${index}">${index}</button>`;
 }
 
-// document
-//   .querySelector('.pagination__container')
-//   .addEventListener('click', function (e) {
-//     handleButton(e.target);
-//   });
+document
+  .querySelector('.pagination__container')
+  .addEventListener('click', function (e) {
+    handleButton(e.target);
+  });
 
 function handleButton(element) {
   if (element.classList.contains('prev-btn')) {
@@ -187,3 +159,4 @@ function handleButtonRight() {
     btnNextPg.disabled = false;
   }
 }
+// window.scrollTo(0, 0);
