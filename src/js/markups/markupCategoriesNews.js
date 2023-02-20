@@ -1,8 +1,9 @@
 import { getCategoriesAPI } from '../api/news-api.js';
-import {divideArrNews} from '../categories.js';
+import { divideArrNews } from '../categories.js';
 
 const categoriesList = document.querySelector('.buttons-list');
 const categoriesBtn = document.querySelector('#btn-open-category');
+const categoriesMenu = document.querySelector('.category__menu');
 
 export async function markupCategories(categoriesMenu) {
   const getCategories = await getCategoriesAPI();
@@ -15,26 +16,36 @@ export async function markupCategories(categoriesMenu) {
     categoriesList.innerHTML = '';
     const categoriesArrs = divideArrNews(categories, 4);
     categoriesMenu.innerHTML = renderingOthers(categoriesArrs[1]);
-    categoriesList.insertAdjacentHTML("afterbegin", renderingButtons(categoriesArrs[0]));
+    categoriesList.insertAdjacentHTML(
+      'afterbegin',
+      renderingButtons(categoriesArrs[0])
+    );
   }
   if (window.matchMedia('(min-width: 1280px)').matches) {
     categoriesList.innerHTML = '';
     const categoriesArrs = divideArrNews(categories, 6);
     categoriesMenu.innerHTML = renderingOthers(categoriesArrs[1]);
-    categoriesList.insertAdjacentHTML("afterbegin", renderingButtons(categoriesArrs[0]));
+    categoriesList.insertAdjacentHTML(
+      'afterbegin',
+      renderingButtons(categoriesArrs[0])
+    );
   }
 }
 
-export function markupNameButton() {
-  if (window.matchMedia('(max-width: 767px)').matches) {
-    categoriesBtn.innerHTML = 'Categories';
-  }
-  
-  if (window.matchMedia('(min-width: 768px)').matches) {
-    categoriesBtn.innerHTML = 'Others';
+export function markupNameButton(currentButton) {
+  if (categoriesMenu.classList.contains('is-open-categories')) {
+    categoriesMenu.classList.remove('is-open-categories');
+    categoriesBtn.innerHTML = currentButton;
+  } else {
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      categoriesBtn.innerHTML = 'Categories';
+    }
+
+    if (window.matchMedia('(min-width: 768px)').matches) {
+      categoriesBtn.innerHTML = 'Others';
+    }
   }
 }
-
 
 function renderingOthers(categories) {
   return categories
