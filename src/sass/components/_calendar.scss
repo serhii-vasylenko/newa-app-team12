@@ -8,7 +8,8 @@
 }
 
 .calendar-btn{
-
+    border: 1px solid $lt-main-text-color;
+    border-radius: 20px;
 }
 
 .wrapper {
@@ -107,7 +108,13 @@
     color: rgba(60, 60, 67, 0.3);
 }
 
-.calendar-grid .days li {
+.button{
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.calendar-grid .button {
     z-index: 1;
     cursor: pointer;
     position: relative;
@@ -115,15 +122,15 @@
     // margin-top: 30px;
 }
 
-.days li.inactive {
+.button.inactive {
     color: rgba(60, 60, 67, 0.1);
 }
 
-.days li.active {
+.button.active {
     color: #fff;
 }
 
-.days li::before {
+.button::before {
     position: absolute;
     content: "";
     left: 50%;
@@ -135,11 +142,11 @@
     transform: translate(-50%, -50%);
 }
 
-.days li.active::before {
+.button.active::before {
     background: $accent-color;
 }
 
-.days li.weekend {
+.button.weekend {
     color: #878787;
 }
 // .days li:not(.active):hover::before {
