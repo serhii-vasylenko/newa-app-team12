@@ -6,6 +6,7 @@ const currentDate = document.querySelector(".current-date");
 const prevNextIcon = document.querySelectorAll(".icons span");
 
 const btnEl = document.querySelector('.calendar-btn');
+const spanEl = document.querySelector('.calendar-btn-span');
 const modalEl = document.querySelector('.modal');
 
 btnEl.addEventListener('click', () => {
@@ -13,6 +14,9 @@ btnEl.addEventListener('click', () => {
         ? btnEl.classList.add('btn-is-active')
         : btnEl.classList.remove('btn-is-active');
 });
+
+btnEl.addEventListener('hover', () => btnEl.classList.add('btn-is-active'));
+btnEl.addEventListener('focus', () => btnEl.classList.add('btn-is-active'));
 
 let selectedDate = "";
 
@@ -49,21 +53,21 @@ function renderCalendar () {
         // adding active class to li if the current day, month, and year matched
         let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
             && currYear === new Date().getFullYear() ? "active" : "";
-        let isWeekend = i === 6 ? "weekend" : "";
-        liTag += `<li><button type="button" class="button ${isToday} ${isWeekend}">${i}</button></li>`;
+        let isCurrentDay = i === date.getDate() ? "current-month-day" : "";
+        liTag += `<li><button type="button" class="button ${isToday} ${isCurrentDay}">${i}</button></li>`;
         
     }
     for (let i = lastDayofMonth; i < 7; i++) { // creating li of next month first days
         liTag += `<li><button type="button" class="button inactive" disabled>${i - lastDayofMonth + 1}</button></li>`
     }
 
-    currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
+    currentDate.innerHTML = `${months[currMonth]} ${currYear} <span class="chevron">&#10095;</span>`; // passing current mon and yr as currentDate text
     daysTag.innerHTML = liTag;
 
     const dayBtns = document.querySelectorAll(".button");
     dayBtns.forEach(dayBtn => dayBtn.addEventListener('click', (e) => {
-        btnEl.textContent = `${addLeadingZero(e.target.textContent)}/${addLeadingZero(currMonth + 1)}/${currYear}`;
-        selectedDate = btnEl.textContent;
+        spanEl.textContent = `${addLeadingZero(e.target.textContent)}/${addLeadingZero(currMonth + 1)}/${currYear}`;
+        selectedDate = spanEl.textContent;
         modalEl.classList.toggle('is-shown');
         btnEl.classList.remove('btn-is-active');
         return selectedDate;

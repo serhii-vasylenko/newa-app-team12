@@ -64,6 +64,10 @@
 }
 
 .calendar-btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
     height: 31px;
 
     border: 1px solid var(--primary-color);
@@ -74,6 +78,25 @@
     font-size: 14px;
     line-height: 1.5;
     color: var(--calendar-btn-text-color);
+    transition: $animation;
+}
+.icon-calendar{
+    width: 19px;
+    height: 19px;
+    fill: var(--calendar-btn-icon-color);
+        transition: $animation;
+}
+.icon-chevron{
+    width: 15px;
+    height: 15px;
+    fill: var(--calendar-btn-text-color);
+        transition: $animation;
+}
+
+.calendar-btn:hover, .calendar-btn:focus{
+    background-color: #4440F6;
+    border: 1px solid #4440F6;
+    color: #FFFFFF;
 }
 
 .wrapper{
@@ -107,6 +130,14 @@
     border: 1px solid #4440F6;
     color: #FFFFFF
 }
+.calendar-btn.btn-is-active > .icon-calendar,
+.calendar-btn.btn-is-active >.icon-chevron,
+.calendar-btn:hover >.icon-calendar,
+.calendar-btn:hover>.icon-chevron,
+.calendar-btn:focus>.icon-calendar,
+.calendar-btn:focus>.icon-chevron{
+    fill: #ffffff;
+}
 .calendar-header {
     display: flex;
     align-items: center;
@@ -117,6 +148,10 @@
 .icons {
     display: flex;
     gap: 20px;
+}
+
+.chevron{
+    color: var(--accent-color);
 }
 
 #prev, #next{
@@ -160,8 +195,8 @@
     line-height: 1.8;
 }
 
-.weekend{
-    color: red;
+.current-month-day{
+    color: var(--accent-color);
 }
 
 .calendar-grid .weeks li {
@@ -208,7 +243,6 @@
 .button.active::before {
     background: var(--accent-color);
 }
-
 .button.weekend {
     color: #878787;
 }
