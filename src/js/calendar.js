@@ -6,6 +6,7 @@ const currentDate = document.querySelector(".current-date");
 const prevNextIcon = document.querySelectorAll(".icons span");
 
 const btnEl = document.querySelector('.calendar-btn');
+const spanEl = document.querySelector('.calendar-btn-span');
 const modalEl = document.querySelector('.modal');
 
 btnEl.addEventListener('click', () => {
@@ -13,6 +14,9 @@ btnEl.addEventListener('click', () => {
         ? btnEl.classList.add('btn-is-active')
         : btnEl.classList.remove('btn-is-active');
 });
+
+btnEl.addEventListener('hover', () => btnEl.classList.add('btn-is-active'));
+btnEl.addEventListener('focus', () => btnEl.classList.add('btn-is-active'));
 
 let selectedDate = "";
 
@@ -57,13 +61,13 @@ function renderCalendar () {
         liTag += `<li><button type="button" class="button inactive" disabled>${i - lastDayofMonth + 1}</button></li>`
     }
 
-    currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
+    currentDate.innerHTML = `${months[currMonth]} ${currYear} <span class="chevron">&#10095;</span>`; // passing current mon and yr as currentDate text
     daysTag.innerHTML = liTag;
 
     const dayBtns = document.querySelectorAll(".button");
     dayBtns.forEach(dayBtn => dayBtn.addEventListener('click', (e) => {
-        btnEl.textContent = `${addLeadingZero(e.target.textContent)}/${addLeadingZero(currMonth + 1)}/${currYear}`;
-        selectedDate = btnEl.textContent;
+        spanEl.textContent = `${addLeadingZero(e.target.textContent)}/${addLeadingZero(currMonth + 1)}/${currYear}`;
+        selectedDate = spanEl.textContent;
         modalEl.classList.toggle('is-shown');
         btnEl.classList.remove('btn-is-active');
         return selectedDate;
