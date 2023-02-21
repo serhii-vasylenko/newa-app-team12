@@ -1,15 +1,6 @@
 import { getSearchNewsAPI } from './api/news-api.js';
 
-// example function search News
-
-//async function getSearchNews(search) {
-  //const getNews = await getSearchNewsAPI(search);
- // console.log('Arr objects with search News ', getNews.response.docs);
-  //function filter Date
-  // function markup News
-//}
-
-//getSearchNews('cat');
+const newsGallery = document.querySelector('.news-gallery');
 
 //const newsApi = new NewsApi();
 
@@ -61,7 +52,7 @@ function onEnterPush(e) {
   //function createBaseMarcup(arr) {
     //addMarkup()
   
-  //function addMarkup(tagString) {
-   // articlesGallery.innerHTML = '';
-   // articlesGallery.insertAdjacentHTML('beforeend', tagString);
-  //}
+  function addMarkup(tagString) {
+  newsGallery.innerHTML = '';
+  newsGallery.insertAdjacentHTML('beforeend', tagString);
+  }
