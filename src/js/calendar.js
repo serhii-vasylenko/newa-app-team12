@@ -1,5 +1,5 @@
-import CalendarDates from "calendar-dates";
-const calendarDates = new CalendarDates();
+// import CalendarDates from "calendar-dates";
+// const calendarDates = new CalendarDates();
 
 const daysTag = document.querySelector(".days");
 const currentDate = document.querySelector(".current-date");
@@ -14,6 +14,7 @@ btnEl.addEventListener('click', () => {
         : btnEl.classList.remove('is-active');
 });
 
+let selectedDate = "";
 
 let date = new Date();
 let currYear = date.getFullYear();
@@ -21,17 +22,17 @@ let currMonth = date.getMonth();
 const months = ["January", "February", "March", "April", "May", "June", "July",
                 "August", "September", "October", "November", "December"];
 
-async function fetchDays() {
-    let days = await calendarDates.getDates(new Date(20));
-    // console.log(days);
-};
-fetchDays();
+// async function fetchDays() {
+//     let days = await calendarDates.getDates(new Date(20));
+//     // console.log(days);
+// };
+// fetchDays();
 
-async function fetchWeeks() {
-    let weeks = await calendarDates.getMatrix(new Date());
-    // console.log(weeks);
-};
-fetchWeeks();
+// async function fetchWeeks() {
+//     let weeks = await calendarDates.getMatrix(new Date());
+//     // console.log(weeks);
+// };
+// fetchWeeks();
               
 
 function renderCalendar () {
@@ -55,16 +56,21 @@ function renderCalendar () {
     for (let i = lastDayofMonth; i < 7; i++) { // creating li of next month first days
         liTag += `<li><button type="button" class="button inactive" disabled>${i - lastDayofMonth + 1}</button></li>`
     }
+
     currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
     daysTag.innerHTML = liTag;
+
     const dayBtns = document.querySelectorAll(".button");
     dayBtns.forEach(dayBtn => dayBtn.addEventListener('click', (e) => {
     btnEl.textContent = `${addLeadingZero(e.target.textContent)}/${addLeadingZero(currMonth + 1)}/${currYear}`;
+    selectedDate = btnEl.textContent;
     wrapperEl.classList.toggle('is-shown');
+    return selectedDate;
 }));
 }
 renderCalendar();
 
+console.log(renderCalendar());
 
 function addLeadingZero(value) {
     return String(value).padStart(2, '0');
