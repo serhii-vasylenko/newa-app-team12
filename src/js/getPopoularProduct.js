@@ -21,7 +21,7 @@ getPopularProduct();
 function markup(data) {
   return data
     .map(({ abstract, media, published_date, subsection, title, url }) => {
-      let mediaURL = `../images/news.jpg`;
+      let mediaURL = `https://webassets.eurac.edu/31538/1647583511-adobestock_490465800.jpeg?auto=format&fm=jpg&h=588&w=980`;
 
       if (
         media &&
