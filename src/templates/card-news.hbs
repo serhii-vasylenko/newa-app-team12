@@ -1,24 +1,19 @@
 {{#each this}}
 
   <li class='card-news__item card__readed'>
-    <div class='card-news__picture'><img
-        src='{{media.0.media-metadata.2.url}}'
-        alt='{{media.caption}}'
-        class='news-image'
-      />
+    <div class='card-news__picture'>
+      <img src='{{media.0.media-metadata.2.url}}'
+        alt='{{media.caption}}' class='news-image'/>
       <p class='news-category'> {{subsection}}</p>
-      <button
-        class='news-favorite addToFavoriteBtn'
-        aria-label='add to favorite'
-      >Add to favorite
-        <svg class='news-favorite__icon' width='16' height='16'><use
-            href='../images/icons-defs.svg#icon-heart-transparent'
+      <button class='news-favorite addToFavoriteBtn'
+        aria-label='add to favorite'>Add to favorite
+        <svg class='news-favorite__icon' width='16' height='16'><use href='./images/icons-defs.svg#icon-favorite'
           ></use></svg>
       </button>
     </div>
     <div class='card-news__info'>
       <h3 class='card-news__title'> {{title}}</h3>
-      <p class='card-news__info'> {{abstract}}...</p>
+      <p class='card-news__text'> {{abstract}}...</p>
       <div class='card-information'>
         <div class='card-infrmation__data'> {{published_date}}</div>
         <a class='card__infotion__more' href='{{url}}'>Read more</a>
