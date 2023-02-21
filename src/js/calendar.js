@@ -8,7 +8,11 @@ const prevNextIcon = document.querySelectorAll(".icons span");
 const btnEl = document.querySelector('.calendar-btn');
 const wrapperEl = document.querySelector('.wrapper');
 
-btnEl.addEventListener('click', () => { return wrapperEl.classList.toggle('is-shown') });
+btnEl.addEventListener('click', () => {
+    return wrapperEl.classList.toggle('is-shown')
+        ? btnEl.classList.add('is-active')
+        : btnEl.classList.remove('is-active');
+});
 
 
 let date = new Date();

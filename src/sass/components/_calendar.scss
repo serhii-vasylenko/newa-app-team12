@@ -11,14 +11,14 @@
     width: 168px;
     height: 31px;
 
-    border: 1px solid var(--accent-color);
+    border: 1px solid var(--primary-color);
     border-radius: 20px;
-    background-color: var(--accent-color);
+    background-color: var(--primary-bcgcolor);
 
     font-weight: 400;
     font-size: 14px;
     line-height: 1.5;
-    color: $widget-text-color;
+    color: var(--calendar-btn-text-color);
 }
 // .material-symbols-rounded{
 //     font-size: 17px;
@@ -37,6 +37,11 @@
 .is-shown {
     display: block;
 }
+.calendar-btn.is-active{
+    background-color: #4440F6;
+    border: 1px solid #4440F6;
+    color: #FFFFFF
+}
 .calendar-header {
     display: flex;
     align-items: center;
@@ -52,7 +57,7 @@
 #prev, #next{
     width: 20px;
     height: auto;
-    color: $accent-color;
+    color: var(--accent-color);
     font-size: 22px;
     cursor: pointer;
 }
@@ -109,7 +114,7 @@
     width: 26px;
     height: 26px;
     border: none;
-    border-radius: 50%;
+    // border-radius: 50%;
     padding: 0px;
     background-color: transparent;
     cursor: pointer;
@@ -137,7 +142,7 @@
 }
 
 .button.active::before {
-    background: $accent-color;
+    background: var(--accent-color);
 }
 
 .button.weekend {
