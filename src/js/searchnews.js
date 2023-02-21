@@ -3,17 +3,17 @@ import SearchNews from "./api/api-newssearch";
 const newsGallery = document.querySelector('.news-gallery');
 
 const pageNotFound = document.querySelector(".not-found");
-const input = document.querySelector('.search-form__input');
-input.addEventListener('submit', onEnterPush);
+const form = document.querySelector('.search-form__input');
+form.addEventListener('submit', onEnterPush);
 
 
 const searchNews = new SearchNews();
 
 function onEnterPush (e) {
   e.preventDefault () 
-  const input = e.currentTarget ;
-  searchNews.searchQuery=input.elements.searchQuery.value.trim();
-  //clearImgList ();
+  const form = e.currentTarget ;
+  searchNews.searchQuery=form.elements.searchQuery.value.trim();
+
   searchNews.resetPage();
   searchNewsImg();
 }
@@ -22,13 +22,13 @@ async function searchNewsImg() {
   try {
   const getNews = await searchNews.searchNewsImg();
   console.log('Arr objects with search News ', getNews.results);
-  //const resArr = getNews.results;
+  
   newsGallery.innerHTML = addMarkup()
 
-if (getNews.length) {
+if (getNews.data.responce.docs.length) {
   pageNotFound.classList.add("visually-hidden");
-  addMarkup(getNews);
-} else if (getNews.length === 0) {
+  addMarkup(getNews.data.responce.docs);
+} else if (getNews.responce.docs.length === 0) {
   notFound();
 }
 }

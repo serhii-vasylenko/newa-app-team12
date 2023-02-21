@@ -13,7 +13,7 @@ export default class SearchNews {
   const API_KEY = 'ExFFGvT2fZBzTdDFtfXKysgryhCLXIkg';
   const response = await axios.get(`${API_URL}?q=${this.searchQuery}&api-key=${API_KEY}`);
   this.incrementPage()
-    return response.data;
+    return response;
  }
   
 resetPage(){
