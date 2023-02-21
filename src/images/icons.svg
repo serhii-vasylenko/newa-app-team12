@@ -13,7 +13,7 @@
       <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.29" d="M16 1.78v2.58m0 23.28v2.58M5.94 5.94l1.84 1.84m16.44 16.44 1.84 1.84M1.78 16h2.58m23.28 0h2.58M5.94 26.06l1.84-1.84M24.22 7.78l1.84-1.84M22.46 16a6.46 6.46 0 1 1-12.93 0 6.46 6.46 0 0 1 12.94 0z"/>
     </symbol>
     <symbol id="icon-arrow-down" viewBox="0 0 32 32">
-      <path fill="#4440f6" d="M3.76 9.143 0 12.622l16 14.807 16-14.807-3.76-3.479L16 20.446 3.76 9.143z" style="fill:var(--color1, #4440f6)"/>
+      <path  d="M3.76 9.143 0 12.622l16 14.807 16-14.807-3.76-3.479L16 20.446 3.76 9.143z"/>
     </symbol>
     <symbol id="icon-arrow-up" viewBox="0 0 32 32">
       <path fill="#4440f6" d="M3.76 25.143 0 21.664 16 6.857l16 14.807-3.76 3.479L16 13.84 3.76 25.143z" style="fill:var(--color1, #4440f6)"/>

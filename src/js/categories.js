@@ -10,8 +10,9 @@ const categoriesMenu = document.querySelector('.category__menu');
 const categoriesBtn = document.querySelector('#btn-open-category');
 const categoriesList = document.querySelector('.buttons-list');
 const categoriesContainer = document.querySelector('.category');
+const arrowBtnCategories = document.querySelector('.arrow-icon');
 
-let categoriesBtnRigthMargin = saveMargin();
+// let categoriesBtnRigthMargin = saveMargin();
 
 markupCategories(categoriesMenu);
 markupNameButton();
@@ -26,6 +27,13 @@ function onToggleCategoriesMenu() {
     categoriesBtn.getAttribute('aria-expanded') === 'true' || false;
   categoriesBtn.setAttribute('aria-expanded', !isMenuOpen);
   categoriesMenu.classList.toggle('is-open-categories');
+  if (categoriesMenu.classList.contains('is-open-categories')) {
+    arrowBtnCategories.classList.add('open-categories');
+  }
+  if (!categoriesMenu.classList.contains('is-open-categories')) {
+    arrowBtnCategories.classList.remove('open-categories');
+    categoriesBtn.blur();
+  }
 }
 
 window.onclick = event => {
@@ -34,6 +42,11 @@ window.onclick = event => {
       if (categoriesMenu.classList.contains('is-open-categories')) {
         categoriesMenu.classList.remove('is-open-categories');
       }
+    }
+  }
+  if (!event.target.matches('.category__btn')) {
+    if (arrowBtnCategories.classList.contains('open-categories')) {
+      arrowBtnCategories.classList.remove('open-categories');
     }
   }
 };
@@ -59,55 +72,81 @@ function clearCategoriesMenu() {
 }
 
 function onSearchNewsMenu(event) {
-  const sizeCategoriesBtn = categoriesBtn.offsetWidth;
-  
+  // const sizeCategoriesBtn = categoriesBtn.offsetWidth;
+
   const currentButtonCategory = event.target.dataset.btn;
   const currentButtonValue = event.target.innerText;
   getCategoryNews(currentButtonCategory);
 
   markupNameButton(decodeURIComponent(currentButtonValue));
   categoriesMenu.classList.remove('is-open-categories');
-  categoriesBtn.focus();
-  changeMarginBetweenCalendar (sizeCategoriesBtn);
-}
-
-function changeMarginBetweenCalendar (sizeCategoriesBtn) {
-  let newMarginRight = 0;
-   categoriesBtnRigthMargin = saveMargin();
-  const container = sizeCategoriesBtn + categoriesBtnRigthMargin;
-  console.log("sizeCategoriesBtn", sizeCategoriesBtn)
- console.log(" categoriesBtnRigthMargin", categoriesBtnRigthMargin)
- console.log("container", container)
- const currentSizeCategoriesBtn = categoriesBtn.offsetWidth;
- console.log("🚀 ~ file: categories.js:83 ~ changeMarginBetweenCalendar ~ sizeCategoriesBtn", sizeCategoriesBtn)
- console.log("🚀 ~ file: categories.js:83 ~ changeMarginBetweenCalendar ~ currentSizeCategoriesBtn", currentSizeCategoriesBtn)
- const differenceMargin = currentSizeCategoriesBtn-sizeCategoriesBtn;
  
- if(differenceMargin >= 0 && (categoriesBtnRigthMargin - differenceMargin) >categoriesBtnRigthMargin){
-  newMarginRight = ((newMarginRight-categoriesBtnRigthMargin) + categoriesBtnRigthMargin + 5);
- }
- else {newMarginRight = categoriesBtnRigthMargin - differenceMargin;}
+  arrowBtnCategories.classList.add('open-categories');
+  categoriesBtn.focus();
   
 
-//  if(differenceMargin < 0){
-//   newMarginRight = container - currentSizeCategoriesBtn;
-//   if (newMarginRight > categoriesBtnRigthMargin) {
-//     newMarginRight = (differenceMargin-categoriesBtnRigthMargin) + categoriesBtnRigthMargin + 5;
-//  }
-  
-//  }
- console.log("🚀 ~ file: categories.js:76 ~ changeMarginBetweenCalendar ~ newMarginRight", newMarginRight)
- categoriesContainer.style.marginRight = `${newMarginRight}px`;
- console.log("🚀 ~ file: categories.js:76 ~ changeMarginBetweenCalendar ~ categoriesContainer.style.marginRight", categoriesContainer.style.marginRight)
- console.log("margin Fin", getComputedStyle(categoriesContainer).marginRight);
-
+  // changeMarginBetweenCalendar(sizeCategoriesBtn);
 }
 
+// function changeMarginBetweenCalendar(sizeCategoriesBtn) {
+//   let newMarginRight = 0;
+//   categoriesBtnRigthMargin = saveMargin();
+//   const container = sizeCategoriesBtn + categoriesBtnRigthMargin;
+//   console.log('sizeCategoriesBtn', sizeCategoriesBtn);
+//   console.log(' categoriesBtnRigthMargin', categoriesBtnRigthMargin);
+//   console.log('container', container);
+//   const currentSizeCategoriesBtn = categoriesBtn.offsetWidth;
+//   console.log(
+//     '🚀 ~ file: categories.js:83 ~ changeMarginBetweenCalendar ~ sizeCategoriesBtn',
+//     sizeCategoriesBtn
+//   );
+//   console.log(
+//     '🚀 ~ file: categories.js:83 ~ changeMarginBetweenCalendar ~ currentSizeCategoriesBtn',
+//     currentSizeCategoriesBtn
+//   );
+//   const differenceMargin = currentSizeCategoriesBtn - sizeCategoriesBtn;
 
-function pxToNumber (str) {
-  return Number(str.slice(0, 2));
-}
+//   if (
+//     differenceMargin >= 0 &&
+//     categoriesBtnRigthMargin - differenceMargin > categoriesBtnRigthMargin
+//   ) {
+//     newMarginRight =
+//       newMarginRight - categoriesBtnRigthMargin + categoriesBtnRigthMargin + 5;
+//   } else {
+//     newMarginRight = categoriesBtnRigthMargin - differenceMargin;
+//   }
 
-function saveMargin () {
-  return pxToNumber(getComputedStyle(categoriesContainer).marginRight);
-}
+  //  if(differenceMargin < 0){
+  //   newMarginRight = container - currentSizeCategoriesBtn;
+  //   if (newMarginRight > categoriesBtnRigthMargin) {
+  //     newMarginRight = (differenceMargin-categoriesBtnRigthMargin) + categoriesBtnRigthMargin + 5;
+  //  }
+
+  //  }
+//   console.log(
+//     '🚀 ~ file: categories.js:76 ~ changeMarginBetweenCalendar ~ newMarginRight',
+//     newMarginRight
+//   );
+//   categoriesContainer.style.marginRight = `${newMarginRight}px`;
+//   console.log(
+//     '🚀 ~ file: categories.js:76 ~ changeMarginBetweenCalendar ~ categoriesContainer.style.marginRight',
+//     categoriesContainer.style.marginRight
+//   );
+//   console.log('margin Fin', getComputedStyle(categoriesContainer).marginRight);
+// }
+
+// function pxToNumber(str) {
+//   return Number(str.slice(0, 2));
+// }
+
+// function saveMargin() {
+//   return pxToNumber(getComputedStyle(categoriesContainer).marginRight);
+// }
+
+// categoriesBtn.addEventListener('focus', () => {
+//   arrowBtnCategories.classList.add('open-categories');
+// });
+
+// categoriesBtn.addEventListener('blur', () => {
+//   arrowBtnCategories.classList.remove('open-categories');
+// });
