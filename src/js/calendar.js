@@ -6,12 +6,12 @@ const currentDate = document.querySelector(".current-date");
 const prevNextIcon = document.querySelectorAll(".icons span");
 
 const btnEl = document.querySelector('.calendar-btn');
-const wrapperEl = document.querySelector('.wrapper');
+const modalEl = document.querySelector('.modal');
 
 btnEl.addEventListener('click', () => {
-    return wrapperEl.classList.toggle('is-shown')
-        ? btnEl.classList.add('is-active')
-        : btnEl.classList.remove('is-active');
+    return modalEl.classList.toggle('is-shown')
+        ? btnEl.classList.add('btn-is-active')
+        : btnEl.classList.remove('btn-is-active');
 });
 
 let selectedDate = "";
@@ -64,7 +64,7 @@ function renderCalendar () {
     dayBtns.forEach(dayBtn => dayBtn.addEventListener('click', (e) => {
     btnEl.textContent = `${addLeadingZero(e.target.textContent)}/${addLeadingZero(currMonth + 1)}/${currYear}`;
     selectedDate = btnEl.textContent;
-    wrapperEl.classList.toggle('is-shown');
+    modalEl.classList.toggle('is-shown');
     return selectedDate;
 }));
 }
