@@ -114,8 +114,12 @@ function getMarkupPopNewsAndWeather({ results }) {
   return cardList;
 }
 
-window.onresize = function (event) {
+// window.onresize = function (event) {
+// };
+
+window.addEventListener('DOMContentLoaded', function () {
   let listItems = document.querySelectorAll('.exemple-card');
+  // let weatherWidget = document.getElementById('weather-widget');
 
   if (window.matchMedia('(min-width: 1280px)').matches) {
     listItems[1].parentNode.insertBefore(
@@ -128,8 +132,9 @@ window.onresize = function (event) {
       listItems[0].nextSibling
     );
   } else {
+    let galleryContainer = document.getElementById('gallery-container');
     galleryContainer.prepend(weatherWidget);
   }
-};
+});
 
 export { addClassToCard, removeClassToCard };
