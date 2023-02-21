@@ -15,6 +15,8 @@ const btnPrevPg = document.querySelector('.prev-btn');
 const searchFormEl = document.querySelector('.search-form');
 // console.log(paginationEl, btnNextPg, btnPrevPg);
 
+
+
 const results = [];
 
 const valuePage = {
@@ -26,7 +28,9 @@ const valuePage = {
 
 searchFormEl.addEventListener('submit', e => {
   getSearchNewsAPI()
-    .then(data => (arrayNews = data.arrayNews))
+    .then(data => {
+      console.log(data.arrayNews)
+    })
     .then(arrayNews => renderNewsMarkup(arrayNews))
     .catch(error => console.log(error));
 });
@@ -42,14 +46,14 @@ paginationEl.addEventListener('click', e => {
 
   getAmountCards();
 
-  renderNewsMarkup(getPopularNewsAPI()); //getPopularNewsAPI()
+  renderNewsMarkup(); //getPopularNewsAPI()
   goToTop();
 });
 
 paginationContainerEl.addEventListener('click', e => {
   handleButton(e.target);
 
-  renderNewsMarkup(getPopularNewsAPI());   //getPopularNewsAPI()
+  renderNewsMarkup();   //getPopularNewsAPI()
   goToTop();
 });
 
