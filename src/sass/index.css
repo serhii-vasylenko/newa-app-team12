@@ -1397,8 +1397,16 @@ button {
 }
 
 /* block for news */
+.card-news__info {
+  padding-top: 20px;
+}
+
+.card-news__info-chort {
+  padding-bottom: 20px;
+}
+
 .card-news__title {
-  margin: 0 0 20px 0;
+  padding: 0 0 20px 0;
   font-weight: 700;
   font-size: 24px;
   line-height: 1.38;
@@ -1413,7 +1421,7 @@ button {
 }
 
 .card-news__text {
-  margin: 0 0 20px 0;
+  padding: 0 0 20px 0;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.36;
@@ -1460,7 +1468,19 @@ button {
   }
 }
 
-/* block owerlay */
+.owerlay-readed {
+  display: none;
+}
+
+.owerlay-readed__active {
+  position: absolute;
+  display: flex;
+  top: 0;
+  background-color: rgba(244, 244, 244, 0.4);
+  width: 100%;
+  height: 100%;
+}
+
 .owerlay-readed__info {
   position: absolute;
   display: inline-flex;
