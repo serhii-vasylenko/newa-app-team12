@@ -195,8 +195,8 @@
     line-height: 1.8;
 }
 
-.weekend{
-    color: red;
+.current-month-day{
+    color: var(--accent-color);
 }
 
 .calendar-grid .weeks li {
@@ -243,7 +243,6 @@
 .button.active::before {
     background: var(--accent-color);
 }
-
 .button.weekend {
     color: #878787;
 }

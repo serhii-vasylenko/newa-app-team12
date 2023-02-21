@@ -53,8 +53,8 @@ function renderCalendar () {
         // adding active class to li if the current day, month, and year matched
         let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
             && currYear === new Date().getFullYear() ? "active" : "";
-        let isWeekend = i === 6 ? "weekend" : "";
-        liTag += `<li><button type="button" class="button ${isToday} ${isWeekend}">${i}</button></li>`;
+        let isCurrentDay = i === date.getDate() ? "current-month-day" : "";
+        liTag += `<li><button type="button" class="button ${isToday} ${isCurrentDay}">${i}</button></li>`;
         
     }
     for (let i = lastDayofMonth; i < 7; i++) { // creating li of next month first days
