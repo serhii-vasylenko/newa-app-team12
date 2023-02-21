@@ -1,5 +1,5 @@
-// window.onresize = function (event) {
-// };
+window.onresize = function (event) {
+};
 
 window.addEventListener('DOMContentLoaded', function () {
   let listItems = document.querySelectorAll('.exemple-card');
