@@ -13,7 +13,7 @@ function onEnterPush (e) {
   e.preventDefault () 
   const input = e.currentTarget ;
   searchNews.searchQuery=input.elements.searchQuery.value.trim();
-  clearImgList ();
+  //clearImgList ();
   searchNews.resetPage();
   searchNewsImg();
 }
