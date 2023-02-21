@@ -21,20 +21,20 @@
   justify-content: center;
   // padding: 0;
   // margin: 10px;
-  outline: 1px solid red;
+  // outline: 1px solid red;
 }
 .news-card {
-  outline: 1px solid red;
-  flex-basis: calc(100% - 32px);
+  // outline: 1px solid red;
+  flex-basis: 100%;
   position: relative;
   height: 630px;
 
   @media screen and (min-width: 768px) {
-    flex-basis: calc((100% - 62px) / 2);
+    flex-basis: calc((100% - 30px) / 2);
     height: 675px;
   }
   @media screen and (min-width: 1280px) {
-    flex-basis: calc((100% - 96px) / 3);
+    flex-basis: calc((100% - 60px) / 3);
   }
 }
 
