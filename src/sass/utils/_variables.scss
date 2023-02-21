@@ -64,7 +64,10 @@ $desktop: 1280px;
     --themelight-namecolor: #4B48DB;
     --themedark-namecolor: #5F6775;
     --headerborder-color: rgba(0, 0, 0, 0.2);
-    --readed-color: #00DD73;
+    --calendar-btn-text-color: #A2A2A2;
+
+--readed-color: #00DD73;
+
 }
 
 .theme-dark {
@@ -80,4 +83,5 @@ $desktop: 1280px;
     --themelight-namecolor: #5F6775;
     --themedark-namecolor: #4B48DB;
     --headerborder-color: rgba(244, 244, 244, 0.2);
+    --calendar-btn-text-color: #F4F4F4;
 }
