@@ -62,10 +62,11 @@ function renderCalendar () {
 
     const dayBtns = document.querySelectorAll(".button");
     dayBtns.forEach(dayBtn => dayBtn.addEventListener('click', (e) => {
-    btnEl.textContent = `${addLeadingZero(e.target.textContent)}/${addLeadingZero(currMonth + 1)}/${currYear}`;
-    selectedDate = btnEl.textContent;
-    modalEl.classList.toggle('is-shown');
-    return selectedDate;
+        btnEl.textContent = `${addLeadingZero(e.target.textContent)}/${addLeadingZero(currMonth + 1)}/${currYear}`;
+        selectedDate = btnEl.textContent;
+        modalEl.classList.toggle('is-shown');
+        btnEl.classList.remove('btn-is-active');
+        return selectedDate;
 }));
 }
 renderCalendar();
