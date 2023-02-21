@@ -10,12 +10,12 @@
   font-size: 14px;
   line-height: 1.36;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $tablet) {
     width: calc((100% - 30px * 1) / 2);
     padding: 0;
   }
     
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: $desktop) {
     width: calc((100% - 32px * 2) / 3);
   }
 }
@@ -25,12 +25,12 @@
   position: relative;
   min-height: 191px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $tablet) {
     min-height: 235px;
     padding: 0;
   }
   
-  @media screen and (min-width: 1200px) {
+    @media screen and (min-width: $desktop) {
     min-height: 149px;
   }
 }
@@ -107,9 +107,9 @@
   line-height: 1.38;
   letter-spacing: -0.01em;
 
-  color: $lt-main-text-color;
+  color: var(--primary-textcolor);
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $tablet) {
       font-size: 32px;
       line-height: 1.38;
     }
@@ -125,7 +125,7 @@
   color: var(--primary-color);
   // : #111321;$lt-main-text-color;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $tablet) {
       font-size: 16px;
       line-height: 1.38;
     }
@@ -146,7 +146,7 @@
 
   color: #A8A8A8;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $tablet) {
     font-size: 16px;
     line-height: 1.38;
   }
@@ -160,7 +160,7 @@
   line-height: 1.36;
 
   color: var(--accent-color);
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $tablet) {
     font-size: 16px;
     line-height: 1.38;
   }
