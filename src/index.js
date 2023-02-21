@@ -5,6 +5,7 @@ import './js/getPopoularProduct';
 import './js/getSearchNews';
 import './js/pagination';
 import './js/switch';
+import './js/switchMobile';
 import './js/search';
 import './js/calendar';
 import './js/weather';
