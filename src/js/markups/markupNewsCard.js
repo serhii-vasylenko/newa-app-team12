@@ -13,12 +13,18 @@ const refs = getRefs();
 // }
 
 // refs.favorite.addEventListener('click', onFavotiteNews);
-// refs.readed.addEventListener('click', isReadedNews)
 
-// function onFavotiteNews() {
-//   console.log("onFavotiteNews");
-// }
+// const readedNews = document.querySelector('.owerlay-readed');
+// const readMore = document.querySelector('card__infotion__more')
 
-// function isReadedNews() {
-//   console.log('isReadedNews');
+// readMore.addEventListener("click", isReadedNews)
+
+// // function onFavotiteNews() {
+// //   console.log("onFavotiteNews");
+// // }
+
+// function isReadedNews(e) {
+//   console.log(e)
+//   readed.setAttribute("background - color", "rgba(244, 244, 244, 0.4)");
+//   // console.log('isReadedNews');
 // }

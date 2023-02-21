@@ -55,13 +55,13 @@ function markup({ abstract, media, published_date, subsection, title, url }) {
     </div>
     <div class="card-news__info">
       <h3 class="card-news__title"> ${title}</h3>
-      <p class="card-news__info"> ${abstract}...</p>
+      <p class="card-news__info-chort"> ${abstract}...</p>
       <div class="card-information">
         <div class="card-infrmation__data"> ${published_date}</div>
-        <a class="card__infotion__more" href="${url}">Read more</a>
+        <a class="card__infotion__more" rel="nofollow noindex noreferrer" target="_blank" href="${url}">Read more</a>
       </div>
     </div>
-    <div class="owerlay-readed is-hidden">
+    <div class="owerlay-readed">
       <p class="owerlay-readed__info" aria-label="readed">Already read <svg class="owerlay-readed__icon" width="18"  height="18"><use href="../images/icons-defs.svg#icon-readed"></use></svg></p>
     </div>
   </li>`;

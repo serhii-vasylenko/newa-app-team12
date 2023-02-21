@@ -10,12 +10,12 @@
   font-size: 14px;
   line-height: 1.36;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $tablet) {
     width: calc((100% - 30px * 1) / 2);
     padding: 0;
   }
     
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: $desktop) {
     width: calc((100% - 32px * 2) / 3);
   }
 }
@@ -25,12 +25,12 @@
   position: relative;
   min-height: 191px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $tablet) {
     min-height: 235px;
     padding: 0;
   }
   
-  @media screen and (min-width: 1200px) {
+    @media screen and (min-width: $desktop) {
     min-height: 149px;
   }
 }
@@ -99,24 +99,32 @@
 }
 
 /* block for news */
+.card-news__info {
+  padding-top: 20px;
+}
+
+.card-news__info-chort {
+  padding-bottom: 20px;
+}
+
 .card-news__title {
-  margin: 0 0 20px 0;
+  padding: 0 0 20px 0;
 
   font-weight: 700;
   font-size: 24px;
   line-height: 1.38;
   letter-spacing: -0.01em;
 
-  color: $lt-main-text-color;
+  color: var(--primary-textcolor);
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $tablet) {
       font-size: 32px;
       line-height: 1.38;
     }
 }
 
 .card-news__text {
-  margin: 0 0 20px 0;
+  padding: 0 0 20px 0;
 
   font-weight: 400;
   font-size: 14px;
@@ -125,7 +133,7 @@
   color: var(--primary-color);
   // : #111321;$lt-main-text-color;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $tablet) {
       font-size: 16px;
       line-height: 1.38;
     }
@@ -146,7 +154,7 @@
 
   color: #A8A8A8;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $tablet) {
     font-size: 16px;
     line-height: 1.38;
   }
@@ -160,25 +168,26 @@
   line-height: 1.36;
 
   color: var(--accent-color);
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $tablet) {
     font-size: 16px;
     line-height: 1.38;
   }
 }
 
-/* block owerlay */
-// .owerlay-readed {
-//   position: absolute;
-//   top: 0;
-//   background-color: rgba(244, 244, 244, 0.4);
-//   width: 100%;
-//   height: 100%;
-// }
+// block owerlay
+.owerlay-readed {
+  display: none;
+}
 
-// .owerlay__readed.is-hidden {
-//   opacity: 0;
-//   pointer-events: none;
-// }
+.owerlay-readed__active {
+  position: absolute;
+  display: flex;
+  top: 0;
+  background-color: rgba(244, 244, 244, 0.4);  
+  width: 100%;
+  height: 100%;
+
+}
 
 .owerlay-readed__info {
   position: absolute;
