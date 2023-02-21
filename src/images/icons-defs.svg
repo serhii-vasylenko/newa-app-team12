@@ -18,7 +18,4 @@
 <symbol id="icon-shevron" viewBox="0 0 18 32">
 <path fill="none" stroke="#f4f4f4" style="stroke: var(--color1, #f4f4f4)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="4.5714" d="M2.286 29.714l13.714-13.714-13.714-13.714"></path>
 </symbol>
-<symbol id="icon-chevron-right" viewBox="0 0 32 32">
-<path fill="none" stroke="#f4f4f4" style="stroke: var(--color1, #f4f4f4)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M12 24l8-8-8-8"></path>
-</symbol>
 </defs></svg>
