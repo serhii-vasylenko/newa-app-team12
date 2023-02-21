@@ -35,14 +35,14 @@ export async function markupCategories(categoriesMenu) {
 export function markupNameButton(currentButton) {
   if (categoriesMenu.classList.contains('is-open-categories')) {
     categoriesMenu.classList.remove('is-open-categories');
-    categoriesBtn.innerHTML = currentButton;
+    categoriesBtn.firstChild.textContent = currentButton;
   } else {
     if (window.matchMedia('(max-width: 767px)').matches) {
-      categoriesBtn.innerHTML = 'Categories';
+      categoriesBtn.firstChild.textContent = 'Categories';
     }
 
     if (window.matchMedia('(min-width: 768px)').matches) {
-      categoriesBtn.innerHTML = 'Others';
+      categoriesBtn.firstChild.textContent = 'Others';
     }
   }
 }
