@@ -4,7 +4,7 @@ const storageData = JSON.parse(localStorage.getItem('favorite'))
   ? JSON.parse(localStorage.getItem('favorite'))
   : [];
 
-window.addEventListener('DOMContentLoaded', checkFavCards);
+// window.addEventListener('DOMContentLoaded', checkFavCards);
 
 newsGallery.addEventListener('click', onCardBtnClick);
 

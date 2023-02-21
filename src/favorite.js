@@ -1,4 +1,6 @@
+import './js/mobile-menu';
 import './js/switch';
+import './js/switchMobile';
 import './js/markups/changeCurrentClass';
 
 const gallery = document.querySelector('.favorite-gallery__list');
