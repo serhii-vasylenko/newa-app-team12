@@ -21,7 +21,7 @@ function onEnterPush (e) {
 async function searchNewsImg() {
   try {
   const getNews = await searchNews.searchNewsImg();
-  console.log('Arr objects with search News ', getNews.results);
+  console.log('Arr objects with search News ', getNews.responce.docs);
   
   newsGallery.innerHTML = addMarkup()
 
