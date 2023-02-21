@@ -1,3 +1,4 @@
+import './js/utils/mediarules';
 import './js/mobile-menu';
 import './js/categories';
 import './js/getPopoularProduct';
