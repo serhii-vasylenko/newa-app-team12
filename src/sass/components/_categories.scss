@@ -1,36 +1,42 @@
 .category {
-  
   display: flex;
   margin-right: 24px;
 
   @media screen and (min-width: $tablet) {
     margin-right: 40px;
-    
   }
 
   @media screen and (min-width: $desktop) {
     margin-right: 111px;
-    
   }
 
   &__menu {
     position: absolute;
     display: none;
-    top: 136px;
+    top: 32px;
     left: 16px;
 
     height: 380px;
 
     overflow-y: scroll;
     
-    
+    // &::-webkit-scrollbar-thumb {
+    //   background-color: blue;    /* цвет бегунка */
+    //   border-radius: 20px;       /* округлось бегунка */
+    //   border: 3px solid orange;  /* отступ вокруг бегунка */
+    // }
+    // &::-webkit-scrollbar {
+    //         width: 4px;               /* ширина всей полосы прокрутки */
+    //       }
+
+    //      &::-webkit-scrollbar-track {
+    //         background: orange;        /* цвет зоны отслеживания */
+    //       }
 
     &.is-open-categories {
       display: flex;
       flex-direction: column;
       z-index: 999;
-      
-      
 
       padding: 14px;
       background: $widget-text-color;
@@ -39,6 +45,11 @@
 
       @media screen and (min-width: $tablet) {
         padding: 14px 24px;
+        left: 430px;
+      }
+
+      @media screen and (min-width: $desktop) {
+        left: 665px;
       }
     }
   }
@@ -72,8 +83,7 @@
 
     cursor: pointer;
 
-    transition: background-color $animation,
-    color $animation;
+    transition: background-color $animation, color $animation;
 
     &:focus,
     &:hover {
@@ -122,4 +132,19 @@
   &:hover {
     text-decoration: underline;
   }
+}
+
+.arrow-icon {
+  margin-left: 10px;
+  fill: $accent-color;
+}
+
+.arrow-icon.open-categories {
+  transform: rotate(180deg);
+  fill: $widget-text-color;
+}
+
+.category__btn:hover .arrow-icon,
+.category__btn:focus .arrow-icon {
+  fill: $widget-text-color;
 }
