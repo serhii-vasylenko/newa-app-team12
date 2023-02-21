@@ -1,3 +1,8 @@
+import './js/mobile-menu';
+import './js/switch';
+import './js/switchMobile';
+import './js/markups/changeCurrentClass';
+
 const gallery = document.querySelector('.favorite-gallery__list');
 
 window.addEventListener('DOMContentLoaded', createGallery);
@@ -23,10 +28,10 @@ function removeFromFavorite({ target }) {
     const storageData = JSON.parse(localStorage.getItem('favorite'));
 
     const indexOfDelEl = storageData.findIndex(
-      obj => obj.markup === target.parentNode.outerHTML
+      obj => obj.markup === target.parentNode.parentNode.outerHTML
     );
     storageData.splice(indexOfDelEl, 1);
     localStorage.setItem('favorite', JSON.stringify(storageData));
-    target.parentNode.outerHTML = '';
+    target.parentNode.parentNode.outerHTML = '';
   }
 }
