@@ -1,3 +1,5 @@
+window.onresize = function (event) {
+};
 
 
 

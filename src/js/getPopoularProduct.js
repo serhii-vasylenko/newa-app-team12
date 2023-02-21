@@ -1,6 +1,7 @@
 import { getPopularNewsAPI } from './api/news-api.js';
 // import {newsTemplate} from '../templates/card-news.hbs';
 import { checkFavCards } from './addAndRemoveFromFavorite.js';
+
 const popularNewsGallery = document.querySelector('.news-gallery');
 const notFoundPage = document.querySelector('.not-found');
 
