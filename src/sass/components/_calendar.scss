@@ -8,6 +8,10 @@
     .calendar-btn{
         width: 152px;
     }
+    .wrapper {
+        top: 31;
+        left: -75;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -19,6 +23,10 @@
     }
     .calendar-btn {
         width: 168px;
+    }
+    .wrapper {
+        top: 31;
+        left: -75;
     }
 }
 
@@ -38,9 +46,14 @@
     .calendar-btn {
         width: 168px;
     }
+    .wrapper{
+        top: 31;
+        left: 110;
+    }
 }
 
 .calendar {
+    position: relative;
     display: flex;
     margin: 0;
     padding: 0;
@@ -68,6 +81,7 @@
 
 .wrapper {
     position: absolute;
+
     z-index: 999;
     display: none;
     width: 250px;
