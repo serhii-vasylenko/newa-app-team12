@@ -49,7 +49,7 @@ function renderCalendar () {
         
     }
     for (let i = lastDayofMonth; i < 7; i++) { // creating li of next month first days
-        liTag += `<li><button type="button" class="button inactive">${i - lastDayofMonth + 1}</button></li>`
+        liTag += `<li><button type="button" class="button inactive" disabled>${i - lastDayofMonth + 1}</button></li>`
     }
     currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
     daysTag.innerHTML = liTag;
