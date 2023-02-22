@@ -36,7 +36,7 @@ catch (err) {
   }
 }
 
-getSearchNews('dog');
+getSearchNews('car');
 
 function addMarkup(data) {
   return data
