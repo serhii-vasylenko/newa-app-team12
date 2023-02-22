@@ -120,7 +120,7 @@ function removeClassToCard() {
 }
 
 export { getMarkupWeather, getMarkupWeatherToWeek };
-export { addClassToCard, removeClassToCard };
+export { addClassToCard, removeClassToCard, weatherData };
 
   
 
