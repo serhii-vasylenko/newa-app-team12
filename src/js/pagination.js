@@ -56,32 +56,32 @@ searchFormEl.addEventListener('submit', e => {
   // goToTop();
 // });
 
-// function renderNewsMarkup(data) {
-//   const getNews = data;
-//   // console.log('getNews', getNews);
+function renderNewsMarkup(data, amountCards) {
+  // const getNews = data;
+  // console.log('getNews', getNews);
 
-//   valuePage.totalPages = Math.ceil(
-//     getNews.results.length / valuePage.amountCards
-//   );
-//   console.log('valuePage.amountCards', valuePage.amountCards);
+  // valuePage.totalPages = Math.ceil(
+  //   getNews.results.length / valuePage.amountCards
+  // );
+  // console.log('valuePage.amountCards', valuePage.amountCards);
 
-//   chunkArray(getNews.results, valuePage.amountCards);
-//   console.log('chunkArray', chunkArray(getNews.results, valuePage.amountCards));
+  chunkArray(data, amountCards);
+  // console.log('chunkArray', chunkArray(getNews.results, valuePage.amountCards));
 
-//   for (let i = 0; i <= results.length; i += 1) {
-//     console.log(results[i]);
-//     if (valuePage.curPage === i + 1) {
-//       console.log('page', results[i]);
-//       refs.newsGalery.innerHTML = cardNews(results[i]);
-//       break;
-//     }
-//   }
+  for (let i = 0; i <= results.length; i += 1) {
+    console.log(results[i]);
+    if (valuePage.curPage === i + 1) {
+      console.log('page', results[i]);
+      refs.newsGalery.innerHTML = cardNews(results[i]);
+      break;
+    }
+  }
 
-//   pagination(valuePage);
+  pagination(valuePage);
 
-//   handleButtonLeft();
-//   handleButtonRight();
-// }
+  handleButtonLeft();
+  handleButtonRight();
+}
 
 // розбиваємо масив отриманих даних на масив з масивами об"єктів
 
@@ -96,15 +96,15 @@ function chunkArray(arrayData, chunkSize) {
 // визначаємо к-сть карток на сторінці в залежності від іnnerWidth
 function getAmountCards() {
   if (window.innerWidth < 768) {
-    valuePage.amountCards = 4;
+    valuePage.amountCards = 5;
   }
 
-  if (window.innerWidth > 768 && window.innerWidth < 1280) {
-    valuePage.amountCards = 7;
+  if (window.innerWidth >= 768 && window.innerWidth < 1280) {
+    valuePage.amountCards = 8;
   }
 
   if (window.innerWidth >= 1280) {
-    valuePage.amountCards = 8;
+    valuePage.amountCards = 9;
   }
 }
 
@@ -150,7 +150,7 @@ function goToTop() {
 }
 
 // DYNAMIC PAGINATION
-function pagination() {
+function pagination(valuePage) {
   const { totalPages, curPage, numLinksTwoSide: delta } = valuePage;
 
   const range = delta + 4; // use for handle visible number of links left side
