@@ -30,9 +30,9 @@ function getMarkupWeather({ data }) {
   let month = today.getMonth();
   let year = today.getFullYear();
 
-  tempRound = Math.round(data.main.temp);
+  const tempRound = Math.round(data.main.temp);
 
-  templateWeather = `<div class="weather__header">
+  const templateWeather = `<div class="weather__header">
     <p class="weather__temp">${tempRound}&#176;</p>
     <div class="weather__wrapper">
       <p class="weather__status">${data.weather[0].main}</p>
