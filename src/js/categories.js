@@ -12,6 +12,7 @@ const categoriesList = document.querySelector('.buttons-list');
 const categoriesContainer = document.querySelector('.category');
 const arrowBtnCategories = document.querySelector('.arrow-icon');
 
+
 // let categoriesBtnRigthMargin = saveMargin();
 
 markupCategories(categoriesMenu);
@@ -56,21 +57,6 @@ function onSearchNewsBtn(event) {
   getCategoryNews(currentButtonCategory);
 }
 
-export function divideArrNews(categories, count) {
-  const categoriesArrs = [];
-  categoriesArrs.push(categories.slice(0, count));
-  categoriesArrs.push(categories.slice(count));
-  return categoriesArrs;
-}
-
-function clearCategoriesMenu() {
-  saveMargin();
-  markupNameButton();
-  markupCategories(categoriesMenu);
-  categoriesMenu.classList.remove('is-open-categories');
-  categoriesBtn.setAttribute('aria-expanded', false);
-}
-
 function onSearchNewsMenu(event) {
   // const sizeCategoriesBtn = categoriesBtn.offsetWidth;
 
@@ -86,6 +72,21 @@ function onSearchNewsMenu(event) {
   
 
   // changeMarginBetweenCalendar(sizeCategoriesBtn);
+}
+
+function clearCategoriesMenu() {
+  // saveMargin();
+  markupNameButton();
+  markupCategories(categoriesMenu);
+  categoriesMenu.classList.remove('is-open-categories');
+  categoriesBtn.setAttribute('aria-expanded', false);
+}
+
+export function divideArrNews(categories, count) {
+  const categoriesArrs = [];
+  categoriesArrs.push(categories.slice(0, count));
+  categoriesArrs.push(categories.slice(count));
+  return categoriesArrs;
 }
 
 // function changeMarginBetweenCalendar(sizeCategoriesBtn) {
@@ -142,11 +143,3 @@ function onSearchNewsMenu(event) {
 // function saveMargin() {
 //   return pxToNumber(getComputedStyle(categoriesContainer).marginRight);
 // }
-
-// categoriesBtn.addEventListener('focus', () => {
-//   arrowBtnCategories.classList.add('open-categories');
-// });
-
-// categoriesBtn.addEventListener('blur', () => {
-//   arrowBtnCategories.classList.remove('open-categories');
-// });

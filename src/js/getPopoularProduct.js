@@ -18,7 +18,8 @@ async function getPopularProduct() {
 }
 
 getPopularProduct();
-function markup(data) {
+
+export function markup(data) {
   return data
     .map(({ abstract, media, published_date, subsection, title, url }) => {
       let mediaURL = `https://webassets.eurac.edu/31538/1647583511-adobestock_490465800.jpeg?auto=format&fm=jpg&h=588&w=980`;

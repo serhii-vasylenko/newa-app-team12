@@ -2,13 +2,13 @@
   display: flex;
   margin-right: 24px;
 
-  @media screen and (min-width: $tablet) {
-    margin-right: 40px;
-  }
+  // @media screen and (min-width: $tablet) {
+  //   margin-right: 40px;
+  // }
 
-  @media screen and (min-width: $desktop) {
-    margin-right: 111px;
-  }
+  // @media screen and (min-width: $desktop) {
+  //   margin-right: 111px;
+  // }
 
   &__menu {
     position: absolute;
@@ -83,6 +83,8 @@
 
     cursor: pointer;
 
+    white-space: nowrap;
+
     transition: background-color $animation, color $animation;
 
     &:focus,
@@ -137,14 +139,17 @@
 .arrow-icon {
   margin-left: 10px;
   fill: $accent-color;
+  pointer-events: none;
 }
 
 .arrow-icon.open-categories {
   transform: rotate(180deg);
   fill: $widget-text-color;
+  pointer-events: none;
 }
 
 .category__btn:hover .arrow-icon,
 .category__btn:focus .arrow-icon {
   fill: $widget-text-color;
+  pointer-events: none;
 }
