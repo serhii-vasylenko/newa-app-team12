@@ -4,41 +4,41 @@ import { getSearchNewsAPI } from './api/news-api.js';
 
 const newsGallery = document.querySelector('.news-gallery');
 const pageNotFound = document.querySelector(".not-found");
-const form = document.querySelector('.search-form');
-form.addEventListener('submit', onEnterPush);
+const btn = document.querySelector('.search-form__button');
+const input = document.querySelector('.search-form__input');
+btn.addEventListener('click', onEnterPush);
 
-function onEnterPush(e) {
-  e.preventDefault() ;
-    const searchQuery = e.currentTarget.elements.searchQuery.value.trim ();
+function onEnterPush() {
+  console.log(input.value);
+    const searchQuery = input.value.trim();
     console.log(searchQuery);
     getSearchNews(searchQuery);
   }
 
 async function getSearchNews(search) {
-  try{
-  const getNews = await getSearchNewsAPI(search);
-  const data = getNews.data.response.docs ;
-  console.log('Arr objects with search News ', getNews.data.response.docs);
-  //function filter Date
-  // function markup News
- newsGallery.innerHTML = addMarkup(data)
+  try {
+    const getNews = await getSearchNewsAPI(search);
+    const data = getNews.data.response.docs;
+    console.log('Arr objects with search News ', getNews.data.response.docs);
+    //function filter Date
+    // function markup News
+    newsGallery.innerHTML = addMarkup(data)
 
-if (getNews.data.response.docs.length) {
-  pageNotFound.classList.add("visually-hidden");
-  addMarkup(getNews.data.response.docs);
-} else if (getNews.response.docs.length === 0) {
-  notFound();
-}
-}
-catch (err) {
-    //notFoundPage.classList.toggle('visually-hidden');
-    console.log (err)
+    if (getNews.data.response.docs.length) {
+      pageNotFound.classList.add("visually-hidden");
+      addMarkup(getNews.data.response.docs);
+    } else if (getNews.response.docs.length === 0) {
+      notFound();
+    }
   }
+  catch (err) {
+      //notFoundPage.classList.toggle('visually-hidden');
+      console.log (err)
+    }
 }
-
-getSearchNews('car');
 
 function addMarkup(data) {
+  console.log(data);
   return data
     .map(({ web_url,
       lead_paragraph,
