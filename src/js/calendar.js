@@ -8,6 +8,7 @@ const prevNextIcon = document.querySelectorAll(".icons span");
 const btnEl = document.querySelector('.calendar-btn');
 const spanEl = document.querySelector('.calendar-btn-span');
 const modalEl = document.querySelector('.modal');
+const todayBtn = document.querySelector('.today-btn');
 
 btnEl.addEventListener('click', () => {
     return modalEl.classList.toggle('is-shown')
@@ -17,6 +18,8 @@ btnEl.addEventListener('click', () => {
 
 btnEl.addEventListener('hover', () => btnEl.classList.add('btn-is-active'));
 btnEl.addEventListener('focus', () => btnEl.classList.add('btn-is-active'));
+
+
 
 let selectedDate = "";
 
@@ -70,12 +73,12 @@ function renderCalendar () {
         selectedDate = spanEl.textContent;
         modalEl.classList.toggle('is-shown');
         btnEl.classList.remove('btn-is-active');
+
+        todayBtn.addEventListener('click', () => {spanEl.textContent = `${addLeadingZero(date.getDate())}/${addLeadingZero(currMonth + 1)}/${currYear}`});
         return selectedDate;
 }));
 }
 renderCalendar();
-
-console.log(renderCalendar());
 
 function addLeadingZero(value) {
     return String(value).padStart(2, '0');
