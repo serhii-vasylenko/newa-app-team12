@@ -1,27 +1,39 @@
 // const LINK_TO_WEEK = 'https://sinoptik.ua/';
 import { months, days, weekDay, dateToWeek } from '../utils/weather-dates';
 import { onClick } from '../weather';
-import { getPopularNewsAPI } from '../api/news-api';
 import { getGeolocation } from '../weather';
 
-const galleryContainer = document.querySelector('.news-gallery');
-const notFoundPage = document.querySelector('.not-found');
-const weatherWidget = document.getElementById('weather');
+
+
+const weatherData = {
+  coord: { lon: 30.2748, lat: 50.5461 },
+  main: { temp: 0.42 },
+  name: 'Hostomel',
+  timezone: 7200,
+  weather: [
+    {
+      main: 'Clouds',
+      icon: '04n',
+    },
+  ],
+};
 
 
 
+// це функція розмітки картки погоди що з'являється разом 
+// з популярними новинами. Функція приймає дані з апі погоди ({data})
 function getMarkupWeather({ data }) {
-  console.log(data);
+  console.log('погода з апи', data);
   const today = new Date();
   let day = today.getDay();
   let date = today.getDate();
   let month = today.getMonth();
   let year = today.getFullYear();
 
-  let temp = Math.round(data.main.temp);
+  const tempRound = Math.round(data.main.temp);
 
-  let template = `<div class="weather__header">
-    <p class="weather__temp">${temp}&#176;</p>
+  const templateWeather = `<div class="weather__header">
+    <p class="weather__temp">${tempRound}&#176;</p>
     <div class="weather__wrapper">
       <p class="weather__status">${data.weather[0].main}</p>
       <p class="weather__location">${data.name}</p>
@@ -36,23 +48,27 @@ function getMarkupWeather({ data }) {
   </div>
   <button class="weather__btn" type="button">weather for week</button>
 `;
-  weatherWidget.innerHTML = template;
-  const weekBtn = document.querySelector('.weather__btn');
-  weekBtn.addEventListener('click', onClick);
+
+  // const weekBtn = document.querySelectorAll('.weather__btn-close');
+  // weekBtn.addEventListener('click', onClick);
+
+  return templateWeather;
 }
 
 
 
+//   weatherWidget.innerHTML = markupLocationToWeek + parts;
+//   const clouseWeekWidget = document.querySelector('.weather__btn-close');
+//   clouseWeekWidget.addEventListener('click', getGeolocation);
+
 function getMarkupWeatherToWeek({ data }) {
-  const templateLocationToWeek = `
+  const markupLocationToWeek = `
       <button class="weather__btn weather__btn-close" type="button">close</button>
     <h2 class="weather__location weather__location-week">region: ${data.timezone}</h2>`;
 
   const parts = [];
   for (let i = 0; i < data.daily.length - 1; i += 1) {
-    let tempDay = Math.round(data.daily[i].temp.day);
-    let tempNight = Math.round(data.daily[i].temp.night);
-    const templateListToWeek = `<table class="weather__table">
+    const markupListToWeek = `<table class="weather__table">
       <tr>
         <td class="weather__week">${weekDay[i]},<br>${dateToWeek[i]}
         </td>
@@ -69,123 +85,65 @@ function getMarkupWeatherToWeek({ data }) {
         </td>
       </tr>
     </table>`;
-    parts.push(templateListToWeek);
+    parts.push(markupListToWeek);
   }
-  weatherWidget.innerHTML = templateLocationToWeek + parts;
+
+  const markupToWeek = document.createElement('div');
+  markupToWeek.innerHTML = markupLocationToWeek + parts.join('');
+
   const clouseWeekWidget = document.querySelector('.weather__btn-close');
   clouseWeekWidget.addEventListener('click', getGeolocation);
+
+  return markupToWeek.outerHTML;
 }
+
+
+function renderToGallery() {
+  const markup = getMarkupWeather({ data: weatherData });
+  console.log(markup);
+  const gallery = document.querySelector('.news-gallery');
+  const item = document.createElement('li');
+  item.classList.add('weather__card');
+  item.innerHTML = markup;
+  gallery.appendChild(item);
+}
+renderToGallery();
+
 
 
 function addClassToCard() {
-  weatherWidget.classList.add('is-active');
+  // weatherWidget.classList.add('is-active');
 }
 
 function removeClassToCard() {
-  weatherWidget.classList.remove('is-active');
+  // weatherWidget.classList.remove('is-active');
 }
 
 export { getMarkupWeather, getMarkupWeatherToWeek };
-export { addClassToCard, removeClassToCard };
+export { addClassToCard, removeClassToCard, weatherData };
 
   
-  
-// для проекта
 
-async function getPopularAndWeather() {
-
-  let popularNews = await getPopularNewsAPI()
-    .then(getMarkupPopNewsAndWeather)
-    .catch(error => notFoundPage.classList.toggle('visually-hidden'));
-
-  return popularNews;
-}
-getPopularAndWeather();
-
-
-
-// Variant 1
-function getMarkupPopNewsAndWeather({ results }) {
-  console.log('это популярные новости', results);
-  let cardList = '';
-
-  for (let i = 0; i < results.length; i += 1) {
-    cardList += `
-    <li class="card-news__item card__readed">
-    <div class="card-news__picture"><img src="${mediaURL}" alt="${media[0]?.caption}" class="news-image">
-      <p class="news-category"> ${subsection}</p>
-      <button class="news-favorite" aria-label="add to favorite">Add to favorite <svg class="news-favorite__icon" width="16" height="16"><use href="../images/icons-defs.svg#icon-heart-transparent"></use></svg>
-      </button>
-    </div>
-    <div class="card-news__info">
-      <h3 class="card-news__title"> ${title}</h3>
-      <p class="card-news__info"> ${abstract}...</p>
-      <div class="card-information">
-        <div class="card-infrmation__data"> ${published_date}</div>
-        <a class="card__infotion__more" href="${url}">Read more</a>
-      </div>
-    </div>
-    <div class="owerlay-readed is-hidden">
-      <p class="owerlay-readed__info" aria-label="readed">Already read <svg class="owerlay-readed__icon" width="18"  height="18"><use href="../images/icons-defs.svg#icon-readed"></use></svg></p>
-    </div>
-  </li>`;
-    galleryContainer.insertAdjacentHTML('afterbegin', cardList);
-    galleryContainer.prepend(weatherWidget);
-  }
-  return cardList;
-}
-// ВАРИАНТ 2
-// function getMarkupPopNewsAndWeather({ results }) {
-//   console.log('это популярные новости', results);
-//   let cardList = '';
-//   let numCardsPerRow, widgetIndex;
-
-//   if (window.innerWidth >= 1280) {
-//     numCardsPerRow = 3;
-//     widgetIndex = 2;
-//   } else if (window.innerWidth >= 768) {
-//     numCardsPerRow = 2;
-//     widgetIndex = 1;
-//   } else {
-//     numCardsPerRow = 1;
-//     widgetIndex = 0;
-//   }
-
-//   for (let i = 0; i < results.length; i += 1) {
-// ШАБЛОН КАРТОЧКИ
-//     if ((i + 1) % numCardsPerRow === 0 && i !== results.length - 1) {
-//       cardList += weatherWidget;
-//     }
-//   }
-
-//   galleryContainer.insertAdjacentHTML('afterbegin', cardList);
-//   galleryContainer.children[widgetIndex].insertAdjacentElement(
-//     'afterend',
-//     weatherWidget
-//   );
-
-//   return cardList;
-// }
 
 
 
 // МЕДИАПРАВИЛО
-window.onresize = function (event) {
-  const listItems = document.querySelectorAll('.card-news__item');
-  const weatherWidget = document.getElementById('weather');
+// window.onresize = function (event) {
+//   const listItems = document.querySelectorAll('.card-news__item');
+//   const weatherWidget = document.getElementById('weather');
 
-  if (window.matchMedia('(min-width: 1280px)').matches) {
-    listItems[1].parentNode.insertBefore(
-      weatherWidget,
-      listItems[1].nextSibling
-    );
-  } else if (window.matchMedia('(min-width: 768px)').matches) {
-    listItems[0].parentNode.insertBefore(
-      weatherWidget,
-      listItems[0].nextSibling
-    );
-  } else {
-    galleryContainer.prepend(weatherWidget);
-  }
-};
+//   if (window.matchMedia('(min-width: 1280px)').matches) {
+//     listItems[1].parentNode.insertBefore(
+//       weatherWidget,
+//       listItems[1].nextSibling
+//     );
+//   } else if (window.matchMedia('(min-width: 768px)').matches) {
+//     listItems[0].parentNode.insertBefore(
+//       weatherWidget,
+//       listItems[0].nextSibling
+//     );
+//   } else {
+//     galleryContainer.prepend(weatherWidget);
+//   }
+// };
 
