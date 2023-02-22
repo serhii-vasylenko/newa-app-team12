@@ -107,7 +107,7 @@ function renderToGallery() {
   item.innerHTML = markup;
   gallery.appendChild(item);
 }
-renderToGallery();
+// renderToGallery();
 
 
 
@@ -121,6 +121,7 @@ function removeClassToCard() {
 
 export { getMarkupWeather, getMarkupWeatherToWeek };
 export { addClassToCard, removeClassToCard };
+export { weatherData };
 
   
 
