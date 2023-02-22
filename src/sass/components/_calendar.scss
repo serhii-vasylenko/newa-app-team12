@@ -256,6 +256,10 @@
 }
 
 // days
+.days li:nth-child(7n + 7) .button,
+.days li:nth-child(7n + 6) .button {
+    color: #878787;
+}
 .current-month-day {
     color: var(--accent-color);
 }
