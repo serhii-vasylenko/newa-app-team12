@@ -1,6 +1,5 @@
 export function markup({ abstract, media, published_date, subsection, title, url }) {
-  let mediaURL =
-    'https://amsrus.ru/wp-content/uploads/2016/02/Mercedes-Benz-C63-AMG-Black-Series-1.jpg';
+  let mediaURL = "../../images/news.jpg";
   if (
     media &&
     media[0] &&
@@ -23,14 +22,14 @@ export function markup({ abstract, media, published_date, subsection, title, url
     </div>
     <div class="card-news__info">
       <h3 class="card-news__title"> ${title}</h3>
-      <p class="card-news__info"> ${abstract}...</p>
+      <p class="card-news__info-chort"> ${abstract}</p>
       <div class="card-information">
-        <div class="card-infrmation__data"> ${published_date}</div>
-        <a class="card__infotion__more" href="${url}">Read more</a>
+        <div class="card-information__data"> ${published_date}</div>
+        <a class="card__infotion__more" rel="nofollow noindex noreferrer" target="_blank" href="${url}">Read more</a>
       </div>
     </div>
-    <div class="owerlay-readed is-hidden">
-      <p class="owerlay-readed__info" aria-label="readed">Already read <svg class="owerlay-readed__icon" width="18"  height="18"><use href="../images/icons-defs.svg#icon-readed"></use></svg></p>
+    <div class="owerlay-readed">
+      <p class="owerlay-readed__info" aria-label="readed">Already read <svg class="owerlay-readed__icon" width="18"  height="18" fill="none"><path fill="#00DD73" d="M16.188 3.594a.6.6 0 0 0-.412.182L6.6 12.952 2.824 9.176a.6.6 0 1 0-.849.848l4.2 4.2a.6.6 0 0 0 .849 0l9.6-9.6a.6.6 0 0 0-.436-1.03Z"/></svg></p>
     </div>
   </li>`;
 }
