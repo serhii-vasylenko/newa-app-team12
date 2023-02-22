@@ -37,7 +37,7 @@ export async function getCategoryNewsAPI(category, offset) {
 
   try {
     const response = await axios.get(
-      `${BASE_URL}?api-key=${KEY}&limit=500&${offset}`
+      `${BASE_URL}?api-key=${KEY}&limit=20&${offset}`
     );
     return response.data;
   } catch (error) {
