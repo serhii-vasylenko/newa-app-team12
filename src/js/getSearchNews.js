@@ -6,14 +6,19 @@ const newsGallery = document.querySelector('.news-gallery');
 const pageNotFound = document.querySelector(".not-found");
 const btn = document.querySelector('.search-form__button');
 const input = document.querySelector('.search-form__input');
-btn.addEventListener('click', onEnterPush);
+btn.addEventListener('click', onEnterPush, false);
+input.addEventListener('input', (e) => {
+  if (e.target.value === '') {
+    
+  }
+})
 
 function onEnterPush() {
-  console.log(input.value);
-    const searchQuery = input.value.trim();
-    console.log(searchQuery);
-    getSearchNews(searchQuery);
-  }
+  if (input.value.trim().length === 0) return;
+  const searchQuery = input.value.trim();
+  console.log(searchQuery);
+  getSearchNews(searchQuery);
+}
 
 async function getSearchNews(search) {
   try {
@@ -27,35 +32,35 @@ async function getSearchNews(search) {
     if (getNews.data.response.docs.length) {
       pageNotFound.classList.add("visually-hidden");
       addMarkup(getNews.data.response.docs);
-    } else if (getNews.response.docs.length === 0) {
+    } else if (data.length === 0) {
       notFound();
     }
   }
   catch (err) {
-      //notFoundPage.classList.toggle('visually-hidden');
-      console.log (err)
-    }
+    //notFoundPage.classList.toggle('visually-hidden');
+    console.log (err)
+  }
 }
 
 function addMarkup(data) {
   console.log(data);
   return data
     .map(({ web_url,
-      lead_paragraph,
-      headline,
-      pub_date,
-      multimedia,
-      section_name,}) => {
-      let mediaURL = `https://webassets.eurac.edu/31538/1647583511-adobestock_490465800.jpeg?auto=format&fm=jpg&h=588&w=980`;
+            lead_paragraph,
+            headline,
+            pub_date,
+            multimedia,
+            section_name,}) => {
+      //let mediaURL = `https://webassets.eurac.edu/31538/1647583511-adobestock_490465800.jpeg?auto=format&fm=jpg&h=588&w=980`;
 
-      if (
-       multimedia &&
-       multimedia[0] &&
-       multimedia[0]['media-metadata'] &&
-       multimedia[0]['media-metadata'][2]
-      ) {
-        mediaURL = multimedia[0]['media-metadata'][2].url;
-      }
+      //if (
+      //  media &&
+      // media[0] &&
+      // media[0]['media-metadata'] &&
+      // media[0]['media-metadata'][2]
+      // ) {
+      //  mediaURL = media[0]['media-metadata'][2].url;
+      //}
       return `
     <li class="card-news__item">
     <div class="card-news__picture"><img src="https://static01.nyt.com/${multimedia[0].url}" alt="${multimedia[0]?.caption}" class="news-image">
@@ -82,4 +87,8 @@ function addMarkup(data) {
   </li>`;
     })
     .join('');
+}
+
+function notFound (){
+  pageNotFound.classList.toggle ('visually-hidden')
 }
