@@ -1,6 +1,3 @@
-// import CalendarDates from "calendar-dates";
-// const calendarDates = new CalendarDates();
-
 const daysTag = document.querySelector(".days");
 const currentDate = document.querySelector(".current-date");
 const prevNextIcon = document.querySelectorAll(".icons span");
@@ -10,38 +7,22 @@ const spanEl = document.querySelector('.calendar-btn-span');
 const modalEl = document.querySelector('.modal');
 const todayBtn = document.querySelector('.today-btn');
 const yearBtn = document.querySelector('.next-year');
+const yearsDiv = document.querySelector('.years ul');
 
 btnEl.addEventListener('click', () => {
     return modalEl.classList.toggle('is-shown')
         ? btnEl.classList.add('btn-is-active')
         : btnEl.classList.remove('btn-is-active');
 });
-
 btnEl.addEventListener('hover', () => btnEl.classList.add('btn-is-active'));
 btnEl.addEventListener('focus', () => btnEl.classList.add('btn-is-active'));
 
-
-
 let selectedDate = "";
-
 let date = new Date();
 let currYear = date.getFullYear();
 let currMonth = date.getMonth();
 const months = ["January", "February", "March", "April", "May", "June", "July",
                 "August", "September", "October", "November", "December"];
-
-// async function fetchDays() {
-//     let days = await calendarDates.getDates(new Date(20));
-//     // console.log(days);
-// };
-// fetchDays();
-
-// async function fetchWeeks() {
-//     let weeks = await calendarDates.getMatrix(new Date());
-//     // console.log(weeks);
-// };
-// fetchWeeks();
-              
 
 function renderCalendar () {
     let firstDayofMonth = new Date(currYear, currMonth, 0).getDay(); // getting first day of month
@@ -58,14 +39,19 @@ function renderCalendar () {
         let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
             && currYear === new Date().getFullYear() ? "active" : "";
         let isCurrentDay = i === date.getDate() ? "current-month-day" : "";
-        liTag += `<li><button type="button" class="button ${isToday} ${isCurrentDay}">${i}</button></li>`;
-        
+        liTag += `<li><button type="button" class="button ${isToday} ${isCurrentDay}">${i}</button></li>`;   
     }
     for (let i = lastDayofMonth; i < 7; i++) { // creating li of next month first days
         liTag += `<li><button type="button" class="button inactive" disabled>${i - lastDayofMonth + 1}</button></li>`
     }
 
-    currentDate.innerHTML = `${months[currMonth]} ${currYear} <span class="chevron">&#10095;</span>`; // passing current mon and yr as currentDate text
+    // yearBtn.addEventListener('click', () => {
+    // let yearsMarkup = ``;
+    // for (let i = 2020; i <= date.getFullYear(); i++) {
+    //     yearsMarkup += `<li><button type="button" class="year-btn">${i}</button></li>`};
+    //     yearsDiv.innerHTML = yearsMarkup;})
+
+    currentDate.innerHTML = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
     daysTag.innerHTML = liTag;
 
     const dayBtns = document.querySelectorAll(".button");
@@ -77,7 +63,7 @@ function renderCalendar () {
 
         todayBtn.addEventListener('click', () => {spanEl.textContent = `${addLeadingZero(date.getDate())}/${addLeadingZero(currMonth + 1)}/${currYear}`});
         return selectedDate;
-}));
+    }));
 }
 renderCalendar();
 
@@ -100,6 +86,10 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
         renderCalendar(); // calling renderCalendar function
     });
 });
-yearBtn.addEventListener('click', () => { console.log('hi');
-
-})
+// yearBtn.addEventListener('click', () => {
+//     let yearsMarkup = ``;
+//     for (let i = 2020; i <= date.getFullYear(); i++) {
+//         yearsMarkup += `<li><button type="button" class="year-btn">${i}</button></li>`
+//     };
+//     yearsDiv.innerHTML = yearsMarkup;
+// })
