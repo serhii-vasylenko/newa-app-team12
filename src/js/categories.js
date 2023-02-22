@@ -64,7 +64,7 @@ export function divideArrNews(categories, count) {
 }
 
 function clearCategoriesMenu() {
-  saveMargin();
+  // saveMargin();
   markupNameButton();
   markupCategories(categoriesMenu);
   categoriesMenu.classList.remove('is-open-categories');
