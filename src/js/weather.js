@@ -18,5 +18,5 @@ function onClick() {
   }
 }
 
-export { onClick, onSubmit };
+export { onClick };
 export { getGeolocation };
