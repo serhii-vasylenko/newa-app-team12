@@ -31,11 +31,9 @@ function toggleThemeMobile() {
     if (localStorage.getItem('theme') === 'theme-dark') {
         bodyElem.classList.add('theme-dark');
         checkBox.checked = true;
-        mobileCheck.checked = true;
     } 
     else {
         checkBox.checked = false;
-        mobileCheck.checked = false;
     }
 })();
 
