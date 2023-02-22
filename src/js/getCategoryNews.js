@@ -2,7 +2,7 @@ import { getCategoryNewsAPI } from './api/news-api.js';
 import {markup } from './getPopoularProduct.js';
 import { checkFavCards } from './addAndRemoveFromFavorite.js';
 
-// const changeDate = '';
+
 
 const popularNewsGallery = document.querySelector('.news-gallery');
 const notFoundPage = document.querySelector('.not-found');
@@ -36,9 +36,6 @@ export async function getCategoryNews(category, offset) {
      
     }
     
-   
-     
-    
     function toAdaptData (data) {
       console.log("🚀 ~ file: getCategoryNews.js:35 ~ toAdaptData ~ data:", data)
       
@@ -68,15 +65,11 @@ export async function getCategoryNews(category, offset) {
     
     });
   }
-    
-    
     popularNewsGallery.innerHTML = markup(apdatData);
     checkFavCards();
 }
 
-function filterDateNews(arrNews, selectedDate) {
-
- 
+function filterDateNews(arrNews, selectedDate) { 
   return arrNews.filter(news => {
     return dateConversion(news.published_date) === selectedDate;
   });
