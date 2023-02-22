@@ -12,7 +12,6 @@ const toggleMenu = () => {
     openMenu.setAttribute('aria-expanded', !openMobileMenu );
     mobileMenu.classList.toggle('is-open');
 
-  
   const scrollLockMethod = !openMobileMenu
     ? 'disableBodyScroll'
     : 'enableBodyScroll';
@@ -22,33 +21,14 @@ const toggleMenu = () => {
 
 const title = document.querySelector('meta[name="description"]').content.toLowerCase();
 const links = document.querySelectorAll('.nav-mobile__link');
-const icons = document.querySelectorAll('.mobile-page__icon');
-
-
 
 links.forEach(link => {
   if (link.innerText.toLowerCase() === title) {
     link.classList.add('nav-mobile__link--current');
+    link.lastElementChild.classList.add('active');
   }
   
-
-// icons.forEach(icon => {
-//   if (icon.innerText === title) {
-//     icon.classList.toggle('nav-mobile__link--current');
-  
-//   }   
-// })
-
-
-  });
-  //   icons.forEach(icon => {
-  //   if (!title) {
-  // icon.toggleAttribute(disable)
-  //   }
-  // })
-  
-
-
+});
 
 openMenu.addEventListener('click', toggleMenu);
 closeMenu.addEventListener('click', toggleMenu);
