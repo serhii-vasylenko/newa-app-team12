@@ -48,7 +48,7 @@
     }
     .wrapper{
         top: 31;
-        left: 440;
+        left: 200;
     }
 }
 
@@ -142,6 +142,10 @@
     top: 0;
     left: 0;
     transform: translateY(0);
+}
+
+.next-year{
+    cursor: pointer;
 }
 
 .calendar-btn.btn-is-active{
