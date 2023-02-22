@@ -80,6 +80,17 @@
     color: var(--calendar-btn-text-color);
     transition: $animation;
 }
+.today-btn{
+    display: flex;
+    align-items: center;
+    height: 31px;
+    border: 1px solid var(--primary-color);
+    border-radius: 20px;
+    background-color: var(--primary-bcgcolor);
+    color: var(--calendar-btn-text-color);
+    transition: $animation;
+}
+
 .icon-calendar{
     width: 19px;
     height: 19px;
@@ -92,8 +103,15 @@
     fill: var(--calendar-btn-text-color);
         transition: $animation;
 }
+.icon-today{
+    width: 19px;
+    height: 19px;
+    fill: var(--calendar-btn-icon-color);
+    transition: $animation;
+}
 
-.calendar-btn:hover, .calendar-btn:focus{
+.calendar-btn:hover, .calendar-btn:focus,
+.today-btn:hover, .today-btn:focus{
     background-color: #4440F6;
     border: 1px solid #4440F6;
     color: #FFFFFF;
@@ -135,7 +153,9 @@
 .calendar-btn:hover >.icon-calendar,
 .calendar-btn:hover>.icon-chevron,
 .calendar-btn:focus>.icon-calendar,
-.calendar-btn:focus>.icon-chevron{
+.calendar-btn:focus>.icon-chevron,
+.today-btn:hover .icon-today,
+.today-btn:focus .icon-today{
     fill: #ffffff;
 }
 .calendar-header {
