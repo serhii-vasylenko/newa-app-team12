@@ -20,7 +20,7 @@ async function getPopularProduct() {
 getPopularProduct();
 function markup(data) {
   return data
-    .map(({ abstract, media, published_date, subsection, title, url }) => {
+    .map(({ abstract, media, published_date, section, title, url }) => {
       let mediaURL = `https://webassets.eurac.edu/31538/1647583511-adobestock_490465800.jpeg?auto=format&fm=jpg&h=588&w=980`;
 
       if (
@@ -34,7 +34,7 @@ function markup(data) {
       return `
     <li class="card-news__item">
     <div class="card-news__picture"><img src="${mediaURL}" alt="${media[0]?.caption}" class="news-image">
-      <p class="news-category"> ${subsection}</p>
+      <p class="news-category"> ${section}</p>
       <button class="news-favorite addToFavoriteBtn" aria-label="add to favorite">Add to favorite <svg class="news-favorite__icon" width="16"
       height="16"
       viewBox="0 0 37 32"
