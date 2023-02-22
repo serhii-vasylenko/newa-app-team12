@@ -37,7 +37,7 @@ async function getSearchNews(search) {
     }
 }
 
-/*function addMarkup(data) {
+function addMarkup(data) {
   console.log(data);
   return data
     .map(({ web_url,
@@ -82,35 +82,4 @@ async function getSearchNews(search) {
   </li>`;
     })
     .join('');
-}*/
-
-function addMarkup(data) {
- // console.log('🚀 ~ file: getCategoryNews.js:35 ~ toAdaptData ~ data:', data);
-
-  return data.map(obj => {
-    if (obj.multimedia === null && obj.abstract !== undefined) {
-      return;
-    }
-    const container = {};
-    (container.abstract = obj.abstract),
-      (container.media = [
-        {
-          caption: obj.title,
-          'media-metadata': [
-            { url: obj.multimedia[0].url },
-            { url: obj.multimedia[1].url },
-            { url: obj.multimedia[2].url },
-          ],
-        },
-      ]);
-
-    container.published_date = obj.published_date;
-    container.subsection = obj.section;
-    container.title = obj.title;
-    container.url = obj.url;
-
-    return container;
-  });
 }
-newsGallery.innerHTML = markup(addMarkup);
-getSearchNews();
