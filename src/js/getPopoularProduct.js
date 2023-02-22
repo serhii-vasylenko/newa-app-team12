@@ -1,9 +1,18 @@
 import { getPopularNewsAPI } from './api/news-api.js';
 import { getMarkupWeather } from './markups/weather-markup.js';
 import { weatherData } from './markups/weather-markup.js';
+import { pagination} from './pagination.js';
 
 const popularNewsGallery = document.querySelector('.news-gallery');
 const notFoundPage = document.querySelector('.not-found');
+const paginationEl = document.getElementById('pagination');
+
+const valuePage = {
+  curPage: 1,
+  numLinksTwoSide: 1,
+  amountCards: 0,
+  totalPages: 0,
+};
 
 async function getPopularProduct() {
   try {
@@ -14,12 +23,12 @@ async function getPopularProduct() {
     let markupNews = '';
 
     const markupWeather = getMarkupWeather({ data: weatherData });
-    console.log(markupWeather);
-    console.log({ data: weatherData });
+    // console.log(markupWeather);
+    // console.log({ data: weatherData });
 
     const itemWeather = `<li class="weather__card">${markupWeather}</li>`;
 
-    console.log(itemWeather);
+    // console.log(itemWeather);
 
     if (window.matchMedia('(max-width: 767px)').matches) {
       for (let i = 0; i < 5; i += 1) {
@@ -28,6 +37,9 @@ async function getPopularProduct() {
         } else {
           markupNews += markup(newsArr[i]);
         }
+        valuePage.totalPages = Math.ceil(
+          newsArr.length / 5
+        );
       }
     }
     if (
@@ -39,6 +51,9 @@ async function getPopularProduct() {
         } else {
           markupNews += markup(newsArr[i]);
         }
+        valuePage.totalPages = Math.ceil(
+          newsArr.length / 8
+        );
       }
     }
     if (window.matchMedia('(min-width: 1280px)').matches) {
@@ -48,13 +63,31 @@ async function getPopularProduct() {
         } else {
           markupNews += markup(newsArr[i]);
         }
+        valuePage.totalPages = Math.ceil(
+          newsArr.length / 9
+        );
       }
     }
-    popularNewsGallery.innerHTML = markupNews;
+  popularNewsGallery.innerHTML = markupNews;
+    pagination(valuePage);
   } catch (error) {
     notFoundPage.classList.toggle('visually-hidden');
   }
 }
+paginationEl.addEventListener('click', e => {
+  const ele = e.target;
+  console.log(ele);
+
+  if (ele.dataset.page) {
+    const pageNumber = parseInt(e.target.dataset.page, 10);
+    valuePage.curPage = pageNumber;
+  }
+
+  // getAmountCards();
+
+  renderNewsMarkup(); //getPopularNewsAPI()
+  goToTop();
+});
 
 getPopularProduct();
 function markup({ abstract, media, published_date, subsection, title, url }) {

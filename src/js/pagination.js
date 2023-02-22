@@ -149,7 +149,7 @@ function goToTop() {
 }
 
 // DYNAMIC PAGINATION
-function pagination() {
+function pagination(valuePage) {
   const { totalPages, curPage, numLinksTwoSide: delta } = valuePage;
 
   const range = delta + 4; // use for handle visible number of links left side
@@ -220,6 +220,8 @@ function getAmountCardsDynamic() {
 }
 
 export { pagination };
+export { valuePage };
+
 
 // import { getPopularNewsAPI } from './api/news-api.js';
 // // import { getMarkupWeather } from './markups/weather-markup';
