@@ -106,6 +106,7 @@ function markup({ abstract, media, published_date, subsection, title, url }) {
     <div class="card-news__picture"><img src="${mediaURL}" alt="${media[0]?.caption}" class="news-image">
       <p class="news-category"> ${subsection}</p>
       <button class="news-favorite" aria-label="add to favorite">Add to favorite <svg class="news-favorite__icon" width="16" height="16"><use href="../images/icons-defs.svg#icon-heart-transparent"></use></svg>
+
       </button>
     </div>
     <div class="card-news__info">
