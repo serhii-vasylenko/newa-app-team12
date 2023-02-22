@@ -45,16 +45,16 @@ searchFormEl.addEventListener('submit', e => {
 //   }
 
 //   getAmountCards();
-  renderNewsMarkup(); //getPopularNewsAPI()
-  goToTop();
-});
+  // renderNewsMarkup(); //getPopularNewsAPI()
+  // goToTop();
+// });
 
 // paginationContainerEl.addEventListener('click', e => {
 //   handleButton(e.target);
 
-  renderNewsMarkup();   //getPopularNewsAPI()
-  goToTop();
-});
+  // renderNewsMarkup();   //getPopularNewsAPI()
+  // goToTop();
+// });
 
 // function renderNewsMarkup(data) {
 //   const getNews = data;
