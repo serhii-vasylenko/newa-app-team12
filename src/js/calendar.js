@@ -9,6 +9,7 @@ const btnEl = document.querySelector('.calendar-btn');
 const spanEl = document.querySelector('.calendar-btn-span');
 const modalEl = document.querySelector('.modal');
 const todayBtn = document.querySelector('.today-btn');
+const yearBtn = document.querySelector('.next-year');
 
 btnEl.addEventListener('click', () => {
     return modalEl.classList.toggle('is-shown')
@@ -99,7 +100,6 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
         renderCalendar(); // calling renderCalendar function
     });
 });
+yearBtn.addEventListener('click', () => { console.log('hi');
 
-function getDate() {
-    
-};
+})
