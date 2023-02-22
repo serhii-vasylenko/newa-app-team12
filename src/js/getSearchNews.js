@@ -69,7 +69,7 @@ function addMarkup(data) {
       </button>
     </div>
     <div class="card-news__info">
-      <h3 class="card-news__title"> ${headline}</h3>
+      <h3 class="card-news__title"> ${headline.main}</h3>
       <p class="card-news__info-chort"> ${lead_paragraph}...</p>
       <div class="card-information">
         <div class="card-infrmation__data"> ${pub_date}</div>
