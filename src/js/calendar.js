@@ -61,7 +61,7 @@ function renderCalendar () {
         modalEl.classList.toggle('is-shown');
         btnEl.classList.remove('btn-is-active');
 
-        todayBtn.addEventListener('click', () => {spanEl.textContent = `${addLeadingZero(date.getDate())}/${addLeadingZero(currMonth + 1)}/${currYear}`});
+        todayBtn.addEventListener('click', () => {spanEl.textContent = `${addLeadingZero(date.getDate())}/${addLeadingZero(new Date().getMonth() + 1)}/${new Date().getFullYear()}`});
         return selectedDate;
     }));
 }
@@ -86,10 +86,15 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
         renderCalendar(); // calling renderCalendar function
     });
 });
-// yearBtn.addEventListener('click', () => {
-//     let yearsMarkup = ``;
-//     for (let i = 2020; i <= date.getFullYear(); i++) {
-//         yearsMarkup += `<li><button type="button" class="year-btn">${i}</button></li>`
-//     };
-//     yearsDiv.innerHTML = yearsMarkup;
-// })
+yearBtn.addEventListener('click', () => {
+    currYear += 1;
+    renderCalendar();
+    let saveDate = JSON.parse(localStorage.getItem('VALUE'));
+    let rendCurrentDays = daysTag.childNodes;
+
+    rendCurrentDays.forEach(el => {
+        if (el.textContent === saveDate) {
+            el.classList.add('active')
+        }
+    });
+})
