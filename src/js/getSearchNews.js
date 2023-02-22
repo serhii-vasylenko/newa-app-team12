@@ -113,4 +113,4 @@ function addMarkup(data) {
   });
 }
 newsGallery.innerHTML = markup(addMarkup);
-checkFavCards();
+getSearchNews();
