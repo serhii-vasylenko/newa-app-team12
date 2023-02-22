@@ -272,9 +272,8 @@
     background-color: transparent;
     cursor: pointer;
 }
-.button.inactive {
-    color: rgba(60, 60, 67, 0.1);
-    
+.button.inactive, #inactive {
+    color: rgba(60, 60, 67, 0.1); 
 }
 .button.active {
     color: #fff;

@@ -32,7 +32,7 @@ function renderCalendar () {
     // let weekend = new Date(currYear, currMonth, 6, 7);
     let liTag = "";
     for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
-        liTag += `<li><button type="button" class="button inactive" disabled>${lastDateofLastMonth - i + 1}</button></li>`;
+        liTag += `<li><button type="button" class="button inactive" id="inactive" disabled>${lastDateofLastMonth - i + 1}</button></li>`;
     }
     for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
         // adding active class to li if the current day, month, and year matched
@@ -42,14 +42,8 @@ function renderCalendar () {
         liTag += `<li><button type="button" class="button ${isToday} ${isCurrentDay}">${i}</button></li>`;   
     }
     for (let i = lastDayofMonth; i < 7; i++) { // creating li of next month first days
-        liTag += `<li><button type="button" class="button inactive" disabled>${i - lastDayofMonth + 1}</button></li>`
+        liTag += `<li><button type="button" class="button inactive" id="inactive" disabled>${i - lastDayofMonth + 1}</button></li>`
     }
-
-    // yearBtn.addEventListener('click', () => {
-    // let yearsMarkup = ``;
-    // for (let i = 2020; i <= date.getFullYear(); i++) {
-    //     yearsMarkup += `<li><button type="button" class="year-btn">${i}</button></li>`};
-    //     yearsDiv.innerHTML = yearsMarkup;})
 
     currentDate.innerHTML = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
     daysTag.innerHTML = liTag;
