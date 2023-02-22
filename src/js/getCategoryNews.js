@@ -1,8 +1,6 @@
 import { getCategoryNewsAPI } from './api/news-api.js';
-import {markup } from './getPopoularProduct.js';
+import { markup } from './markups/newsCard.js';
 import { checkFavCards } from './addAndRemoveFromFavorite.js';
-
-
 
 const popularNewsGallery = document.querySelector('.news-gallery');
 const notFoundPage = document.querySelector('.not-found');
@@ -13,36 +11,38 @@ calendarBtn.addEventListener('input', getCategoryNews);
 
 export async function getCategoryNews(category, offset) {
   let apdatData = [];
-    const getCategotyNews = await getCategoryNewsAPI(category, offset);
-    const dataNews = getCategotyNews.results;
-    console.log("🚀 ~ file: getCategoryNews.js:15 ~ getCategoryNews ~ dataNews:", dataNews)
-    const currentDate = currentDateContainer.innerText;
-    
-    if (currentDate === 'Select a date...') {
-      apdatData = toAdaptData (dataNews);
-      
-      
-    }
-    else {
-      const filteredNews = filterDateNews(dataNews, currentDate); // get Date from Calendar
-      console.log("🚀 ~ file: getCategoryNews.js:25 ~ getCategoryNews ~ filteredNews:", filteredNews)
+  const getCategotyNews = await getCategoryNewsAPI(category, offset);
+  const dataNews = getCategotyNews.results;
+  console.log(
+    '🚀 ~ file: getCategoryNews.js:15 ~ getCategoryNews ~ dataNews:',
+    dataNews
+  );
+  const currentDate = currentDateContainer.innerText;
 
-        if (filteredNews.length === 0) {
+  if (currentDate === 'Select a date...') {
+    apdatData = toAdaptData(dataNews);
+  } else {
+    const filteredNews = filterDateNews(dataNews, currentDate); // get Date from Calendar
+    console.log(
+      '🚀 ~ file: getCategoryNews.js:25 ~ getCategoryNews ~ filteredNews:',
+      filteredNews
+    );
+
+    if (filteredNews.length === 0) {
       notFoundPage.classList.add('visually-hidden');
       return;
     }
-      apdatData = toAdaptData (filteredNews);
-      console.log(apdatData);
-     
-    }
-    
-    function toAdaptData (data) {
-      console.log("🚀 ~ file: getCategoryNews.js:35 ~ toAdaptData ~ data:", data)
-      
-      return data.map(obj => {
-        if (obj.multimedia === null && obj.abstract  !== undefined) {
-          return;
-        }
+    apdatData = toAdaptData(filteredNews);
+    console.log(apdatData);
+  }
+
+  function toAdaptData(data) {
+    console.log('🚀 ~ file: getCategoryNews.js:35 ~ toAdaptData ~ data:', data);
+
+    return data.map(obj => {
+      if (obj.multimedia === null && obj.abstract !== undefined) {
+        return;
+      }
       const container = {};
       (container.abstract = obj.abstract),
         (container.media = [
@@ -62,14 +62,13 @@ export async function getCategoryNews(category, offset) {
       container.url = obj.url;
 
       return container;
-    
     });
   }
-    popularNewsGallery.innerHTML = markup(apdatData);
-    checkFavCards();
+  popularNewsGallery.innerHTML = markup(apdatData);
+  checkFavCards();
 }
 
-function filterDateNews(arrNews, selectedDate) { 
+function filterDateNews(arrNews, selectedDate) {
   return arrNews.filter(news => {
     return dateConversion(news.published_date) === selectedDate;
   });
@@ -78,6 +77,5 @@ function filterDateNews(arrNews, selectedDate) {
 function dateConversion(getDate) {
   const date = new Date(getDate);
   const month = String(date.getMonth() + 1);
-  return `${date.getDate()}/${month.padStart(2, "0")}/${date.getFullYear()}`; 
+  return `${date.getDate()}/${month.padStart(2, '0')}/${date.getFullYear()}`;
 }
-
