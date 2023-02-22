@@ -2,13 +2,13 @@
   display: flex;
   margin-right: 24px;
 
-  @media screen and (min-width: $tablet) {
-    margin-right: 40px;
-  }
+  // @media screen and (min-width: $tablet) {
+  //   margin-right: 40px;
+  // }
 
-  @media screen and (min-width: $desktop) {
-    margin-right: 111px;
-  }
+  // @media screen and (min-width: $desktop) {
+  //   margin-right: 111px;
+  // }
 
   &__menu {
     position: absolute;
