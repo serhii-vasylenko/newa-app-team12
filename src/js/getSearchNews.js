@@ -46,16 +46,16 @@ function addMarkup(data) {
       pub_date,
       multimedia,
       section_name,}) => {
-      //let mediaURL = `https://webassets.eurac.edu/31538/1647583511-adobestock_490465800.jpeg?auto=format&fm=jpg&h=588&w=980`;
+      let mediaURL = `https://webassets.eurac.edu/31538/1647583511-adobestock_490465800.jpeg?auto=format&fm=jpg&h=588&w=980`;
 
-      //if (
-      //  media &&
-       // media[0] &&
-       // media[0]['media-metadata'] &&
-       // media[0]['media-metadata'][2]
-     // ) {
-      //  mediaURL = media[0]['media-metadata'][2].url;
-      //}
+      if (
+       multimedia &&
+       multimedia[0] &&
+       multimedia[0]['media-metadata'] &&
+       multimedia[0]['media-metadata'][2]
+      ) {
+        mediaURL = multimedia[0]['media-metadata'][2].url;
+      }
       return `
     <li class="card-news__item">
     <div class="card-news__picture"><img src="https://static01.nyt.com/${multimedia[0].url}" alt="${multimedia[0]?.caption}" class="news-image">
