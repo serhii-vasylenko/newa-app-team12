@@ -3,7 +3,7 @@ import { markup } from './markups/newsCard.js';
 import { checkFavCards } from './addAndRemoveFromFavorite.js';
 import { getMarkupWeather } from './markups/weather-markup.js';
 import { weatherData } from './markups/weather-markup.js';
-import { pagination } from './pagination.js';
+// import { pagination } from './pagination.js';
 
 let currentCategory = '';
 
@@ -31,7 +31,7 @@ function onSearchDate() {
   getCategoryNews(currentCategory);
 }
 
-export async function getCategoryNews(category, offset) {
+export async function getCategoryNews(category) {
   currentCategory = category;
   try {
     console.log(
@@ -154,7 +154,7 @@ export async function getCategoryNews(category, offset) {
     }
 
     popularNewsGallery.innerHTML = markupNews;
-    pagination(valuePage);
+    // pagination(valuePage);
 
     checkFavCards();
   } catch {
