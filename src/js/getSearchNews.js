@@ -1,22 +1,34 @@
-import { getSearchNewsAPI } from './api/news-api.js';
+import {getSearchNewsAPI} from './api/news-api';
 import { getMarkupWeather } from './markups/weather-markup.js';
 import { weatherData } from './markups/weather-markup.js';
-//import { pagination } from './pagination.js';
 import { markup } from './markups/newsCard.js';
 
-// example function search News
-
-const newsGallery = document.querySelector('.news-gallery');
-const pageNotFound = document.querySelector(".not-found");
-const form= document.querySelector ('.search-form');
-form.addEventListener('submit' , onEnterPush)
-
-/*const valuePage = {
+const valuePage = {
   curPage: 1,
   numLinksTwoSide: 1,
   amountCards: 0,
   totalPages: 0,
-};*/
+};
+
+
+// import {  createNewsListMarkup} from "./markups/newslistMarkup.js";
+//import {
+    //ref,
+    //valuePage,
+    //pagination,
+    //handleButtonRight,
+    //handleButtonLeft,
+    //handleButton,
+  //} 
+  //from './allPagination/dynamicPagination.js';
+//import { chunkNewsArr, chunkArray } from './allPagination/chunkArray.js';
+
+const newsGallery = document.querySelector('.news-gallery');
+const pageNotFound = document.querySelector(".not-found");
+const form = document.querySelector ('.search-form');
+form.addEventListener('submit' , onEnterPush);
+
+
 
 function onEnterPush(e) {
   e.preventDefault()
@@ -29,20 +41,23 @@ function onEnterPush(e) {
 async function getSearchNews(search) {
   try {
     const getNews = await getSearchNewsAPI(search);
-    const newsArr = getNews.data.response.docs;
+    const data = getNews.data.response.docs;
     console.log('Arr objects with search News ', getNews.data.response.docs);
     //function filter Date
     // function markup News
 
+    getAmountCards(data);
+    createMarkup(data);
+    toAdaptData(data);
+    //pagination(valuePage);
     
-    
-   newsGallery.innerHTML = addMarkup(newsArr)
+   newsGallery.innerHTML = markupNews;
 
     if (getNews.data.response.docs.length) {
       pageNotFound.classList.add("visually-hidden");
-     markupNews()
+      markup()
       //addMarkup(getNews.data.response.docs);
-    } else if (newsArr.length === 0) {
+    } else if (data.length === 0) {
       notFound();
     }
   }
@@ -53,9 +68,100 @@ async function getSearchNews(search) {
   }
 }
 
-function addMarkup(newsArr) {
-  console.log(newsArr);
-  return newsArr
+getSearchNews();
+window.addEventListener('resize', getSearchNews);
+
+
+function createMarkup(array) {
+  let markupNews = '';
+  const markupWeather = getMarkupWeather({ data: weatherData });
+  // console.log(markupWeather);
+  // console.log({ data: weatherData });
+  const itemWeather = `<li class="weather__card">${markupWeather}</li>`;
+  // console.log(itemWeather);
+  if (window.innerWidth < 768) {
+    for (let i = 0; i < 5; i += 1) {
+      if (i === 0) {
+        markupNews += itemWeather;
+      } else {
+        markupNews += markup(array[i]);
+      }
+    }
+  }
+  if (window.innerWidth >= 768 && window.innerWidth < 1280) {
+    for (let i = 0; i < 8; i += 1) {
+      if (i === 1) {
+        markupNews += itemWeather;
+      } else {
+        markupNews += markup(array[i]);
+      }
+    }
+  }
+  if (window.innerWidth >= 1280) {
+    for (let i = 0; i < 9; i += 1) {
+      if (i === 2) {
+        markupNews += itemWeather;
+      } else {
+        markupNews += markup(array[i]);
+      }
+    }
+  }
+  newsGallery.innerHTML = markupNews;
+  // console.log(markupNews);
+}
+
+function getAmountCards(array) {
+  if (window.innerWidth < 768) {
+    valuePage.amountCards = 5;
+    valuePage.totalPages = Math.ceil(array.length / valuePage.amountCards);
+  }
+  if (window.innerWidth >= 768 && window.innerWidth < 1280) {
+    valuePage.amountCards = 8;
+    valuePage.totalPages = Math.ceil(array.length / valuePage.amountCards);
+  }
+  if (window.innerWidth >= 1280) {
+    valuePage.amountCards = 9;
+    valuePage.totalPages = Math.ceil(array.length / valuePage.amountCards);
+  }
+}
+
+function toAdaptData(data) {
+  return data.map(obj => {
+    if (obj.multimedia === null) {
+      obj.multimedia = [
+        {
+          url: true,
+        },
+        {
+          url: true,
+        },
+        {
+          url: 'https://amsrus.ru/wp-content/uploads/2016/02/Mercedes-Benz-C63-AMG-Black-Series-1.jpg',
+        },
+      ];
+    }
+    const container = {};
+    (container.abstract = obj.abstract),
+      (container.media = [
+        {
+          caption: obj.title,
+          'media-metadata': [
+            { url: obj.multimedia[0].url },
+            { url: obj.multimedia[1].url },
+            { url: obj.multimedia[2].url },
+          ],
+        },
+      ]);
+    container.published_date = obj.published_date;
+    container.subsection = obj.section;
+    container.title = obj.title;
+    container.url = obj.url;
+    return container;
+  });
+}
+/*function addMarkup(data) {
+  console.log(data);
+  return data
     .map(({ web_url,
             lead_paragraph,
             headline,
@@ -98,7 +204,7 @@ function addMarkup(newsArr) {
   </li>`;
     })
     .join('');
-}
+}*/
 
 function notFound (){
   pageNotFound.classList.toggle ('visually-hidden')
