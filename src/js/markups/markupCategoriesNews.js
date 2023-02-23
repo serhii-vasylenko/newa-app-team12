@@ -40,8 +40,10 @@ export function markupNameButton(currentButton) {
     if (currentButton.length < 18) {
       categoriesBtn.firstChild.textContent = currentButton;
     }
+    else {
     const newNameButton = `${currentButton.slice(0, 15)}...`
     categoriesBtn.firstChild.textContent = newNameButton;
+  }
   } else {
     if (window.matchMedia('(max-width: 767px)').matches) {
       categoriesBtn.firstChild.textContent = 'Categories';
