@@ -34,48 +34,9 @@ async function getSearchNews(search) {
     //function filter Date
     // function markup News
 
-    let markupNews = '';
-    const markupWeather = getMarkupWeather({ data: weatherData });
-    // console.log(markupWeather);
-    // console.log({ data: weatherData });
-    const itemWeather = `<li class="weather__card">${markupWeather}</li>`;
-    // console.log(itemWeather);
-    if (window.innerWidth < 768) {
-      for (let i = 0; i < 5; i += 1) {
-        if (i === 0) {
-          markupNews += itemWeather;
-        } else {
-          markupNews += markup(newsArr[i]);
-        }
-        valuePage.amountCards = 5;
-        valuePage.totalPages = Math.ceil(newsArr.length / valuePage.amountCards);
-      }
-    }
-    /*if (window.innerWidth >= 768 && window.innerWidth < 1280) {
-      for (let i = 0; i < 8; i += 1) {
-        if (i === 1) {
-          markupNews += itemWeather;
-        } else {
-          markupNews += markup(newsArr[i]);
-        }
-        valuePage.amountCards = 8;
-        valuePage.totalPages = Math.ceil(newsArr.length / valuePage.amountCards);
-      }
-    }
-    if (window.innerWidth >= 1280) {
-      for (let i = 0; i < 9; i += 1) {
-        if (i === 2) {
-          markupNews += itemWeather;
-        } else {
-          markupNews += markup(newsArr[i]);
-        }
-        valuePage.amountCards = 9;
-        valuePage.totalPages = Math.ceil(newsArr.length / valuePage.amountCards);
-      }
-    }*/
-
-    newsGallery.innerHTML = markupNews
-   // newsGallery.innerHTML = addMarkup(newsArr)
+    
+    
+   newsGallery.innerHTML = addMarkup(newsArr)
 
     if (getNews.data.response.docs.length) {
       pageNotFound.classList.add("visually-hidden");
@@ -92,7 +53,7 @@ async function getSearchNews(search) {
   }
 }
 
-/*function addMarkup(newsArr) {
+function addMarkup(newsArr) {
   console.log(newsArr);
   return newsArr
     .map(({ web_url,
@@ -137,7 +98,7 @@ async function getSearchNews(search) {
   </li>`;
     })
     .join('');
-}*/
+}
 
 function notFound (){
   pageNotFound.classList.toggle ('visually-hidden')
