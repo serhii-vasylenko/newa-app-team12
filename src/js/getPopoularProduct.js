@@ -36,7 +36,7 @@ async function getPopularProduct() {
           markupNews += markup(newsArr[i]);
         }
         valuePage.amountCards = 5;
-        valuePage.totalPages = Math.ceil(newsArr.length / valuePage.amountCards);
+        valuePage.totalPages = Math.ceil(data.length / valuePage.amountCards);
       }
     }
     if (window.innerWidth >= 768 && window.innerWidth < 1280) {
