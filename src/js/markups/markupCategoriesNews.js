@@ -1,13 +1,16 @@
 import { getCategoriesAPI } from '../api/news-api.js';
 import { divideArrNews } from '../categories.js';
 
+import { categoriesLocalArray } from '../api/categoriesList.js';
+
 const categoriesList = document.querySelector('.buttons-list');
 const categoriesBtn = document.querySelector('#btn-open-category');
 const categoriesMenu = document.querySelector('.category__menu');
 
 export async function markupCategories(categoriesMenu) {
-  const getCategories = await getCategoriesAPI();
-  const categories = getCategories.results;
+  // const getCategories = await getCategoriesAPI();
+  // const categories = getCategories.results;
+  const categories = categoriesLocalArray;
   if (window.matchMedia('(max-width: 767px)').matches) {
     categoriesList.innerHTML = '';
     categoriesMenu.innerHTML = renderingOthers(categories);
