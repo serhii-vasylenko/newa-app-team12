@@ -4,10 +4,9 @@ import { onClick } from '../weather';
 import { getGeolocation } from '../weather';
 
 
-
-const weatherData = {
+let weatherData = {
   coord: { lon: 30.2748, lat: 50.5461 },
-  main: { temp: 0.42 },
+  main: { temp: 5 },
   name: 'Hostomel',
   timezone: 7200,
   weather: [
@@ -18,29 +17,31 @@ const weatherData = {
   ],
 };
 
-
-
-// це функція розмітки картки погоди що з'являється разом 
-// з популярними новинами. Функція приймає дані з апі погоди ({data})
-function getMarkupWeather({ data }) {
-  console.log('погода з апи', data);
+function getMarkupWeather({ data: weatherData }) {
+  console.log('weatherData in markup', weatherData);
+  const {
+    name,
+    weather,
+    main: { temp },
+  } = weatherData;
+  const { main: weatherMain, icon } = weather[0];
   const today = new Date();
   let day = today.getDay();
   let date = today.getDate();
   let month = today.getMonth();
   let year = today.getFullYear();
 
-  const tempRound = Math.round(data.main.temp);
-
+  const tempRound = Math.round(temp);
+  console.log(temp);
   const templateWeather = `<div class="weather__header">
     <p class="weather__temp">${tempRound}&#176;</p>
     <div class="weather__wrapper">
-      <p class="weather__status">${data.weather[0].main}</p>
-      <p class="weather__location">${data.name}</p>
+      <p class="weather__status">${weatherMain}</p>
+      <p class="weather__location">${name}</p>
     </div>
   </div>
   <div>
-    <img class="wheather__icon" src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="${data.weather[0].main}">
+    <img class="wheather__icon" src="http://openweathermap.org/img/wn/${icon}@2x.png" alt="${weatherMain}">
   </div>
   <div class="weather__data">
     <p class="weather__date">${days[day]}</p>
@@ -49,25 +50,27 @@ function getMarkupWeather({ data }) {
   <button class="weather__btn" type="button">weather for week</button>
 `;
 
-  // const weekBtn = document.querySelectorAll('.weather__btn-close');
-  // weekBtn.addEventListener('click', onClick);
-
-  return templateWeather;
+  return {
+    markup: templateWeather,
+    setClickHandler: (conteiner, onClick) => {
+      const button = conteiner.querySelector('.weather__btn');
+      button.addEventListener('click', onClick);
+    },
+  };
 }
 
-
-
-//   weatherWidget.innerHTML = markupLocationToWeek + parts;
-//   const clouseWeekWidget = document.querySelector('.weather__btn-close');
-//   clouseWeekWidget.addEventListener('click', getGeolocation);
-
 function getMarkupWeatherToWeek({ data }) {
+  console.log('getMarkupWeatherToWeek', data.daily.length);
+
   const markupLocationToWeek = `
       <button class="weather__btn weather__btn-close" type="button">close</button>
     <h2 class="weather__location weather__location-week">region: ${data.timezone}</h2>`;
 
   const parts = [];
   for (let i = 0; i < data.daily.length - 1; i += 1) {
+    const tempDayRound = Math.round(data.daily[i].temp.day);
+    const tempNightRound = Math.round(data.daily[i].temp.night);
+
     const markupListToWeek = `<table class="weather__table">
       <tr>
         <td class="weather__week">${weekDay[i]},<br>${dateToWeek[i]}
@@ -79,7 +82,7 @@ function getMarkupWeatherToWeek({ data }) {
             alt="${data.daily[i].weather[0].main}"
           />
           <td class="weather__week">
-            ${tempDay} / ${tempNight}&#8451;
+            ${tempDayRound} / ${tempNightRound}&#8451;
           </td>
           <td class="weather__week weather__week-last">${data.daily[i].weather[0].main}</td>
         </td>
@@ -87,45 +90,46 @@ function getMarkupWeatherToWeek({ data }) {
     </table>`;
     parts.push(markupListToWeek);
   }
+  const dayWeatherCard = document.querySelector('.weather__card');
+  console.log(dayWeatherCard);
 
-  const markupToWeek = document.createElement('div');
-  markupToWeek.innerHTML = markupLocationToWeek + parts.join('');
+  dayWeatherCard.innerHTML = markupLocationToWeek + parts.join('');
 
   const clouseWeekWidget = document.querySelector('.weather__btn-close');
+  console.log(clouseWeekWidget);
   clouseWeekWidget.addEventListener('click', getGeolocation);
 
-  return markupToWeek.outerHTML;
+  return dayWeatherCard.outerHTML;
 }
 
-
 function renderToGallery() {
-  const markup = getMarkupWeather({ data: weatherData });
-  console.log(markup);
+  const { markup, setClickHandler } = getMarkupWeather({ data: weatherData });
+  console.log('markup', markup);
   const gallery = document.querySelector('.news-gallery');
   const item = document.createElement('li');
   item.classList.add('weather__card');
   item.innerHTML = markup;
   gallery.appendChild(item);
+  setClickHandler(item, onClick);
 }
 renderToGallery();
 
 
 
 function addClassToCard() {
-  // weatherWidget.classList.add('is-active');
+
+  const weekWeatherCard = document.querySelector('.weather__table');
+  console.log(weekWeatherCard);
+  weekWeatherCard.classList.toggle('is-active');
 }
 
 function removeClassToCard() {
-  // weatherWidget.classList.remove('is-active');
+  // const weekWeatherCard = document.querySelector('.weather__table');
+  // weekWeatherCard.classList.remove('.is-active');
 }
 
 export { getMarkupWeather, getMarkupWeatherToWeek };
 export { addClassToCard, removeClassToCard, weatherData };
-
-  
-
-
-
 
 // МЕДИАПРАВИЛО
 // window.onresize = function (event) {
@@ -146,4 +150,3 @@ export { addClassToCard, removeClassToCard, weatherData };
 //     galleryContainer.prepend(weatherWidget);
 //   }
 // };
-
