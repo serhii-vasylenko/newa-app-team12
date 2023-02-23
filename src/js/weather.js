@@ -4,7 +4,7 @@ import { addClassToCard, removeClassToCard } from './markups/weather-markup';
 getGeolocation();
 
 function getGeolocation() {
-  console.log('rere');
+  console.log('geolocation');
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
     removeClassToCard();
@@ -12,6 +12,7 @@ function getGeolocation() {
 }
 
 function onClick() {
+  console.log('click');
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(onSuccessToWeek, onError);
     addClassToCard();

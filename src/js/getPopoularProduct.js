@@ -69,7 +69,7 @@ async function getPopularProduct() {
   }
 }
 
-getPopularProduct();
+// getPopularProduct();
 
 
 // function markup({ abstract, media, published_date, subsection, title, url }) {
