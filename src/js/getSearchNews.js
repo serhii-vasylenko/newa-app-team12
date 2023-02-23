@@ -142,3 +142,14 @@ function toAdaptData(data) {
  // pageNotFound.classList.add('visually-hidden');
  // console.log ()
 //}
+
+/*ref.paginationEl.addEventListener('click', e => {
+  const ele = e.target;
+  // console.log(ele);
+​
+  if (ele.dataset.page) {
+    const pageNumber = parseInt(e.target.dataset.page, 10);
+    valuePage.curPage = pageNumber;
+    console.log(pageNumber);
+  }
+  console.log(valuePage.amountCards);*/
