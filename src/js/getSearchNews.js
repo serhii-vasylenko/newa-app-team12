@@ -12,12 +12,17 @@ const valuePage = {
   totalPages: 0,
 };
 
-
-
+const pagBtn= document.querySelector(".pagination__container")
+//const input = document.querySelector('.search-form__input')
 const newsGallery = document.querySelector('.news-gallery');
 const pageNotFound = document.querySelector('.not-found');
 const form = document.querySelector('.search-form');
 form.addEventListener('submit', onEnterPush);
+//input.addEventListener ('input', (e)=>{
+ // if (e.target.value===""){
+
+  //}
+//})
 
 function onEnterPush(e) {
   e.preventDefault();
@@ -39,6 +44,7 @@ async function getSearchNews(search) {
       createMarkup(adaptedData);
     } else if (getNews.data.response.docs.length === 0) {
       newsGallery.innerHTML="";
+      pagBtn.innerHTML="";
       pageNotFound.classList.remove('visually-hidden');
       //notFound();
     }
