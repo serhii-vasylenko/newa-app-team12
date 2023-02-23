@@ -3,7 +3,7 @@ import { markup } from './markups/newsCard.js';
 import { checkFavCards } from './addAndRemoveFromFavorite.js';
 import { getMarkupWeather } from './markups/weather-markup.js';
 import { weatherData } from './markups/weather-markup.js';
-import { pagination } from './pagination.js';
+// import { pagination } from './pagination.js';
 
 let currentCategory = '';
 
@@ -19,6 +19,7 @@ const notFoundPage = document.querySelector('.not-found');
 const currentDateContainer = document.querySelector('.calendar-btn-span');
 const calendarBtn = document.querySelector('.calendar-btn');
 const todayBtn = document.querySelector('.today-btn');
+const paginator = document.querySelector('.pagination__container');
 
 calendarBtn.addEventListener('blur', onSearchDate);
 todayBtn.addEventListener('click', onSearchDate);
@@ -30,7 +31,7 @@ function onSearchDate() {
   getCategoryNews(currentCategory);
 }
 
-export async function getCategoryNews(category, offset) {
+export async function getCategoryNews(category) {
   currentCategory = category;
   try {
     console.log(
@@ -39,7 +40,7 @@ export async function getCategoryNews(category, offset) {
     );
     let newsArr = [];
     let filteredNews = [];
-    const getCategotyNews = await getCategoryNewsAPI(category, offset);
+    const getCategotyNews = await getCategoryNewsAPI(category);
     const dataNews = getCategotyNews.results;
 
     let markupNews = '';
@@ -65,7 +66,9 @@ export async function getCategoryNews(category, offset) {
       );
 
       if (filteredNews.length === 0) {
-        notFoundPage.classList.add('visually-hidden');
+        popularNewsGallery.innerHTML = '';
+        notFoundPage.classList.remove('visually-hidden');
+        paginator.style.display = 'none';
         return;
       }
       newsArr = toAdaptData(filteredNews);
@@ -151,7 +154,7 @@ export async function getCategoryNews(category, offset) {
     }
 
     popularNewsGallery.innerHTML = markupNews;
-    pagination(valuePage);
+    // pagination(valuePage);
 
     checkFavCards();
   } catch {
@@ -170,7 +173,7 @@ function toAdaptData(data) {
           url: true,
         },
         {
-          url: 'https://amsrus.ru/wp-content/uploads/2016/02/Mercedes-Benz-C63-AMG-Black-Series-1.jpg',
+          url: "https://t3.ftcdn.net/jpg/01/09/01/16/360_F_109011607_xtOkqVoVTx54Dmf85pDmYTU0iwI82Kbq.jpg",
         },
       ];
     }
@@ -187,8 +190,8 @@ function toAdaptData(data) {
         },
       ]);
 
-    container.published_date = obj.published_date;
-    container.subsection = obj.section;
+    container.published_date = dateConversionNews(obj.published_date);
+    container.section = obj.section;
     container.title = obj.title;
     container.url = obj.url;
 
@@ -212,4 +215,10 @@ function dateConversion(getDate) {
   const date = new Date(getDate);
   const month = String(date.getMonth() + 1);
   return `${date.getDate()}/${month.padStart(2, '0')}/${date.getFullYear()}`;
+}
+
+function dateConversionNews(getDate) {
+  const date = new Date(getDate);
+  const month = String(date.getMonth() + 1);
+  return `${date.getFullYear()}-${month.padStart(2, '0')}-${date.getDate()}`;
 }
