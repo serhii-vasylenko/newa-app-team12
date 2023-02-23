@@ -59,7 +59,6 @@ function renderCalendar () {
             spanEl.textContent = `${addLeadingZero(date.getDate())}/${addLeadingZero(new Date().getMonth() + 1)}/${new Date().getFullYear()}`;
             currentDate.innerHTML = `${months[new Date().getMonth()]} ${new Date().getFullYear()}`;
         });
-        localStorage.setItem("VALUE", "currentDate");
         return selectedDate;
     }));
 }

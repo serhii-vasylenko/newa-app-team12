@@ -3,6 +3,7 @@
   --primary-bcgcolor: #F4F4F4;
   --primary-color: #111321;
   --primary-textcolor: #111321;
+  --primary-color-static: #111321;
   --accent-color: #4B48DB;
   --primary-iconscolor: #4B48DB;
   --slidebar-bcgcolor: #FFFFFF;
@@ -15,15 +16,19 @@
   --button-bg-color: #FFFFFF;
   --button-font-color: #4440F6;
   --button-border-color: #4440F7;
+  --time-color: #A8A8A8;
   --readed-color: #00DD73;
+  --category-bgd: rgba(68, 64, 247, 0.7);
+  --category-text: #FFFFFF;
 }
 
 .theme-dark {
   color: #F4F4F4;
   background-color: #2E2E2E;
-  --primary-bcgcolor: #111321;
+  --primary-bcgcolor: #2E2E2E;
   --primary-color: #F4F4F4;
   --primary-textcolor: #F4F4F4;
+  --primary-color-static: #111321;
   --accent-color: #4B48DB;
   --primary-iconscolor: #5F6775;
   --slidebar-bcgcolor: #4B48DB;
@@ -33,6 +38,8 @@
   --headerborder-color: rgba(244, 244, 244, 0.2);
   --calendar-btn-text-color: #F4F4F4;
   --calendar-btn-icon-color: #FFFFFF;
+  --category-bgd: rgba(68, 64, 247, 0.7);
+  --category-text: #FFFFFF;
 }
 
 h1,
@@ -255,32 +262,6 @@ a {
 button {
   font-family: inherit;
   cursor: pointer;
-}
-
-.theme-light {
-  --primary-bcgcolor: #F4F4F4;
-  --primary-color: #111321;
-  --primary-textcolor: #111321;
-  --accent-color: #4B48DB;
-  --primary-iconscolor: #4B48DB;
-  --slidebar-bcgcolor: #FFFFFF;
-  --slider-bordercolor: #4B48DB;
-  --themelight-namecolor: #4B48DB;
-  --themedark-namecolor: #5F6775;
-  --headerborder-color: rgba(0, 0, 0, 0.2);
-}
-
-.theme-dark {
-  --primary-bcgcolor: #111321;
-  --primary-color: #F4F4F4;
-  --primary-textcolor: #F4F4F4;
-  --accent-color: #4B48DB;
-  --primary-iconscolor: #5F6775;
-  --slidebar-bcgcolor: #4B48DB;
-  --slider-bordercolor: #FFFFFF;
-  --themelight-namecolor: #5F6775;
-  --themedark-namecolor: #4B48DB;
-  --headerborder-color: rgba(244, 244, 244, 0.2);
 }
 
 .visually-hidden {
@@ -1518,6 +1499,10 @@ button {
 .news-image {
   display: block;
   width: 100%;
+  height: 395px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 4px;
 }
 
 .news-category {
@@ -1529,13 +1514,13 @@ button {
   margin: 0;
   min-width: 113px;
   height: 24px;
-  background-color: rgba(68, 64, 247, 0.7);
+  background-color: var(--category-bgd);
   border-radius: 0px 4px 4px 0px;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
   text-align: center;
-  color: var(--slidebar-bcgcolor);
+  color: var(--category-text);
 }
 
 .news-favorite {
@@ -1554,7 +1539,7 @@ button {
   font-size: 12px;
   line-height: 16px;
   text-align: center;
-  color: var(--primary-bcgcolor);
+  color: var(--primary-color-static);
 }
 .news-favorite:hover, .news-favorite:focus {
   border-color: var(--accent-color);
@@ -1573,6 +1558,7 @@ button {
 
 .card-news__info-chort {
   margin-bottom: 20px;
+  min-height: 4em;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -moz-box;
@@ -1585,7 +1571,7 @@ button {
 
 .card-news__title {
   padding: 0 0 20px 0;
-  height: 140px;
+  height: 4.4em;
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: 700;
@@ -1606,7 +1592,7 @@ button {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.36;
-  color: var(--primary-color);
+  color: var(--primary-textcolor);
 }
 @media screen and (min-width: 768px) {
   .card-news__text {
@@ -1626,7 +1612,7 @@ button {
   font-size: 14px;
   line-height: 1.36;
   text-align: right;
-  color: #A8A8A8;
+  color: var(--time-color);
 }
 @media screen and (min-width: 768px) {
   .card-information__data {
