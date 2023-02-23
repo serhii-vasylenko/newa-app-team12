@@ -1,7 +1,7 @@
 import { getSearchNewsAPI } from './api/news-api.js';
 import { getMarkupWeather } from './markups/weather-markup.js';
 import { weatherData } from './markups/weather-markup.js';
-import { pagination } from './pagination.js';
+//import { pagination } from './pagination.js';
 import { markup } from './markups/newsCard.js';
 
 // example function search News
@@ -11,12 +11,12 @@ const pageNotFound = document.querySelector(".not-found");
 const form= document.querySelector ('.search-form');
 form.addEventListener('submit' , onEnterPush)
 
-const valuePage = {
+/*const valuePage = {
   curPage: 1,
   numLinksTwoSide: 1,
   amountCards: 0,
   totalPages: 0,
-};
+};*/
 
 function onEnterPush(e) {
   e.preventDefault()
