@@ -7,7 +7,7 @@ function getGeolocation() {
   console.log('geolocation');
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    removeClassToCard();
+    // removeClassToCard();
   }
 }
 
@@ -15,7 +15,7 @@ function onClick() {
   console.log('click');
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(onSuccessToWeek, onError);
-    addClassToCard();
+    // addClassToCard();
   }
 }
 
