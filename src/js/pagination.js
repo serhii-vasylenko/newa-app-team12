@@ -3,7 +3,7 @@ import {
   getSearchNewsAPI,
   getCategoryNewsAPI,
 } from './api/news-api.js';
-import cardNews from './../templates/card-news.hbs';
+// import cardNews from './../templates/card-news.hbs';
 import getRefs from './get-refs';
 
 const refs = getRefs();
