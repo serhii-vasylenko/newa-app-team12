@@ -150,7 +150,6 @@ export async function getCategoryNews(category, offset) {
       }
     }
 
-    
     popularNewsGallery.innerHTML = markupNews;
     pagination(valuePage);
 
@@ -161,15 +160,14 @@ export async function getCategoryNews(category, offset) {
 }
 
 function toAdaptData(data) {
-
   return data.map(obj => {
     if (obj.multimedia === null) {
       obj.multimedia = [
         {
-          url: 'https://amsrus.ru/wp-content/uploads/2016/02/Mercedes-Benz-C63-AMG-Black-Series-1.jpg',
+          url: true,
         },
         {
-          url: 'https://amsrus.ru/wp-content/uploads/2016/02/Mercedes-Benz-C63-AMG-Black-Series-1.jpg',
+          url: true,
         },
         {
           url: 'https://amsrus.ru/wp-content/uploads/2016/02/Mercedes-Benz-C63-AMG-Black-Series-1.jpg',
@@ -201,10 +199,12 @@ function toAdaptData(data) {
 function filterDateNews(arrNews, selectedDate) {
   return arrNews.filter(news => {
     console.log('Convert', dateConversion(news.published_date));
-    console.log("🚀 ~ file: getCategoryNews.js:205 ~ filterDateNews ~ selectedDate:", selectedDate)
-    console.log(dateConversion(news.published_date) === selectedDate)
+    console.log(
+      '🚀 ~ file: getCategoryNews.js:205 ~ filterDateNews ~ selectedDate:',
+      selectedDate
+    );
+    console.log(dateConversion(news.published_date) === selectedDate);
     return String(dateConversion(news.published_date)) === String(selectedDate);
-   
   });
 }
 
