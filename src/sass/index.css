@@ -1499,6 +1499,10 @@ button {
 .news-image {
   display: block;
   width: 100%;
+  height: 395px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 4px;
 }
 
 .news-category {
@@ -1567,7 +1571,7 @@ button {
 
 .card-news__title {
   padding: 0 0 20px 0;
-  height: 4.5em;
+  height: 4.4em;
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: 700;
