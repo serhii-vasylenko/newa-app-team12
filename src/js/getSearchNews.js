@@ -30,7 +30,7 @@ async function getSearchNews(search) {
     const data = getNews.data.response.docs;
     const adaptedData = toAdaptData(data);
     
-    //getAmountCards(data);
+    getAmountCards(data);
 
     if (getNews.data.response.docs.length) {
       pageNotFound.classList.add('visually-hidden');
@@ -40,7 +40,8 @@ async function getSearchNews(search) {
       notFound();
     }
   } catch (err) {
-    
+    pageNotFound.classList.add('visually-hidden');
+      
     console.log(err);
   }
 }
@@ -127,7 +128,7 @@ function toAdaptData(data) {
         },
       ]);
     container.published_date = obj.pub_date;
-    container.subsection = obj.section_name;
+    container.section = obj.section_name;
     container.title = obj.headline.main;
     container.url = obj.web_url;
     return container;
