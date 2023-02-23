@@ -16,3 +16,5 @@ import './js/markups/weather-markup';
 import './js/markups/markupNewsCard';
 
 import './js/addReadengNewsToLocalstorage'
+
+// import "./js/allPagination/getPopularProductPagination";
