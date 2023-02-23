@@ -3,6 +3,7 @@ import { getSearchNewsAPI } from './api/news-api';
 import { getMarkupWeather } from './markups/weather-markup.js';
 import { weatherData } from './markups/weather-markup.js';
 import { markup } from './markups/newsCard.js';
+import { checkFavCards } from './addAndRemoveFromFavorite';
 
 const valuePage = {
   curPage: 1,
@@ -83,6 +84,7 @@ function createMarkup(array) {
   }
 
   newsGallery.innerHTML = markupNews;
+  checkFavCards() ;
 }
 
 function getAmountCards(array) {
@@ -121,9 +123,9 @@ function toAdaptData(data) {
         {
           caption: obj.headline.main,
           'media-metadata': [
-            { url: obj.multimedia[0].url },
-            { url: obj.multimedia[1].url },
-            { url: obj.multimedia[2].url },
+            { url: `https://static01.nyt.com/${obj.multimedia[0].url}` },
+            { url: `https://static01.nyt.com/${obj.multimedia[1].url}` },
+            { url: `https://static01.nyt.com/${ obj.multimedia[2].url}` },
           ],
         },
       ]);
@@ -136,5 +138,6 @@ function toAdaptData(data) {
 }
 
 function notFound() {
-  pageNotFound.classList.toggle('visually-hidden');
+  pageNotFound.classList.add('visually-hidden');
+  console.log ()
 }
