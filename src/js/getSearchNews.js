@@ -36,6 +36,9 @@ async function getSearchNews(search) {
       notFound();
     }
   }
+
+
+  
   catch (err) {
     //notFoundPage.classList.toggle('visually-hidden');
     console.log (err)
