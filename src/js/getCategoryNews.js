@@ -173,7 +173,7 @@ function toAdaptData(data) {
           url: true,
         },
         {
-          url: "https://images.squarespace-cdn.com/content/v1/54db7288e4b0d3f042fa0b33/1555097159302-CSCTY5ZGR0XA2NM7INRD/news.jpg?format=2500w",
+          url: "https://t3.ftcdn.net/jpg/01/09/01/16/360_F_109011607_xtOkqVoVTx54Dmf85pDmYTU0iwI82Kbq.jpg",
         },
       ];
     }
@@ -191,7 +191,7 @@ function toAdaptData(data) {
       ]);
 
     container.published_date = dateConversionNews(obj.published_date);
-    container.subsection = obj.section;
+    container.section = obj.section;
     container.title = obj.title;
     container.url = obj.url;
 
