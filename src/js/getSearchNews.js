@@ -123,9 +123,9 @@ function toAdaptData(data) {
         {
           caption: obj.headline.main,
           'media-metadata': [
-            { url: `https://static01.nyt.com/${obj.multimedia[0].url}` },
-            { url: `https://static01.nyt.com/${obj.multimedia[1].url}` },
-            { url: `https://static01.nyt.com/${ obj.multimedia[2].url}` },
+            { url: `https://static01.nyt.com/${obj.multimedia[0].url}`},
+            { url: `https://static01.nyt.com/${obj.multimedia[1].url}`},
+            { url: `https://static01.nyt.com/${obj.multimedia[2].url}`},
           ],
         },
       ]);
