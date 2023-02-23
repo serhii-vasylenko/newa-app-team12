@@ -18,16 +18,14 @@ const newsGallery = document.querySelector('.news-gallery');
 const pageNotFound = document.querySelector('.not-found');
 const form = document.querySelector('.search-form');
 form.addEventListener('submit', onEnterPush);
-//input.addEventListener ('input', (e)=>{
- // if (e.target.value===""){
 
-  //}
-//})
 
 function onEnterPush(e) {
   e.preventDefault();
   const searchQuery = e.currentTarget.elements[1].value.trim();
+  
   getSearchNews(searchQuery);
+  form.reset();
 }
 
 async function getSearchNews(search) {
@@ -46,7 +44,7 @@ async function getSearchNews(search) {
       newsGallery.innerHTML="";
       btn.remove();
       pageNotFound.classList.remove('visually-hidden');
-      //notFound();
+      
     }
   } catch (err) {
     //pageNotFound.classList.toggle('visually-hidden');
