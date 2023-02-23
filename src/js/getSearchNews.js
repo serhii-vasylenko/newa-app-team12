@@ -12,17 +12,20 @@ const valuePage = {
   totalPages: 0,
 };
 
-
-
+const btn= document.querySelector(".pagination__container")
+//const input = document.querySelector('.search-form__input')
 const newsGallery = document.querySelector('.news-gallery');
 const pageNotFound = document.querySelector('.not-found');
 const form = document.querySelector('.search-form');
 form.addEventListener('submit', onEnterPush);
 
+
 function onEnterPush(e) {
   e.preventDefault();
   const searchQuery = e.currentTarget.elements[1].value.trim();
+  
   getSearchNews(searchQuery);
+  form.reset();
 }
 
 async function getSearchNews(search) {
@@ -39,8 +42,9 @@ async function getSearchNews(search) {
       createMarkup(adaptedData);
     } else if (getNews.data.response.docs.length === 0) {
       newsGallery.innerHTML="";
+      btn.remove();
       pageNotFound.classList.remove('visually-hidden');
-      //notFound();
+      
     }
   } catch (err) {
     //pageNotFound.classList.toggle('visually-hidden');
@@ -55,7 +59,7 @@ function createMarkup(array) {
   let markupNews = '';
   const markupWeather = getMarkupWeather({ data: weatherData });
   
-  const itemWeather = `<li class="weather__card">${markupWeather}</li>`;
+  const itemWeather = `<li class="weather__card">${markupWeather.markup}</li>`;
 
   if (window.innerWidth < 768) {
     for (let i = 0; i < 5; i += 1) {
@@ -139,10 +143,7 @@ function toAdaptData(data) {
   });
 }
 
-//function notFound() {
- // pageNotFound.classList.add('visually-hidden');
- // console.log ()
-//}
+
 
 /*ref.paginationEl.addEventListener('click', e => {
   const ele = e.target;

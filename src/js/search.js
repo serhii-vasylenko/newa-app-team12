@@ -12,4 +12,3 @@ search.addEventListener('submit', e => {
     input.focus();
   }
 })
-
