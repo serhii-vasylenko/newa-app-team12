@@ -141,10 +141,10 @@ function toAdaptData(data) {
       ];
     }
     const container = {};
-    (container.abstract = obj.abstract),
+    (container.abstract = obj.lead_paragraph),
       (container.media = [
         {
-          caption: obj.title,
+          caption: obj.headline,
           'media-metadata': [
             { url: obj.multimedia[0].url },
             { url: obj.multimedia[1].url },
@@ -152,10 +152,10 @@ function toAdaptData(data) {
           ],
         },
       ]);
-    container.published_date = obj.published_date;
-    container.subsection = obj.section;
-    container.title = obj.title;
-    container.url = obj.url;
+    container.published_date = obj.pub_date;
+    container.subsection = obj.section_name;
+    container.title = obj.headline;
+    container.url = obj.web_url;
     return container;
   });
 }
