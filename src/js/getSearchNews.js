@@ -30,7 +30,7 @@ async function getSearchNews(search) {
     const data = getNews.data.response.docs;
     const adaptedData = toAdaptData(data);
     
-    getAmountCards(data);
+    //getAmountCards(data);
 
     if (getNews.data.response.docs.length) {
       pageNotFound.classList.add('visually-hidden');
