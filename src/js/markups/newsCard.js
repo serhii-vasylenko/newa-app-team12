@@ -1,5 +1,5 @@
-export function markup({ abstract, media, published_date, subsection, title, url }) {
-  let mediaURL = "../../images/news.jpg";
+export function markup({ abstract, media, published_date, section, title, url }) {
+  let mediaURL = "https://images.squarespace-cdn.com/content/v1/54db7288e4b0d3f042fa0b33/1555097159302-CSCTY5ZGR0XA2NM7INRD/news.jpg?format=2500w";
   if (
     media &&
     media[0] &&
@@ -11,7 +11,7 @@ export function markup({ abstract, media, published_date, subsection, title, url
   return `
     <li class="card-news__item card__readed">
     <div class="card-news__picture"><img src="${mediaURL}" alt="${media[0]?.caption}" class="news-image">
-      <p class="news-category"> ${subsection}</p>
+      <p class="news-category"> ${section}</p>
       <button class="news-favorite addToFavoriteBtn" aria-label="add to favorite">Add to favorite <svg class="news-favorite__icon" width="16"
       height="16"
       viewBox="0 0 37 32"
