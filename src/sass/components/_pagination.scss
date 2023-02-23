@@ -39,10 +39,7 @@
   &:disabled {
     cursor: not-allowed;;
     background-color: $lt-body-color;
-    // border-color: $dt-main-text-color;
-    color: $footer-color;
-    border: 1px solid $footer-color;
-    border-radius: 2px;
+    border-color: $dt-main-text-color;
   }
 }
 
