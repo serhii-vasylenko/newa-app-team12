@@ -3,7 +3,7 @@ import {
   getSearchNewsAPI,
   getCategoryNewsAPI,
 } from './api/news-api.js';
-import cardNews from './../templates/card-news.hbs';
+// import cardNews from './../templates/card-news.hbs';
 import getRefs from './get-refs';
 
 const refs = getRefs();
@@ -27,6 +27,7 @@ const valuePage = {
 };
 
 searchFormEl.addEventListener('submit', e => {
+  e.preventDefault()
   getSearchNewsAPI()
     .then(data => {
       console.log(data.arrayNews)
@@ -318,4 +319,3 @@ export { pagination };
 // `;
 //   return template;
 // }
-

@@ -3,6 +3,7 @@ import { getMarkupWeather } from './markups/weather-markup.js';
 import { weatherData } from './markups/weather-markup.js';
 import { pagination } from './pagination.js';
 import { markup } from './markups/newsCard.js';
+import { checkFavCards } from "./addAndRemoveFromFavorite.js";
 
 const popularNewsGallery = document.querySelector('.news-gallery');
 const notFoundPage = document.querySelector('.not-found');
@@ -25,7 +26,7 @@ async function getPopularProduct() {
     const markupWeather = getMarkupWeather({ data: weatherData });
     // console.log(markupWeather);
     // console.log({ data: weatherData });
-    const itemWeather = `<li class="weather__card">${markupWeather}</li>`;
+    const itemWeather = `<li class="weather__card">${markupWeather.markup}</li>`;
     // console.log(itemWeather);
 
     if (window.innerWidth < 768) {
@@ -62,6 +63,7 @@ async function getPopularProduct() {
       }
     }
     popularNewsGallery.innerHTML = markupNews;
+    checkFavCards();
     // console.log(markupNews);
     pagination(valuePage);
   } catch (error) {

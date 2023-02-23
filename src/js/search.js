@@ -19,14 +19,13 @@ const btn = document.querySelector('.search-form__button')
 const input = document.querySelector('.search-form__input')
 
 btn.addEventListener('click', (e) => {
-  if(window.innerWidth < 768) {
-    e.preventDefault()
-    if(search.classList.contains('active')) {
-      search.submit()
-    }
-    else {
-      search.classList.toggle('active')
-      input.focus()  
-    }
-  }
+ e.preventDefault()
+  
+ if(search.classList.contains('active')) {
+   search.submit()
+ }
+  else {
+   search.classList.toggle('active')
+   input.focus()  
+ }
 })

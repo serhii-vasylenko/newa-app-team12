@@ -1,4 +1,4 @@
-import './js/mobile-menu';
+import './js/mobileMenu';
 import './js/switch';
 import './js/switchMobile';
 import './js/markups/changeCurrentClass';
