@@ -1,18 +1,15 @@
-const paginationEl = document.getElementById('pagination');
-const paginationContainerEl = document.querySelector('.pagination__container');
-const btnNextPg = document.querySelector('.next-btn');
-const btnPrevPg = document.querySelector('.prev-btn');
-const searchFormEl = document.querySelector('.search-form');
-// console.log(paginationEl, btnNextPg, btnPrevPg);
-
-
-const results = [];
+const ref = {
+  paginationEl: document.getElementById('pagination'),
+  paginationContainerEl: document.querySelector('.pagination__container'),
+  btnNextPg: document.querySelector('.next-btn'),
+  btnPrevPg: document.querySelector('.prev-btn'),
+};
 
 const valuePage = {
   curPage: 1,
   numLinksTwoSide: 1,
   amountCards: 0,
-  totalPages: 10,
+  totalPages: 0,
 };
 
 function handleButton(element) {
@@ -20,32 +17,32 @@ function handleButton(element) {
     valuePage.curPage -= 1;
     // console.log(valuePage.curPage);
     handleButtonLeft();
-    btnNextPg.disabled = false;
+    ref.btnNextPg.disabled = false;
   } else if (element.classList.contains('next-btn')) {
     valuePage.curPage += 1;
     // console.log(valuePage.curPage);
     handleButtonRight();
-    btnPrevPg.disabled = false;
+    ref.btnPrevPg.disabled = false;
   }
   pagination();
 }
 
 function handleButtonLeft() {
   if (valuePage.curPage === 1) {
-    btnPrevPg.disabled = true;
-    btnNextPg.disabled = false;
+    ref.btnPrevPg.disabled = true;
+    ref.btnNextPg.disabled = false;
   } else {
-    btnPrevPg.disabled = false;
+    ref.btnPrevPg.disabled = false;
   }
 }
 
 function handleButtonRight() {
   if (valuePage.curPage === valuePage.totalPages) {
     //  console.log(valuePage.curPage);
-    btnNextPg.disabled = true;
-    btnPrevPg.disabled = false;
+    ref.btnNextPg.disabled = true;
+    ref.btnPrevPg.disabled = false;
   } else {
-    btnNextPg.disabled = false;
+    ref.btnNextPg.disabled = false;
   }
 }
 
@@ -57,8 +54,8 @@ function goToTop() {
 }
 
 // DYNAMIC PAGINATION
-function pagination(valuePage) {
-  const { totalPages, curPage, numLinksTwoSide: delta } = valuePage;
+function pagination(obj) {
+  const { totalPages, curPage, numLinksTwoSide: delta } = obj;
 
   const range = delta + 4; // use for handle visible number of links left side
 
@@ -105,9 +102,9 @@ function pagination(valuePage) {
   if (renderTwoSide) {
     renderTwoSide =
       renderPage(1) + dot + renderTwoSide + dot + renderPage(totalPages);
-    paginationEl.innerHTML = renderTwoSide;
+    ref.paginationEl.innerHTML = renderTwoSide;
   } else {
-    paginationEl.innerHTML = render;
+    ref.paginationEl.innerHTML = render;
   }
 }
 
@@ -115,16 +112,11 @@ function renderPage(index, active = '') {
   return ` <button class="pagination__btn pagination__btn-num ${active}"  data-page="${index}">${index}</button>`;
 }
 
-function getAmountCardsDynamic() {
-  if (window.matchMedia('(max-width: 767px)').matches) {
-    valuePage.amountCards = 4;
-  }
-  if (window.matchMedia('(min-width: 768px) and (max-width: 1279px)').matches) {
-    valuePage.amountCards = 7;
-  }
-  if (window.matchMedia('(min-width: 1280px)').matches) {
-    valuePage.amountCards = 8;
-  }
-}
-
-export { pagination };
+export {
+  ref,
+  valuePage,
+  pagination,
+  handleButtonRight,
+  handleButtonLeft,
+  handleButton,
+};
