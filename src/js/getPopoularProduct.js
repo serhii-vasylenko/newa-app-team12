@@ -1,8 +1,17 @@
 import { getPopularNewsAPI } from './api/news-api.js';
 import { getMarkupWeather } from './markups/weather-markup.js';
 import { weatherData } from './markups/weather-markup.js';
-import { ref, valuePage, pagination, handleButtonRight, handleButtonLeft, handleButton } from './pagination.js';
 import { markup } from './markups/newsCard.js';
+
+import {
+    ref,
+    valuePage,
+    pagination,
+    handleButtonRight,
+    handleButtonLeft,
+    handleButton,
+  } from './pagination/dynamicPagination.js';
+import { chunkNewsArr, chunkArray } from './pagination/chunkArray.js';
 
 const popularNewsGallery = document.querySelector('.news-gallery');
 const notFoundPage = document.querySelector('.not-found');
@@ -39,7 +48,7 @@ function createMarkup(array) {
         markupNews += itemWeather;
       } else {
         markupNews += markup(array[i]);
-      }      
+      }
     }
   }
   if (window.innerWidth >= 768 && window.innerWidth < 1280) {
@@ -64,6 +73,53 @@ function createMarkup(array) {
   // console.log(markupNews);
 }
 
+ref.paginationEl.addEventListener('click', e => {
+  const ele = e.target;
+  // console.log(ele);
+
+  if (ele.dataset.page) {
+    const pageNumber = parseInt(e.target.dataset.page, 10);
+    valuePage.curPage = pageNumber;
+    console.log(pageNumber);
+  }
+  console.log(valuePage.amountCards);
+
+  getPopularProductData()
+    .then(array => {
+      renderNewsMarkup(array, valuePage.amountCards);
+    })
+    .catch(error => console.error(error));
+  // renderNewsMarkup(newsArr, valuePage.amountCards);
+  // goToTop();
+});
+
+ref.paginationContainerEl.addEventListener('click', e => {
+  handleButton(e.target);
+
+  getPopularProductData()
+    .then(array => {
+      console.log(array);
+      renderNewsMarkup(array, valuePage.amountCards);
+    })
+    .catch(error => console.error(error));
+
+  // goToTop();
+});
+
+async function getPopularProductData() {
+  try {
+    const getNews = await getPopularNewsAPI();
+    // console.log('Arr objects with mostpopular News', getNews.results);
+    const newsArr = await getNews.results;
+
+    getAmountCards(newsArr);
+  } catch (error) {
+    notFoundPage.classList.toggle('visually-hidden');
+  }
+  
+  return newsArr;
+}
+
 function getAmountCards(array) {
   if (window.innerWidth < 768) {
     valuePage.amountCards = 5;
@@ -79,48 +135,6 @@ function getAmountCards(array) {
     valuePage.amountCards = 9;
     valuePage.totalPages = Math.ceil(array.length / valuePage.amountCards);
   }
-}
-
-let chunkNewsArr = [];
-
-ref.paginationEl.addEventListener('click', e => {
-  const ele = e.target;
-  // console.log(ele);
-
-  if (ele.dataset.page) {
-    const pageNumber = parseInt(e.target.dataset.page, 10);
-    valuePage.curPage = pageNumber;
-    console.log(pageNumber);
-  }
-  console.log(valuePage.amountCards);
-
-  getPopularProductData()
-  .then(array => {
-    renderNewsMarkup(array, valuePage.amountCards);
-  })
-  .catch(error => console.error(error));
-  // renderNewsMarkup(newsArr, valuePage.amountCards);
-  // goToTop();
-});
-
-ref.paginationContainerEl.addEventListener('click', e => {
-  handleButton(e.target);
-
-  getPopularProductData()
-  .then(array => {console.log(array)
-    renderNewsMarkup(array, valuePage.amountCards);
-  })
-  .catch(error => console.error(error));
-
-  // goToTop();
-});
-
-async function getPopularProductData() {
-  const getNews = await getPopularNewsAPI();
-  // console.log('Arr objects with mostpopular News', getNews.results);
-  const newsArr = await getNews.results;
-  getAmountCards(newsArr);
-  return newsArr;
 }
 
 function renderNewsMarkup(data, amountCards) {
@@ -142,14 +156,6 @@ function renderNewsMarkup(data, amountCards) {
   handleButtonRight();
 }
 
-function chunkArray(arrayData, chunkSize) {
-  while (arrayData.length) {
-    chunkNewsArr.push(arrayData.splice(0, chunkSize));
-  }
-
-  // return chunkNewsArr;
-}
-
 function createMarkupWithChunkArray(array) {
   let markupNews = '';
   const markupWeather = getMarkupWeather({ data: weatherData });
@@ -164,7 +170,7 @@ function createMarkupWithChunkArray(array) {
         markupNews += itemWeather;
       } else {
         markupNews += markup(array[i]);
-      }      
+      }
     }
   }
   if (window.innerWidth >= 768 && window.innerWidth < 1280) {
@@ -183,6 +189,9 @@ function createMarkupWithChunkArray(array) {
       } else {
         markupNews += markup(array[i]);
       }
+    }
+    if (array.length === 2) {
+      markupNews += itemWeather;
     }
   }
   popularNewsGallery.innerHTML = markupNews;
