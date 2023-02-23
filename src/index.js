@@ -13,7 +13,7 @@ import './js/calendar';
 import './js/weather';
 import './js/api/weather-api';
 import './js/markups/weather-markup';
-// import './js/markups/markupNewsCard';
+import './js/markups/markupNewsCard';
 
 import './js/addReadengNewsToLocalstorage'
 
