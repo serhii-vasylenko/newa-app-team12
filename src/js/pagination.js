@@ -27,6 +27,7 @@ const valuePage = {
 };
 
 searchFormEl.addEventListener('submit', e => {
+  e.preventDefault()
   getSearchNewsAPI()
     .then(data => {
       console.log(data.arrayNews)

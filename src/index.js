@@ -1,5 +1,5 @@
 import './js/utils/mediarules';
-import './js/mobile-menu';
+import './js/mobileMenu';
 import './js/categories';
 import './js/getPopoularProduct';
 import './js/addAndRemoveFromFavorite';

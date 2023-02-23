@@ -1,7 +1,7 @@
 .weather__card {
   position: relative;
   padding: 32px 36px;
-  width: 288px;
+  width: 100%;
   background-color: #4440f7;
   border-radius: 4px;
   text-align: center;
@@ -203,3 +203,4 @@
   z-index: 5;
   box-shadow: -11px 15px 29px 1px rgba(32, 51, 77, 0.25);
 }
+
