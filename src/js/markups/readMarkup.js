@@ -1,13 +1,14 @@
-import { openCloseRevisionDate } from './openCloseRevisionDate';
+import { openCloseRevisionDate } from '../openCloseRevisionDate';
 
 const revisionDateContainer = document.querySelector('.revision-date-container');
+const dateRE = /^[0-3]\d\/\d+\/\d\d\d\d$/;
 
 window.addEventListener('DOMContentLoaded', creatRevisionData);
 
 function creatRevisionData() {
   for (let i = 0; i < localStorage.length; i++) {
     let key = localStorage.key(i)
-      if (key !== 'favorite')
+      if (key.match(dateRE))
     
     revisionDateContainer.insertAdjacentHTML("afterbegin",
       `<div>
