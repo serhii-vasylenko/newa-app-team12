@@ -31,13 +31,13 @@ export async function getCategoriesAPI() {
   }
 }
 
-export async function getCategoryNewsAPI(category, offset) {
+export async function getCategoryNewsAPI(category) {
   const KEY = getKey()
   const BASE_URL = `https://api.nytimes.com/svc//news/v3/content/all/${category}.json`;
 
   try {
     const response = await axios.get(
-      `${BASE_URL}?api-key=${KEY}&limit=500&${offset}`
+      `${BASE_URL}?api-key=${KEY}&limit=500`
     );
     return response.data;
   } catch (error) {
