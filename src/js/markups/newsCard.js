@@ -1,6 +1,5 @@
-export function markup({ abstract, media, published_date, subsection, title, url }) {
-  let mediaURL =
-    'https://amsrus.ru/wp-content/uploads/2016/02/Mercedes-Benz-C63-AMG-Black-Series-1.jpg';
+export function markup({ abstract, media, published_date, section, title, url }) {
+  let mediaURL = "https://images.squarespace-cdn.com/content/v1/54db7288e4b0d3f042fa0b33/1555097159302-CSCTY5ZGR0XA2NM7INRD/news.jpg?format=2500w";
   if (
     media &&
     media[0] &&
@@ -12,7 +11,7 @@ export function markup({ abstract, media, published_date, subsection, title, url
   return `
     <li class="card-news__item card__readed">
     <div class="card-news__picture"><img src="${mediaURL}" alt="${media[0]?.caption}" class="news-image">
-      <p class="news-category"> ${subsection}</p>
+      <p class="news-category"> ${section}</p>
       <button class="news-favorite addToFavoriteBtn" aria-label="add to favorite">Add to favorite <svg class="news-favorite__icon" width="16"
       height="16"
       viewBox="0 0 37 32"
@@ -23,14 +22,14 @@ export function markup({ abstract, media, published_date, subsection, title, url
     </div>
     <div class="card-news__info">
       <h3 class="card-news__title"> ${title}</h3>
-      <p class="card-news__info"> ${abstract}...</p>
+      <p class="card-news__info-chort"> ${abstract}</p>
       <div class="card-information">
-        <div class="card-infrmation__data"> ${published_date}</div>
-        <a class="card__infotion__more" href="${url}">Read more</a>
+        <div class="card-information__data"> ${published_date}</div>
+        <a class="card__infotion__more" rel="nofollow noindex noreferrer" target="_blank" href="${url}">Read more</a>
       </div>
     </div>
-    <div class="owerlay-readed is-hidden">
-      <p class="owerlay-readed__info" aria-label="readed">Already read <svg class="owerlay-readed__icon" width="18"  height="18"><use href="../images/icons-defs.svg#icon-readed"></use></svg></p>
+    <div class="owerlay-readed">
+      <p class="owerlay-readed__info" aria-label="readed">Already read <svg class="owerlay-readed__icon" width="18"  height="18" fill="none"><path fill="#00DD73" d="M16.188 3.594a.6.6 0 0 0-.412.182L6.6 12.952 2.824 9.176a.6.6 0 1 0-.849.848l4.2 4.2a.6.6 0 0 0 .849 0l9.6-9.6a.6.6 0 0 0-.436-1.03Z"/></svg></p>
     </div>
   </li>`;
 }

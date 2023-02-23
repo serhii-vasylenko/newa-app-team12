@@ -27,32 +27,6 @@ $tablet: 768px;
 $tablet-end: 1279px;
 $desktop: 1280px;
 
-// .theme-light {
-//     --primary-bcgcolor: #F4F4F4;
-//     --primary-color: #111321;
-//     --primary-textcolor: #111321;
-//     --accent-color: #4B48DB;
-//     --primary-iconscolor: #4B48DB;
-//     --slidebar-bcgcolor: #FFFFFF;
-//     --slider-bordercolor: #4B48DB;
-//     --themelight-namecolor: #4B48DB;
-//     --themedark-namecolor: #5F6775;
-//     --headerborder-color: rgba(0, 0, 0, 0.2);
-// }
-
-// .theme-dark {
-//     --primary-bcgcolor: #111321;
-//     --primary-color: #F4F4F4;
-//     --primary-textcolor: #F4F4F4;
-//     --accent-color: #4B48DB;
-//     --primary-iconscolor: #5F6775;
-//     --slidebar-bcgcolor: #4B48DB;
-//     --slider-bordercolor: #FFFFFF;
-//     --themelight-namecolor: #5F6775;
-//     --themedark-namecolor: #4B48DB;
-//     --headerborder-color: rgba(244, 244, 244, 0.2);
-// }
-
 :root {
     --primary-bcgcolor: #F4F4F4;
     --primary-color: #111321;
@@ -67,6 +41,10 @@ $desktop: 1280px;
     --calendar-btn-text-color: #A2A2A2;
     --calendar-btn-icon-color: #4B48DB;
 
+    --button-bg-color: #FFFFFF;
+    --button-font-color: #4440F6;
+    --button-border-color: #4440F7;
+
 --readed-color: #00DD73;
 
 }
@@ -74,7 +52,7 @@ $desktop: 1280px;
 .theme-dark {
     color: $dt-main-text-color;
     background-color: $dt-body-color;
-    --primary-bcgcolor: #111321;
+    --primary-bcgcolor: #2E2E2E;
     --primary-color: #F4F4F4;
     --primary-textcolor: #F4F4F4;
     --accent-color: #4B48DB;

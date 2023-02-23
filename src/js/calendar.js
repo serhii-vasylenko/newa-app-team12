@@ -59,6 +59,7 @@ function renderCalendar () {
             spanEl.textContent = `${addLeadingZero(date.getDate())}/${addLeadingZero(new Date().getMonth() + 1)}/${new Date().getFullYear()}`;
             currentDate.innerHTML = `${months[new Date().getMonth()]} ${new Date().getFullYear()}`;
         });
+        localStorage.setItem("VALUE", "currentDate");
         return selectedDate;
     }));
 }
@@ -84,14 +85,6 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
     });
 });
 yearBtn.addEventListener('click', () => {
-    currYear += 1;
+    currYear -= 1;
     renderCalendar();
-    let saveDate = JSON.parse(localStorage.getItem('VALUE'));
-    let rendCurrentDays = daysTag.childNodes;
-
-    rendCurrentDays.forEach(el => {
-        if (el.textContent === saveDate) {
-            el.classList.add('active')
-        }
-    });
 })
