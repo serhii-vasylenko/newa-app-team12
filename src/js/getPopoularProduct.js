@@ -164,7 +164,9 @@ function createMarkupWithChunkArray(array) {
   const markupWeather = getMarkupWeather({ data: weatherData });
   // console.log(markupWeather);
   // console.log({ data: weatherData });
-  const itemWeather = `<li class="weather__card">${markupWeather}</li>`;
+  const itemWeather = `<li class="weather__card">${markupWeather.markup}</li>`;
+
+ 
   // console.log(itemWeather);
 
   if (window.innerWidth < 768) {
