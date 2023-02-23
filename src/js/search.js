@@ -18,7 +18,7 @@ const search = document.querySelector('.search-form')
 const btn = document.querySelector('.search-form__button')
 const input = document.querySelector('.search-form__input')
 
-btn.addEventListener('click', (e) => {
+/*btn.addEventListener('click', (e) => {
  e.preventDefault()
   
  if(search.classList.contains('active')) {
@@ -28,4 +28,13 @@ btn.addEventListener('click', (e) => {
    search.classList.toggle('active')
    input.focus()  
  }
+})*/
+search.addEventListener('submit', e => {
+  e.preventDefault();
+  if (e.currentTarget.classList.contains('active')) {
+    onEnterPush();
+  } else {
+    search.classList.toggle('active');
+    input.focus();
+  }
 })

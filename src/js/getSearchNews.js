@@ -55,7 +55,7 @@ function createMarkup(array) {
   let markupNews = '';
   const markupWeather = getMarkupWeather({ data: weatherData });
   
-  const itemWeather = `<li class="weather__card">${markupWeather}</li>`;
+  const itemWeather = `<li class="weather__card">${markupWeather.markup}</li>`;
 
   if (window.innerWidth < 768) {
     for (let i = 0; i < 5; i += 1) {
