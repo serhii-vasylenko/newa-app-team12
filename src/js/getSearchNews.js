@@ -4,18 +4,23 @@ import { getSearchNewsAPI } from './api/news-api.js';
 
 const newsGallery = document.querySelector('.news-gallery');
 const pageNotFound = document.querySelector(".not-found");
-const btn = document.querySelector('.search-form__button');
-const input = document.querySelector('.search-form__input');
-btn.addEventListener('click', onEnterPush, false);
-input.addEventListener('input', (e) => {
-  if (e.target.value === '') {
+//const btn = document.querySelector('.search-form__button');
+//const input = document.querySelector('.search-form__input');
+//btn.addEventListener('click', onEnterPush, false);
+//input.addEventListener('input', (e) => {
+//  if (e.target.value === '') {
     
-  }
-})
+//  }
+//})
+const form= document.querySelector ('.search-form');
+form.addEventListener('submit' , onEnterPush)
 
-function onEnterPush() {
-  if (input.value.trim().length === 0) return;
-  const searchQuery = input.value.trim();
+
+
+function onEnterPush(e) {
+  e.preventDefault
+  //if (input.value.trim().length === 0) return;
+  const searchQuery = e.currentTarget.elements.searchQuery.value.trim();
   console.log(searchQuery);
   getSearchNews(searchQuery);
 }

@@ -5,11 +5,11 @@ const input = document.querySelector('.search-form__input')
 btn.addEventListener('click', (e) => {
   e.preventDefault()
   
-  //if(search.classList.contains('active')) {
-   // search.submit()
- // }
-  //else {
+  if(search.classList.contains('active')) {
+    search.submit()
+ }
+  else {
     search.classList.toggle('active')
     input.focus()  
-  //}
+  }
 })
