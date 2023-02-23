@@ -37,11 +37,12 @@ async function getSearchNews(search) {
       pageNotFound.classList.add('visually-hidden');
       
       createMarkup(adaptedData);
-    } else if (data.length === 0) {
-      notFound();
+    } else if (getNews.data.response.docs.length === 0) {
+      pageNotFound.classList.remove('visually-hidden');
+      //notFound();
     }
   } catch (err) {
-    pageNotFound.classList.add('visually-hidden');
+    //pageNotFound.classList.toggle('visually-hidden');
       
     console.log(err);
   }
@@ -137,7 +138,7 @@ function toAdaptData(data) {
   });
 }
 
-function notFound() {
-  pageNotFound.classList.add('visually-hidden');
-  console.log ()
-}
+//function notFound() {
+ // pageNotFound.classList.add('visually-hidden');
+ // console.log ()
+//}
