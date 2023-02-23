@@ -18,9 +18,9 @@ form.addEventListener('submit' , onEnterPush)
 
 
 function onEnterPush(e) {
-  e.preventDefault
+  e.preventDefault()
   //if (input.value.trim().length === 0) return;
-  const searchQuery = e.currentTarget.elements.searchQuery.value.trim();
+  const searchQuery = e.currentTarget.elements.query.value.trim();
   console.log(searchQuery);
   getSearchNews(searchQuery);
 }
