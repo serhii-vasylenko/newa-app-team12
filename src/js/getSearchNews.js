@@ -1,21 +1,22 @@
 import { getSearchNewsAPI } from './api/news-api.js';
+import { getMarkupWeather } from './markups/weather-markup.js';
+import { weatherData } from './markups/weather-markup.js';
+import { pagination } from './pagination.js';
+import { markup } from './markups/newsCard.js';
 
 // example function search News
 
 const newsGallery = document.querySelector('.news-gallery');
 const pageNotFound = document.querySelector(".not-found");
-//const btn = document.querySelector('.search-form__button');
-//const input = document.querySelector('.search-form__input');
-//btn.addEventListener('click', onEnterPush, false);
-//input.addEventListener('input', (e) => {
-//  if (e.target.value === '') {
-    
-//  }
-//})
 const form= document.querySelector ('.search-form');
 form.addEventListener('submit' , onEnterPush)
 
-
+const valuePage = {
+  curPage: 1,
+  numLinksTwoSide: 1,
+  amountCards: 0,
+  totalPages: 0,
+};
 
 function onEnterPush(e) {
   e.preventDefault()
@@ -28,21 +29,62 @@ function onEnterPush(e) {
 async function getSearchNews(search) {
   try {
     const getNews = await getSearchNewsAPI(search);
-    const data = getNews.data.response.docs;
+    const newsArr = getNews.data.response.docs;
     console.log('Arr objects with search News ', getNews.data.response.docs);
     //function filter Date
     // function markup News
-    newsGallery.innerHTML = addMarkup(data)
+
+    let markupNews = '';
+    const markupWeather = getMarkupWeather({ data: weatherData });
+    // console.log(markupWeather);
+    // console.log({ data: weatherData });
+    const itemWeather = `<li class="weather__card">${markupWeather}</li>`;
+    // console.log(itemWeather);
+    if (window.innerWidth < 768) {
+      for (let i = 0; i < 5; i += 1) {
+        if (i === 0) {
+          markupNews += itemWeather;
+        } else {
+          markupNews += markup(newsArr[i]);
+        }
+        valuePage.amountCards = 5;
+        valuePage.totalPages = Math.ceil(newsArr.length / valuePage.amountCards);
+      }
+    }
+    /*if (window.innerWidth >= 768 && window.innerWidth < 1280) {
+      for (let i = 0; i < 8; i += 1) {
+        if (i === 1) {
+          markupNews += itemWeather;
+        } else {
+          markupNews += markup(newsArr[i]);
+        }
+        valuePage.amountCards = 8;
+        valuePage.totalPages = Math.ceil(newsArr.length / valuePage.amountCards);
+      }
+    }
+    if (window.innerWidth >= 1280) {
+      for (let i = 0; i < 9; i += 1) {
+        if (i === 2) {
+          markupNews += itemWeather;
+        } else {
+          markupNews += markup(newsArr[i]);
+        }
+        valuePage.amountCards = 9;
+        valuePage.totalPages = Math.ceil(newsArr.length / valuePage.amountCards);
+      }
+    }*/
+
+    newsGallery.innerHTML = markupNews
+   // newsGallery.innerHTML = addMarkup(newsArr)
 
     if (getNews.data.response.docs.length) {
       pageNotFound.classList.add("visually-hidden");
-      addMarkup(getNews.data.response.docs);
-    } else if (data.length === 0) {
+     markupNews()
+      //addMarkup(getNews.data.response.docs);
+    } else if (newsArr.length === 0) {
       notFound();
     }
   }
-
-
   
   catch (err) {
     //notFoundPage.classList.toggle('visually-hidden');
@@ -50,9 +92,9 @@ async function getSearchNews(search) {
   }
 }
 
-function addMarkup(data) {
-  console.log(data);
-  return data
+/*function addMarkup(newsArr) {
+  console.log(newsArr);
+  return newsArr
     .map(({ web_url,
             lead_paragraph,
             headline,
@@ -95,7 +137,7 @@ function addMarkup(data) {
   </li>`;
     })
     .join('');
-}
+}*/
 
 function notFound (){
   pageNotFound.classList.toggle ('visually-hidden')
