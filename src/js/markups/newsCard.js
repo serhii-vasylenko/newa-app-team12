@@ -1,5 +1,5 @@
 export function markup({ abstract, media, published_date, section, title, url }) {
-  let mediaURL = "https://t3.ftcdn.net/jpg/01/09/01/16/360_F_109011607_xtOkqVoVTx54Dmf85pDmYTU0iwI82Kbq.jpg";
+  let mediaURL = "https://images.squarespace-cdn.com/content/v1/54db7288e4b0d3f042fa0b33/1555097159302-CSCTY5ZGR0XA2NM7INRD/news.jpg?format=2500w";
   if (
     media &&
     media[0] &&

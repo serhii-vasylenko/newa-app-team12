@@ -100,6 +100,7 @@
   stroke: var(--accent-color);
   margin-left: 4px;
   fill: none;
+  pointer-events: none;
 }
 
 /* block for news */
@@ -205,6 +206,7 @@
   background-color: rgba(244, 244, 244, 0.4);  
   width: 100%;
   height: 100%;
+  pointer-events: none;
   
 }
 
