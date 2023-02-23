@@ -1,7 +1,13 @@
 import { getPopularNewsAPI } from './api/news-api.js';
 import { getMarkupWeather } from './markups/weather-markup.js';
 import { weatherData } from './markups/weather-markup.js';
-import { ref, valuePage, pagination } from './pagination.js';
+import { ref,
+  valuePage,
+  pagination,
+  handleButtonRight,
+  handleButtonLeft,
+  handleButton,
+  goToTop } from './pagination.js';
 import { markup } from './markups/newsCard.js';
 import { checkFavCards } from './addAndRemoveFromFavorite.js';
 
@@ -89,27 +95,27 @@ ref.paginationEl.addEventListener('click', e => {
     valuePage.curPage = pageNumber;
     console.log(pageNumber);
   }
-  // console.log(valuePage.amountCards);
+  console.log(valuePage.amountCards);
 
-  // getPopularProductData()
-  // .then(array => {
-  //   renderNewsMarkup(array, valuePage.amountCards);
-  // })
-  // .catch(error => console.error(error));
-  // renderNewsMarkup(newsArr, valuePage.amountCards);
-  // goToTop();
+  getPopularProductData()
+  .then(array => {
+    renderNewsMarkup(array, valuePage.amountCards);
+  })
+  .catch(error => console.error(error));
+  
+  goToTop();
 });
 
 ref.paginationContainerEl.addEventListener('click', e => {
-  // handleButton(e.target);
+  handleButton(e.target);
 
-  // getPopularProductData()
-  // .then(array => {console.log(array)
-  //   renderNewsMarkup(array, valuePage.amountCards);
-  // })
-  // .catch(error => console.error(error));
+  getPopularProductData()
+  .then(array => {console.log(array)
+    renderNewsMarkup(array, valuePage.amountCards);
+  })
+  .catch(error => console.error(error));
 
-  // goToTop();
+  goToTop();
 });
 
 async function getPopularProductData() {
@@ -134,8 +140,8 @@ function renderNewsMarkup(data, amountCards) {
   }
   pagination(valuePage);
 
-  // handleButtonLeft();
-  // handleButtonRight();
+  handleButtonLeft();
+  handleButtonRight();
 }
 
 function chunkArray(arrayData, chunkSize) {
@@ -146,7 +152,6 @@ function chunkArray(arrayData, chunkSize) {
 
 function createMarkupWithChunkArray(array) {
   let markupNews = '';
-  getAmountCards(newsArr);
   const markupWeather = getMarkupWeather({ data: weatherData });
   // console.log(markupWeather);
   // console.log({ data: weatherData });
@@ -177,10 +182,10 @@ function createMarkupWithChunkArray(array) {
         markupNews += itemWeather;
       } else {
         markupNews += markup(array[i]);
-      }
-      if (array.length === 2) {
-        markupNews += itemWeather;
-      }
+      }      
+    }
+    if (array.length === 2) {
+      markupNews += itemWeather;
     }
   }
   popularNewsGallery.innerHTML = markupNews;

@@ -15,7 +15,7 @@ const valuePage = {
 function handleButton(element) {
   if (element.classList.contains('prev-btn')) {
     valuePage.curPage -= 1;
-    // console.log(valuePage.curPage);
+    console.log(valuePage.curPage);
     handleButtonLeft();
     ref.btnNextPg.disabled = false;
   } else if (element.classList.contains('next-btn')) {
@@ -24,7 +24,7 @@ function handleButton(element) {
     handleButtonRight();
     ref.btnPrevPg.disabled = false;
   }
-  pagination();
+  // pagination();
 }
 
 function handleButtonLeft() {
@@ -119,4 +119,5 @@ export {
   handleButtonRight,
   handleButtonLeft,
   handleButton,
+  goToTop
 };
