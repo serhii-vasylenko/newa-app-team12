@@ -38,6 +38,7 @@ async function getSearchNews(search) {
       
       createMarkup(adaptedData);
     } else if (getNews.data.response.docs.length === 0) {
+      newsGallery.innerHTML="";
       pageNotFound.classList.remove('visually-hidden');
       //notFound();
     }
