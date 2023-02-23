@@ -14,8 +14,8 @@ import {
     handleButtonRight,
     handleButtonLeft,
     handleButton,
-  } from './dynamicPagination.js';
-import { chunkNewsArr, chunkArray } from './chunkArray.js';
+  } from './allPagination/dynamicPagination.js';
+import { chunkNewsArr, chunkArray } from './allPagination/chunkArray.js';
 
 const popularNewsGallery = document.querySelector('.news-gallery');
 const notFoundPage = document.querySelector('.not-found');
