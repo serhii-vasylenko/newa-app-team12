@@ -28,39 +28,122 @@ async function getPopularProduct() {
     const itemWeather = `<li class="weather__card">${markupWeather}</li>`;
     // console.log(itemWeather);
 
+    // if (window.innerWidth < 768) {
+    //   for (let i = 0; i < 5; i += 1) {
+    //     if (i === 0) {
+    //       markupNews += itemWeather;
+    //     } else {
+    //       markupNews += markup(newsArr[i]);
+    //     }
+    //     valuePage.amountCards = 5;
+    //     valuePage.totalPages = Math.ceil(newsArr.length / valuePage.amountCards);
+    //   }
+    // }
+    // if (window.innerWidth >= 768 && window.innerWidth < 1280) {
+    //   for (let i = 0; i < 8; i += 1) {
+    //     if (i === 1) {
+    //       markupNews += itemWeather;
+    //     } else {
+    //       markupNews += markup(newsArr[i]);
+    //     }
+    //     valuePage.amountCards = 8;
+    //     valuePage.totalPages = Math.ceil(newsArr.length / valuePage.amountCards);
+    //   }
+    // }
+    // if (window.innerWidth >= 1280) {
+    //   for (let i = 0; i < 9; i += 1) {
+    //     if (i === 2) {
+    //       markupNews += itemWeather;
+    //     } else {
+    //       markupNews += markup(newsArr[i]);
+    //     }
+    //     valuePage.amountCards = 9;
+    //     valuePage.totalPages = Math.ceil(newsArr.length / valuePage.amountCards);
+    //   }
+    // }
+
+    //!! Ниже функция такая же, просто дополнена для поиска по дате 
+    //! НЕ ПУГАЙТЕСЬ поломать нечего не должна, если что старая закоментирована выше
+    //! сделано для того что бы потом при изменени просто себе забрать в файл или вынести в функцию
+
     if (window.innerWidth < 768) {
-      for (let i = 0; i < 5; i += 1) {
-        if (i === 0) {
-          markupNews += itemWeather;
-        } else {
-          markupNews += markup(newsArr[i]);
+      if (newsArr.length < 5) {
+        for (let i = 0; i < newsArr.length; i += 1) {
+          if (i === 0) {
+            markupNews += itemWeather;
+          } else {
+            markupNews += markup(newsArr[i]);
+          }
         }
-        valuePage.amountCards = 5;
-        valuePage.totalPages = Math.ceil(newsArr.length / valuePage.amountCards);
+      } else {
+        for (let i = 0; i < 5; i += 1) {
+          if (i === 0) {
+            markupNews += itemWeather;
+          } else {
+            markupNews += markup(newsArr[i]);
+          }
+          valuePage.amountCards = 5;
+          valuePage.totalPages = Math.ceil(
+            newsArr.length / valuePage.amountCards
+          );
+        }
       }
     }
     if (window.innerWidth >= 768 && window.innerWidth < 1280) {
-      for (let i = 0; i < 8; i += 1) {
-        if (i === 1) {
-          markupNews += itemWeather;
-        } else {
-          markupNews += markup(newsArr[i]);
+      if (newsArr.length === 1) {
+        markupNews += markup(newsArr[0]) + itemWeather;
+      } else if (newsArr.length < 8) {
+        for (let i = 0; i < newsArr.length; i += 1) {
+          if (i === 1) {
+            markupNews += itemWeather;
+          } else {
+            markupNews += markup(newsArr[i]);
+          }
         }
-        valuePage.amountCards = 8;
-        valuePage.totalPages = Math.ceil(newsArr.length / valuePage.amountCards);
+      } else {
+        for (let i = 0; i < 8; i += 1) {
+          if (i === 1) {
+            markupNews += itemWeather;
+          } else {
+            markupNews += markup(newsArr[i]);
+          }
+          valuePage.amountCards = 8;
+          valuePage.totalPages = Math.ceil(
+            newsArr.length / valuePage.amountCards
+          );
+        }
       }
     }
     if (window.innerWidth >= 1280) {
-      for (let i = 0; i < 9; i += 1) {
-        if (i === 2) {
-          markupNews += itemWeather;
-        } else {
+      if (newsArr.length <= 2) {
+        for (let i = 0; i < newsArr.length; i += 1) {
           markupNews += markup(newsArr[i]);
         }
-        valuePage.amountCards = 9;
-        valuePage.totalPages = Math.ceil(newsArr.length / valuePage.amountCards);
+        markupNews += itemWeather;
+      } else if (newsArr.length < 9 && newsArr.length > 2) {
+        for (let i = 0; i < newsArr.length; i += 1) {
+          if (i === 2) {
+            markupNews += itemWeather;
+          } else {
+            markupNews += markup(newsArr[i]);
+          }
+        }
+      } else {
+        for (let i = 0; i < 9; i += 1) {
+          if (i === 2) {
+            markupNews += itemWeather;
+          } else {
+            markupNews += markup(newsArr[i]);
+          }
+          valuePage.amountCards = 9;
+          valuePage.totalPages = Math.ceil(
+            newsArr.length / valuePage.amountCards
+          );
+        }
       }
     }
+
+
     popularNewsGallery.innerHTML = markupNews;
     // console.log(markupNews);
     pagination(valuePage);
