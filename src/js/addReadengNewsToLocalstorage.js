@@ -17,7 +17,7 @@ function checkLocalStorage() {
 }
 function addToReaded(readedEl) {
   const date = new Date();
-  const currentDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+  const currentDate = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
   const readedArticle = {
     firstElOfCard: readedEl.href,
     markup: `${readedEl.closest('li.card-news__item').outerHTML}`,
