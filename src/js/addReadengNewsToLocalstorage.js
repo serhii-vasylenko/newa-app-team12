@@ -2,14 +2,15 @@ import getRefs from './get-refs';
 const refs = getRefs();
 const READED_KEY = 'readed';
 let readedArray = [];
-checkLocalStorage();
+checkLocalStorageNew();
 refs.newsGalery.addEventListener('click', evt => {
   const readLink = evt.target.closest('.card__infotion__more');
   if (!readLink) return;
   readLink.closest('li.card-news__item').classList.add('readed');
   addToReaded(readLink);
+  readLink.closest('li.card-news__item').classList.add('readed');
 });
-function checkLocalStorage() {
+function checkLocalStorageNew() {
   if (JSON.parse(localStorage.getItem(`${READED_KEY}`)) === null) {
     return;
   }
