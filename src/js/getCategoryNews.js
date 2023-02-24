@@ -167,7 +167,7 @@ export async function getCategoryNews(category) {
 
 function toAdaptData(data) {
   return data.map(obj => {
-    if (obj.multimedia === null) {
+    if (obj.multimedia === null || obj.section === 'Automobiles') {
       obj.multimedia = [
         {
           url: true,
