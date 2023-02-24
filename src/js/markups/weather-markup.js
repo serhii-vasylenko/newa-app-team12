@@ -1,12 +1,11 @@
-// const LINK_TO_WEEK = 'https://sinoptik.ua/';
+const LINK_TO_WEEK = 'https://sinoptik.ua/'
 import { months, days, weekDay, dateToWeek } from '../utils/weather-dates';
 import { onClick } from '../weather';
 import { getGeolocation } from '../weather';
 
-
 let weatherData = {
   coord: { lon: 30.2748, lat: 50.5461 },
-  main: { temp: 5 },
+  main: { temp: -1 },
   name: 'Hostomel',
   timezone: 7200,
   weather: [
@@ -18,7 +17,6 @@ let weatherData = {
 };
 
 function getMarkupWeather({ data: weatherData }) {
-  console.log('weatherData in markup', weatherData);
   const {
     name,
     weather,
@@ -31,8 +29,8 @@ function getMarkupWeather({ data: weatherData }) {
   let month = today.getMonth();
   let year = today.getFullYear();
 
-  const tempRound = Math.round(temp);
-  console.log(temp);
+  const tempRound = isNaN(temp) ? 0 : Math.round(temp);
+
   const templateWeather = `<div class="weather__header">
     <p class="weather__temp">${tempRound}&#176;</p>
     <div class="weather__wrapper">
@@ -47,7 +45,7 @@ function getMarkupWeather({ data: weatherData }) {
     <p class="weather__date">${days[day]}</p>
     <p class="weather__date">${date} ${months[month]} ${year}</p>
   </div>
-  <button class="weather__btn" type="button">weather for week</button>
+  <a href="${LINK_TO_WEEK}" target="_blank" rel="noopener nofollow noreferer" class="weather__btn">weather for week</a>
 `;
 
   return {
@@ -104,7 +102,6 @@ function getMarkupWeatherToWeek({ data }) {
 
 function renderToGallery() {
   const { markup, setClickHandler } = getMarkupWeather({ data: weatherData });
-  console.log('markup', markup);
   const gallery = document.querySelector('.news-gallery');
   const item = document.createElement('li');
   item.classList.add('weather__card');
@@ -114,39 +111,13 @@ function renderToGallery() {
 }
 renderToGallery();
 
-
-
 function addClassToCard() {
-
   const weekWeatherCard = document.querySelector('.weather__table');
   console.log(weekWeatherCard);
   weekWeatherCard.classList.toggle('is-active');
 }
 
-function removeClassToCard() {
-  // const weekWeatherCard = document.querySelector('.weather__table');
-  // weekWeatherCard.classList.remove('.is-active');
-}
 
 export { getMarkupWeather, getMarkupWeatherToWeek };
 export { addClassToCard, removeClassToCard, weatherData };
 
-// МЕДИАПРАВИЛО
-// window.onresize = function (event) {
-//   const listItems = document.querySelectorAll('.card-news__item');
-//   const weatherWidget = document.getElementById('weather');
-
-//   if (window.matchMedia('(min-width: 1280px)').matches) {
-//     listItems[1].parentNode.insertBefore(
-//       weatherWidget,
-//       listItems[1].nextSibling
-//     );
-//   } else if (window.matchMedia('(min-width: 768px)').matches) {
-//     listItems[0].parentNode.insertBefore(
-//       weatherWidget,
-//       listItems[0].nextSibling
-//     );
-//   } else {
-//     galleryContainer.prepend(weatherWidget);
-//   }
-// };
