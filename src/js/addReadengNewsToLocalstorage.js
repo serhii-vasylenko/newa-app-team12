@@ -19,12 +19,13 @@ function addToReaded(readedEl) {
   const date = new Date();
   const currentDate = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
   const readedArticle = {
-    firstElOfCard: readedEl.href,
+    date: currentDate,
+    url: readedEl.href,
     markup: `${readedEl.closest('li.card-news__item').outerHTML}`,
   };
     for (let i = 0; i < readedArray.length; i += 1) {
-      if (readedArray[i].firstElOfCard === readedArticle.firstElOfCard) return;
+      if (readedArray[i].url === readedArticle.url) return;
     }
     readedArray.push(readedArticle);
-  localStorage.setItem(currentDate, JSON.stringify(readedArray));
+  localStorage.setItem(READED_KEY, JSON.stringify(readedArray));
 }
