@@ -13,11 +13,13 @@
 @import './components/weather';
 @import './components/container';
 @import './components/card-news';
-@import './components/footer';
+// @import './components/footer';
 @import './components/not-found';
 
 .revision-date-container {
-    margin: auto;
+    margin-top: 48px;
+    margin-right: auto;
+    margin-left: auto;
     text-align: center;
     max-width: 1250px;
 }
@@ -32,7 +34,7 @@
     width: 100%;
     padding-bottom: 12px;
     text-align: start;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: transparent;
     border: none;
     border-bottom: 1px solid #929292;
 }
