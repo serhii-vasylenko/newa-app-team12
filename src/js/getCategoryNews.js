@@ -3,16 +3,9 @@ import { markup } from './markups/newsCard.js';
 import { checkFavCards } from './addAndRemoveFromFavorite.js';
 import { getMarkupWeather } from './markups/weather-markup.js';
 import { weatherData } from './markups/weather-markup.js';
-// import { pagination } from './pagination.js';
+import { valuePage, pagination } from './pagination.js';
 
 let currentCategory = '';
-
-const valuePage = {
-  curPage: 1,
-  numLinksTwoSide: 1,
-  amountCards: 0,
-  totalPages: 0,
-};
 
 const popularNewsGallery = document.querySelector('.news-gallery');
 const notFoundPage = document.querySelector('.not-found');
@@ -157,7 +150,7 @@ export async function getCategoryNews(category) {
     }
 
     popularNewsGallery.innerHTML = markupNews;
-    // pagination(valuePage);
+    pagination(valuePage);
 
     checkFavCards();
   } catch {
