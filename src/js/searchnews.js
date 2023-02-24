@@ -1,4 +1,4 @@
-import { getSearchNewsAPI } from './api/news-api.js';
+/*import { getSearchNewsAPI } from './api/news-api.js';
 
 const newsGallery = document.querySelector('.news-gallery');
 
@@ -56,3 +56,4 @@ function onEnterPush(e) {
   newsGallery.innerHTML = '';
   newsGallery.insertAdjacentHTML('beforeend', tagString);
   }
+*/

@@ -5,13 +5,17 @@
       <span class="calendar-btn-span">Select a date...</span>
     <svg class="icon-chevron"><use href="/src/images/icons.svg#icon-arrow-down"></use></svg>
     </button>
-    <button type="button" class="today-btn"><svg class="icon-today"><use href="/src/images/icons.svg#icon-calendar"></use></svg></button>
+    <button type="button" class="today-btn"><svg class="icon-today"><use href="/src/images/icons.svg#icon-calendar-today"></use></svg></button>
 
     <div class="wrapper">
     <div class="modal">
         <div class="calendar-header">
-            <p class="current-date">&#10095</p>
-        <div class="icons">
+          <div class="date">
+            <p class="current-date"></p>
+            <span class="next-year">&#10094;</span>
+            <div class="years"><ul></ul></div> 
+          </div>
+        <div class="icons">            
           <span id="prev" class="material-symbols-rounded">&#10094;</span>
           <span id="next" class="material-symbols-rounded">&#10095;</span>
         </div>

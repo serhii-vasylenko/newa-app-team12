@@ -35,7 +35,15 @@ export async function markupCategories(categoriesMenu) {
 export function markupNameButton(currentButton) {
   if (categoriesMenu.classList.contains('is-open-categories')) {
     categoriesMenu.classList.remove('is-open-categories');
-    categoriesBtn.firstChild.textContent = currentButton;
+    console.log(currentButton.length);
+    console.log(currentButton);
+    if (currentButton.length < 18) {
+      categoriesBtn.firstChild.textContent = currentButton;
+    }
+    else {
+    const newNameButton = `${currentButton.slice(0, 15)}...`
+    categoriesBtn.firstChild.textContent = newNameButton;
+  }
   } else {
     if (window.matchMedia('(max-width: 767px)').matches) {
       categoriesBtn.firstChild.textContent = 'Categories';

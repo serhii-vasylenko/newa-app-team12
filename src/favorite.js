@@ -1,9 +1,10 @@
-import './js/mobile-menu';
+import './js/mobileMenu';
 import './js/switch';
 import './js/switchMobile';
 import './js/markups/changeCurrentClass';
 
 const gallery = document.querySelector('.favorite-gallery__list');
+const notFoundPage = document.querySelector('.not-found');
 
 window.addEventListener('DOMContentLoaded', createGallery);
 gallery.addEventListener('click', removeFromFavorite);
@@ -15,8 +16,11 @@ function createGallery() {
       return previousValue + obj.markup;
     }, '');
     gallery.innerHTML = galleryMarkup;
+    if (storageData.length === 0) {
+      notFoundPage.classList.remove('visually-hidden');
+    } else notFoundPage.classList.add('visually-hidden');
   } catch {
-    console.log('LocalStorage is empty!');
+    notFoundPage.classList.remove('visually-hidden');
   }
 }
 
