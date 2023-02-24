@@ -54,19 +54,22 @@ function renderCalendar () {
     renderBtns(dayBtns);
 
     daysTag.addEventListener('click', onDaysTagClick);
-    function onDaysTagClick(e) {
+};
+
+function onDaysTagClick(e) {
         const currentActiveDate = document.querySelector('.active');
         if (currentActiveDate) {
             currentActiveDate.classList.remove('active');
         }
         e.target.classList.add('active');
-    };
+};
 
-}
-
-function name(params) {
-    
-}
+function onTodayBtnClick() {
+        todayBtn.addEventListener('click', () => {
+        spanEl.textContent = `${addLeadingZero(date.getDate())}/${addLeadingZero(date.getMonth() + 1)}/${date.getFullYear()}`;
+        currentDate.innerHTML = `${months[date.getMonth()]} ${date.getFullYear()}`;
+    });
+};
 
 function renderBtns(dayBtns) {
     dayBtns.forEach(dayBtn => dayBtn.addEventListener('click', (e) => {
@@ -74,19 +77,18 @@ function renderBtns(dayBtns) {
     modalEl.classList.toggle('is-shown');
     btnEl.classList.remove('btn-is-active');
 
-    todayBtn.addEventListener('click', () => {
-        spanEl.textContent = `${addLeadingZero(date.getDate())}/${addLeadingZero(date.getMonth() + 1)}/${date.getFullYear()}`;
-        currentDate.innerHTML = `${months[date.getMonth()]} ${date.getFullYear()}`;
-    });
+    onTodayBtnClick();
 }));
-}
+};
+
 renderCalendar();
 
 function addLeadingZero(value) {
     return String(value).padStart(2, '0');
 };
 
-prevNextIcon.forEach(icon => { // getting prev and next icons
+function onPrevNextIconClick() {
+   prevNextIcon.forEach(icon => { // getting prev and next icons
     icon.addEventListener("click", () => { // adding click event on both icons
         // if clicked icon is previous icon then decrement current month by 1 else increment it by 1
         currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
@@ -100,8 +102,12 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
         }
         renderCalendar(); // calling renderCalendar function
     });
-});
-yearBtn.addEventListener('click', () => {
+}); 
+};
+onPrevNextIconClick();
+
+function onYearBtnClick() {
+   yearBtn.addEventListener('click', () => {
     currYear -= 1;
     renderCalendar();
 
@@ -113,4 +119,7 @@ yearBtn.addEventListener('click', () => {
             el.classList.add('active')
         }
     });
-})
+}) 
+};
+
+onYearBtnClick();
