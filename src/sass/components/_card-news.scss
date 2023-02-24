@@ -199,6 +199,7 @@
 }
 
 .news-gallery .readed .owerlay-readed {
+  pointer-events: none;
   position: absolute;
   display: flex;
   top: 0;
