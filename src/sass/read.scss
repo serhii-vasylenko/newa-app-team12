@@ -48,7 +48,7 @@
     display: flex;
     justify-content: start;
     flex-wrap: wrap;
-    gap: 32px;
+    gap: 30px;
     margin-top: 40px;
     margin-bottom: 60px;
     max-height: 0;
@@ -56,9 +56,9 @@
     transition: max-height 0.5s ease-out;
 }
 
-.viewed-cards {
-    width: 395px;
-    height: 675px;
-    border: 1px solid #141313;
-    border-radius: 5px;
-}
+// .viewed-cards {
+//     width: 395px;
+//     height: 675px;
+//     border: 1px solid #141313;
+//     border-radius: 5px;
+// }
