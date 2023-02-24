@@ -152,7 +152,7 @@ function toAdaptData(data) {
   });
 }
 
-/*let chunkNewsArr = [];
+let chunkNewsArr = [];
 
 ref.paginationEl.addEventListener('click', e => {
   const ele = e.target;
@@ -261,4 +261,4 @@ function createMarkupWithChunkArray(array) {
   newsGallery.innerHTML = markupNews;
   checkFavCards();
   // console.log(markupNews);
-}*/
+}
