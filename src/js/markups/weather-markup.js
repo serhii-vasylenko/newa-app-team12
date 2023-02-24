@@ -54,7 +54,7 @@ function getMarkupWeather({ data: weatherData }) {
 }
 
 function getMarkupWeatherToWeek({ data }) {
-  console.log('getMarkupWeatherToWeek', data.daily.length);
+  // console.log('getMarkupWeatherToWeek', data.daily.length);
 
   const markupLocationToWeek = `
       <button class="weather__btn weather__btn-close" type="button">close</button>
@@ -85,12 +85,12 @@ function getMarkupWeatherToWeek({ data }) {
     parts.push(markupListToWeek);
   }
   const dayWeatherCard = document.querySelector('.weather__card');
-  console.log(dayWeatherCard);
+  // console.log(dayWeatherCard);
 
   dayWeatherCard.innerHTML = markupLocationToWeek + parts.join('');
 
   const clouseWeekWidget = document.querySelector('.weather__btn-close');
-  console.log(clouseWeekWidget);
+  // console.log(clouseWeekWidget);
   clouseWeekWidget.addEventListener('click', getGeolocation);
 
   return dayWeatherCard.outerHTML;
@@ -109,7 +109,7 @@ renderToGallery();
 
 function addClassToCard() {
   const weekWeatherCard = document.querySelector('.weather__table');
-  console.log(weekWeatherCard);
+  // console.log(weekWeatherCard);
   weekWeatherCard.classList.toggle('is-active');
 }
 

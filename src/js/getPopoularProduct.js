@@ -20,7 +20,7 @@ async function getPopularProduct() {
     // console.log('Arr objects with mostpopular News', getNews.results);
     const newsArr = getNews.results;
     getAmountCards(newsArr);
-    console.log('valuePage', valuePage);
+    // console.log('valuePage', valuePage);
     let markupNews = '';
     const markupWeather = getMarkupWeather({ data: weatherData });
     // console.log(markupWeather);
@@ -93,9 +93,9 @@ ref.paginationEl.addEventListener('click', e => {
   if (ele.dataset.page) {
     const pageNumber = parseInt(e.target.dataset.page, 10);
     valuePage.curPage = pageNumber;
-    console.log(pageNumber);
+    // console.log(pageNumber);
   }
-  console.log(valuePage.amountCards);
+  // console.log(valuePage.amountCards);
 
   getPopularProductData()
   .then(array => {

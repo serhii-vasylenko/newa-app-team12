@@ -17,19 +17,21 @@ function checkLocalStorage() {
     return;
   }
   storageArray = JSON.parse(localStorage.getItem(`${READED_KEY}`));
-  console.log(storageArray);
+  // console.log(storageArray);
   creatRevisionDataNew(storageArray);
 }
 
 checkLocalStorage();
 
 function creatRevisionDataNew(array) {
+  // console.log(`Array.from(array)`);
+  // console.log(Object.keys(array));
   const dates = [...array]
     .map(({ date }) => date)
     .filter((course, index, array) => array.indexOf(course) === index);
-  console.log(dates);
+  // console.log(dates);
   const gallery = document.querySelector('.container-for-viewed-cards');
-  console.log(gallery);
+  // console.log(gallery);
   dates.forEach(dateE => {
     revisionDateContainer.insertAdjacentHTML(
       'afterbegin',
@@ -46,7 +48,7 @@ function creatRevisionDataNew(array) {
     const gallery = document.querySelector('.container-for-viewed-cards');
     array.forEach(el => {
       if (el.date === dateE) {
-        console.log(el.markup);
+        // console.log(el.markup);
         gallery.insertAdjacentHTML('afterbegin', el.markup);
       }
     });

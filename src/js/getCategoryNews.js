@@ -27,10 +27,10 @@ function onSearchDate() {
 export async function getCategoryNews(category) {
   currentCategory = category;
   try {
-    console.log(
-      '🚀 ~ file: getCategoryNews.js:23 ~ getCategoryNews ~ category:',
-      category
-    );
+    // console.log(
+    //   '🚀 ~ file: getCategoryNews.js:23 ~ getCategoryNews ~ category:',
+    //   category
+    // );
     let newsArr = [];
     let filteredNews = [];
     const getCategotyNews = await getCategoryNewsAPI(category);
@@ -44,19 +44,19 @@ export async function getCategoryNews(category) {
     // console.log(itemWeather);
 
     const currentDate = currentDateContainer.innerText;
-    console.log(
-      '🚀 ~ file: getCategoryNews.js:37 ~ getCategoryNews ~ currentDate:',
-      currentDate
-    );
+    // console.log(
+    //   '🚀 ~ file: getCategoryNews.js:37 ~ getCategoryNews ~ currentDate:',
+    //   currentDate
+    // );
 
     if (currentDate === 'Select a date...') {
       newsArr = toAdaptData(dataNews);
     } else {
       filteredNews = filterDateNews(dataNews, currentDate);
-      console.log(
-        '🚀 ~ file: getCategoryNews.js:43 ~ getCategoryNews ~ filteredNews:',
-        filteredNews
-      );
+      // console.log(
+      //   '🚀 ~ file: getCategoryNews.js:43 ~ getCategoryNews ~ filteredNews:',
+      //   filteredNews
+      // );
 
       if (filteredNews.length === 0) {
         popularNewsGallery.innerHTML = '';
@@ -70,7 +70,7 @@ export async function getCategoryNews(category) {
       newsArr = toAdaptData(filteredNews);
     }
 
-    console.log(newsArr);
+    // console.log(newsArr);
 
     if (window.innerWidth < 768) {
       if (newsArr.length < 5) {
@@ -197,12 +197,12 @@ function toAdaptData(data) {
 
 function filterDateNews(arrNews, selectedDate) {
   return arrNews.filter(news => {
-    console.log('Convert', dateConversion(news.published_date));
-    console.log(
-      '🚀 ~ file: getCategoryNews.js:205 ~ filterDateNews ~ selectedDate:',
-      selectedDate
-    );
-    console.log(dateConversion(news.published_date) === selectedDate);
+    // console.log('Convert', dateConversion(news.published_date));
+    // console.log(
+    //   '🚀 ~ file: getCategoryNews.js:205 ~ filterDateNews ~ selectedDate:',
+    //   selectedDate
+    // );
+    // console.log(dateConversion(news.published_date) === selectedDate);
     return String(dateConversion(news.published_date)) === String(selectedDate);
   });
 }
