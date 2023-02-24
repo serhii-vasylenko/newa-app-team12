@@ -29,15 +29,15 @@ function renderCalendar () {
     let lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(); // getting last date of month
     let lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(); // getting last day of month
     let lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // getting last date of previous month
-    // let weekend = new Date(currYear, currMonth, 6, 7);
     let liTag = "";
+
     for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
         liTag += `<li><button type="button" class="button inactive" id="inactive" disabled>${lastDateofLastMonth - i + 1}</button></li>`;
     }
     for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
         // adding active class to li if the current day, month, and year matched
-        let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
-            && currYear === new Date().getFullYear() ? "current-month-day" : "";
+        let isToday = i === date.getDate() && currMonth === date.getMonth() 
+            && currYear === date.getFullYear() ? "current-month-day" : "";
         let isCurrentDay = i === date.getDate() ? "active" : "";
         liTag += `<li><button type="button" class="button ${isToday} ${isCurrentDay}">${i}</button></li>`;   
     }
@@ -47,6 +47,9 @@ function renderCalendar () {
 
     currentDate.innerHTML = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
     daysTag.innerHTML = liTag;
+
+    
+    
     localStorage.setItem('VALUE', JSON.stringify(date.getDate()));
 
     const dayBtns = document.querySelectorAll(".button");
@@ -55,12 +58,10 @@ function renderCalendar () {
         selectedDate = spanEl.textContent;
         modalEl.classList.toggle('is-shown');
         btnEl.classList.remove('btn-is-active');
-        // e.target.classList.toggle("active");
-        // dayBtn.classList.contains("active") ? console.log('yes') : console.log('no')
 
         todayBtn.addEventListener('click', () => {
-            spanEl.textContent = `${addLeadingZero(date.getDate())}/${addLeadingZero(new Date().getMonth() + 1)}/${new Date().getFullYear()}`;
-            currentDate.innerHTML = `${months[new Date().getMonth()]} ${new Date().getFullYear()}`;
+            spanEl.textContent = `${addLeadingZero(date.getDate())}/${addLeadingZero(date.getMonth() + 1)}/${date.getFullYear()}`;
+            currentDate.innerHTML = `${months[date.getMonth()]} ${date.getFullYear()}`;
         });
         return selectedDate;
     }));
