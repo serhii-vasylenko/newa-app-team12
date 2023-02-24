@@ -80,7 +80,6 @@ function renderBtns(dayBtns) {
     onTodayBtnClick();
 }));
 };
-
 renderCalendar();
 
 function addLeadingZero(value) {
@@ -121,5 +120,4 @@ function onYearBtnClick() {
     });
 }) 
 };
-
 onYearBtnClick();
