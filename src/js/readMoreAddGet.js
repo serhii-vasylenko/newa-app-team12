@@ -18,3 +18,11 @@ function checkLocalStorage() {
   }
   readedNewsArray = JSON.parse(localStorage.getItem(`${READED_KEY}`));
 }
+
+window.addEventListener('load', setTimeout(() => {
+    
+  const ckeckedCards = Array.from(refs.newsGalery.querySelectorAll('.card__infotion__more'));
+  const chekedUrls = readedNewsArray.map(el => el.url);
+  
+  ckeckedCards.filter(link => chekedUrls.includes(link.href)).forEach(link => link.closest('li.card-news__item').classList.add(`readed`));
+}, 500))
