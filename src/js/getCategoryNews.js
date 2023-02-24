@@ -47,7 +47,7 @@ export async function getCategoryNews(category) {
     const markupWeather = getMarkupWeather({ data: weatherData });
     // console.log(markupWeather);
     // console.log({ data: weatherData });
-    const itemWeather = `<li class="weather__card">${markupWeather}</li>`;
+    const itemWeather = `<li class="weather__card">${markupWeather.markup}</li>`;
     // console.log(itemWeather);
 
     const currentDate = currentDateContainer.innerText;
@@ -70,6 +70,9 @@ export async function getCategoryNews(category) {
         notFoundPage.classList.remove('visually-hidden');
         paginator.style.display = 'none';
         return;
+      }
+      if (filteredNews.length !== 0) {
+        notFoundPage.classList.add('visually-hidden');
       }
       newsArr = toAdaptData(filteredNews);
     }
