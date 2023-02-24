@@ -1,11 +1,11 @@
-const LINK_TO_WEEK = 'https://sinoptik.ua/'
+const LINK_TO_WEEK = 'https://sinoptik.ua/';
 import { months, days, weekDay, dateToWeek } from '../utils/weather-dates';
 import { onClick } from '../weather';
 import { getGeolocation } from '../weather';
 
 let weatherData = {
   coord: { lon: 30.2748, lat: 50.5461 },
-  main: { temp: -1 },
+  main: -1,
   name: 'Hostomel',
   timezone: 7200,
   weather: [
@@ -17,11 +17,7 @@ let weatherData = {
 };
 
 function getMarkupWeather({ data: weatherData }) {
-  const {
-    name,
-    weather,
-    main: { temp },
-  } = weatherData;
+  const { name, weather, main } = weatherData;
   const { main: weatherMain, icon } = weather[0];
   const today = new Date();
   let day = today.getDay();
@@ -29,7 +25,7 @@ function getMarkupWeather({ data: weatherData }) {
   let month = today.getMonth();
   let year = today.getFullYear();
 
-  const tempRound = isNaN(temp) ? 0 : Math.round(temp);
+  const tempRound = isNaN(main) ? 0 : Math.round(main);
 
   const templateWeather = `<div class="weather__header">
     <p class="weather__temp">${tempRound}&#176;</p>
@@ -117,7 +113,5 @@ function addClassToCard() {
   weekWeatherCard.classList.toggle('is-active');
 }
 
-
 export { getMarkupWeather, getMarkupWeatherToWeek };
 export { addClassToCard, removeClassToCard, weatherData };
-
