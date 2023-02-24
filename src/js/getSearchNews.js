@@ -4,13 +4,20 @@ import { getMarkupWeather } from './markups/weather-markup.js';
 import { weatherData } from './markups/weather-markup.js';
 import { markup } from './markups/newsCard.js';
 import { checkFavCards } from './addAndRemoveFromFavorite';
-
-const valuePage = {
-  curPage: 1,
-  numLinksTwoSide: 1,
-  amountCards: 0,
-  totalPages: 0,
-};
+import { ref,
+  valuePage,
+  pagination,
+  handleButtonRight,
+  handleButtonLeft,
+  handleButton,
+  goToTop } from './pagination.js';
+//import { result } from 'lodash';
+//const valuePage = {
+ // curPage: 1,
+ // numLinksTwoSide: 1,
+  //amountCards: 0,
+  //totalPages: 0,
+//};
 
 const btn= document.querySelector(".pagination__container")
 //const input = document.querySelector('.search-form__input')
@@ -43,6 +50,7 @@ async function getSearchNews(search) {
     } else if (getNews.data.response.docs.length === 0) {
       newsGallery.innerHTML="";
       btn.remove();
+      //paginator.style.display = 'none';
       pageNotFound.classList.remove('visually-hidden');
       
     }
@@ -91,6 +99,7 @@ function createMarkup(array) {
 
   newsGallery.innerHTML = markupNews;
   checkFavCards() ;
+  pagination(valuePage);
 }
 
 function getAmountCards(array) {
@@ -143,15 +152,113 @@ function toAdaptData(data) {
   });
 }
 
+/*let chunkNewsArr = [];
 
-
-/*ref.paginationEl.addEventListener('click', e => {
+ref.paginationEl.addEventListener('click', e => {
   const ele = e.target;
   // console.log(ele);
-​
+
   if (ele.dataset.page) {
     const pageNumber = parseInt(e.target.dataset.page, 10);
     valuePage.curPage = pageNumber;
     console.log(pageNumber);
   }
-  console.log(valuePage.amountCards);*/
+  console.log(valuePage.amountCards);
+  getSearchData()
+  .then(array => {
+    renderNewsMarkup(array, valuePage.amountCards);
+  })
+  .catch(error => console.error(error));
+  
+  goToTop();
+});
+
+ref.paginationContainerEl.addEventListener('click', e => {
+  handleButton(e.target);
+
+  getSearchData()
+  .then(array => {console.log(array)
+    renderNewsMarkup(array, valuePage.amountCards);
+  })
+  .catch(error => console.error(error));
+
+  goToTop();
+});
+
+async function getSearchData() {
+  const getNews = await getSearchNewsAPI(search);
+    const data = getNews.data.response.docs;
+   // const adaptedData = toAdaptData(data);
+    
+    getAmountCards(data);
+
+  return data;
+}
+function renderNewsMarkup(data, amountCards) {
+  chunkArray(data, amountCards);
+  // console.log('chunkArray', chunkArray(getNews.results, valuePage.amountCards));
+
+  for (let i = 0; i <= chunkNewsArr.length; i += 1) {
+    // console.log(chunkNewsArr[i]);
+    if (valuePage.curPage === i + 1) {
+      // console.log('page', chunkNewsArr[i]);
+      createMarkupWithChunkArray(chunkNewsArr[i]);
+      break;
+    }
+  }
+  pagination(valuePage);
+
+  handleButtonLeft();
+  handleButtonRight();
+}
+
+function chunkArray(arrayData, chunkSize) {
+  while (arrayData.length) {
+  chunkNewsArr.push(arrayData.splice(0, chunkSize));
+  // while(arrayData?.length>0){
+   // results.push(arrayData.splice(0, chunkSize))
+  }
+  //return results;
+}
+function createMarkupWithChunkArray(array) {
+  let markupNews = '';
+  const markupWeather = getMarkupWeather({ data: weatherData });
+  // console.log(markupWeather);
+  // console.log({ data: weatherData });
+  const itemWeather = `<li class="weather__card">${markupWeather.markup}</li>`;
+  // console.log(itemWeather);
+
+  if (window.innerWidth < 768) {
+    for (let i = 0; i < array.length; i += 1) {
+      if (i === 0) {
+        markupNews += itemWeather;
+      } else {
+        markupNews += markup(array[i]);
+      }
+    }
+  }
+  if (window.innerWidth >= 768 && window.innerWidth < 1280) {
+    for (let i = 0; i < array.length; i += 1) {
+      if (i === 1) {
+        markupNews += itemWeather;
+      } else {
+        markupNews += markup(array[i]);
+      }
+    }
+  }
+  if (window.innerWidth >= 1280) {
+    for (let i = 0; i < array.length; i += 1) {
+      if (i === 2) {
+        markupNews += itemWeather;
+      } else {
+        markupNews += markup(array[i]);
+      }      
+    }
+    if (array.length === 2) {
+      markupNews += itemWeather;
+    }
+  }
+  newsGallery.innerHTML = markupNews;
+  checkFavCards();
+  // console.log(markupNews);
+}*/
