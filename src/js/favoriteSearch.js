@@ -32,6 +32,7 @@ function onFormSumbit(e) {
       console.log(err);
     }
   }
+  search.reset();
 }
 
 function findSearchQueryEl(searchQuery, arrOfStrings) {
