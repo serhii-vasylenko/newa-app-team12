@@ -57,7 +57,7 @@ function goToTop() {
 function pagination(obj) {
   const { totalPages, curPage, numLinksTwoSide: delta } = obj;
 
-  const range = delta + 4; // use for handle visible number of links left side
+  const range = delta + 2; // use for handle visible number of links left side
 
   let render = '';
   let renderTwoSide = '';
