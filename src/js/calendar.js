@@ -58,6 +58,7 @@ function renderCalendar () {
         todayBtn.addEventListener('click', () => {
             spanEl.textContent = `${addLeadingZero(date.getDate())}/${addLeadingZero(new Date().getMonth() + 1)}/${new Date().getFullYear()}`;
             currentDate.innerHTML = `${months[new Date().getMonth()]} ${new Date().getFullYear()}`;
+            
         });
         return selectedDate;
     }));
