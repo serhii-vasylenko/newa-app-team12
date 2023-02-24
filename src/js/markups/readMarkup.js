@@ -3,7 +3,7 @@ import getRefs from '../get-refs';
 
 const READED_KEY = 'readed';
 let storageArray = [];
-refs = getRefs();
+const refs = getRefs();
 
 const revisionDateContainer = document.querySelector(
   '.revision-date-container'
