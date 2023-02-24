@@ -1,4 +1,3 @@
-
 import { getSearchNewsAPI } from './api/news-api';
 import { getMarkupWeather } from './markups/weather-markup.js';
 import { weatherData } from './markups/weather-markup.js';
@@ -20,7 +19,7 @@ import { ref,
 //};
 
 const btn= document.querySelector(".pagination__container")
-//const input = document.querySelector('.search-form__input')
+const input = document.querySelector('.search-form__input')
 const newsGallery = document.querySelector('.news-gallery');
 const pageNotFound = document.querySelector('.not-found');
 const form = document.querySelector('.search-form');
@@ -30,9 +29,9 @@ form.addEventListener('submit', onEnterPush);
 function onEnterPush(e) {
   e.preventDefault();
   const searchQuery = e.currentTarget.elements[1].value.trim();
-  
+
   getSearchNews(searchQuery);
-  form.reset();
+  // form.reset();
 }
 
 async function getSearchNews(search) {
@@ -40,23 +39,22 @@ async function getSearchNews(search) {
     const getNews = await getSearchNewsAPI(search);
     const data = getNews.data.response.docs;
     const adaptedData = toAdaptData(data);
-    
+
     getAmountCards(data);
 
     if (getNews.data.response.docs.length) {
       pageNotFound.classList.add('visually-hidden');
-      
+
       createMarkup(adaptedData);
     } else if (getNews.data.response.docs.length === 0) {
       newsGallery.innerHTML="";
       btn.remove();
       //paginator.style.display = 'none';
       pageNotFound.classList.remove('visually-hidden');
-      
+
     }
+    return adaptedData;
   } catch (err) {
-    //pageNotFound.classList.toggle('visually-hidden');
-      
     console.log(err);
   }
 }
@@ -66,7 +64,7 @@ window.addEventListener('resize', getSearchNews);
 function createMarkup(array) {
   let markupNews = '';
   const markupWeather = getMarkupWeather({ data: weatherData });
-  
+
   const itemWeather = `<li class="weather__card">${markupWeather.markup}</li>`;
 
   if (window.innerWidth < 768) {
@@ -116,7 +114,6 @@ function getAmountCards(array) {
     valuePage.totalPages = Math.ceil(array.length / valuePage.amountCards);
   }
 }
-
 function toAdaptData(data) {
   return data.map(obj => {
     if (obj.multimedia === null) {
@@ -154,7 +151,7 @@ function toAdaptData(data) {
 
 let chunkNewsArr = [];
 
-ref.paginationEl.addEventListener('click', e => {
+ref.paginationEl.addEventListener('click', async e => {
   const ele = e.target;
   // console.log(ele);
 
@@ -163,45 +160,16 @@ ref.paginationEl.addEventListener('click', e => {
     valuePage.curPage = pageNumber;
     console.log(pageNumber);
   }
-  console.log(valuePage.amountCards);
-  getSearchData()
-  .then(array => {
-    renderNewsMarkup(array, valuePage.amountCards);
-  })
-  .catch(error => console.error(error));
-  
+  await getSearchNews(input.value).then((data) => renderNewsMarkup(data, valuePage.amountCards))
   goToTop();
 });
 
-ref.paginationContainerEl.addEventListener('click', e => {
-  handleButton(e.target);
-
-  getSearchData()
-  .then(array => {console.log(array)
-    renderNewsMarkup(array, valuePage.amountCards);
-  })
-  .catch(error => console.error(error));
-
-  goToTop();
-});
-
-async function getSearchData() {
-  const getNews = await getSearchNewsAPI(search);
-    const data = getNews.data.response.docs;
-   // const adaptedData = toAdaptData(data);
-    
-    getAmountCards(data);
-
-  return data;
-}
 function renderNewsMarkup(data, amountCards) {
+ // const o = [...data];
   chunkArray(data, amountCards);
-  // console.log('chunkArray', chunkArray(getNews.results, valuePage.amountCards));
 
   for (let i = 0; i <= chunkNewsArr.length; i += 1) {
-    // console.log(chunkNewsArr[i]);
     if (valuePage.curPage === i + 1) {
-      // console.log('page', chunkNewsArr[i]);
       createMarkupWithChunkArray(chunkNewsArr[i]);
       break;
     }
@@ -227,7 +195,6 @@ function createMarkupWithChunkArray(array) {
   // console.log({ data: weatherData });
   const itemWeather = `<li class="weather__card">${markupWeather.markup}</li>`;
   // console.log(itemWeather);
-
   if (window.innerWidth < 768) {
     for (let i = 0; i < array.length; i += 1) {
       if (i === 0) {
@@ -252,7 +219,7 @@ function createMarkupWithChunkArray(array) {
         markupNews += itemWeather;
       } else {
         markupNews += markup(array[i]);
-      }      
+      }
     }
     if (array.length === 2) {
       markupNews += itemWeather;
@@ -260,5 +227,5 @@ function createMarkupWithChunkArray(array) {
   }
   newsGallery.innerHTML = markupNews;
   checkFavCards();
-  // console.log(markupNews);
+  
 }
