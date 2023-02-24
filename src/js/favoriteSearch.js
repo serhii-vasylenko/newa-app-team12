@@ -40,6 +40,8 @@ function findSearchQueryEl(searchQuery, arrOfStrings) {
     .join('');
   if (filteredArr === '') {
     notFoundPage.classList.remove('visually-hidden');
+  } else {
+    notFoundPage.classList.add('visually-hidden');
   }
   gallery.innerHTML = filteredArr;
 }
