@@ -37,8 +37,8 @@ function renderCalendar () {
     for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
         // adding active class to li if the current day, month, and year matched
         let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
-            && currYear === new Date().getFullYear() ? "active" : "";
-        let isCurrentDay = i === date.getDate() ? "current-month-day" : "";
+            && currYear === new Date().getFullYear() ? "current-month-day" : "";
+        let isCurrentDay = i === date.getDate() ? "active" : "";
         liTag += `<li><button type="button" class="button ${isToday} ${isCurrentDay}">${i}</button></li>`;   
     }
     for (let i = lastDayofMonth; i < 7; i++) { // creating li of next month first days
@@ -47,6 +47,7 @@ function renderCalendar () {
 
     currentDate.innerHTML = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
     daysTag.innerHTML = liTag;
+    localStorage.setItem('VALUE', JSON.stringify(date.getDate()));
 
     const dayBtns = document.querySelectorAll(".button");
     dayBtns.forEach(dayBtn => dayBtn.addEventListener('click', (e) => {
@@ -54,6 +55,8 @@ function renderCalendar () {
         selectedDate = spanEl.textContent;
         modalEl.classList.toggle('is-shown');
         btnEl.classList.remove('btn-is-active');
+        // e.target.classList.toggle("active");
+        // dayBtn.classList.contains("active") ? console.log('yes') : console.log('no')
 
         todayBtn.addEventListener('click', () => {
             spanEl.textContent = `${addLeadingZero(date.getDate())}/${addLeadingZero(new Date().getMonth() + 1)}/${new Date().getFullYear()}`;
@@ -61,7 +64,17 @@ function renderCalendar () {
         });
         return selectedDate;
     }));
+    daysTag.addEventListener('click', onDaysTagClick);
+    function onDaysTagClick(e) {
+        const currentActiveDate = document.querySelector('.active');
+        if (currentActiveDate) {
+            currentActiveDate.classList.remove('active');
+        }
+        e.target.classList.add('active');
+    };
+
 }
+
 renderCalendar();
 
 function addLeadingZero(value) {
@@ -86,4 +99,13 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
 yearBtn.addEventListener('click', () => {
     currYear -= 1;
     renderCalendar();
+
+    let saveDate = JSON.parse(localStorage.getItem('VALUE'));
+    let rendCurrentDays = daysTag.childNodes;
+
+    rendCurrentDays.forEach(el => {
+        if (el.textContent === saveDate) {
+            el.classList.add('active')
+        }
+    });
 })
