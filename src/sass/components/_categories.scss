@@ -1,6 +1,5 @@
 .category {
   display: flex;
-  // margin-right: 24px;
 
   &__menu {
     position: absolute;
@@ -146,7 +145,6 @@
   transform: rotate(180deg);
   fill: var(--button-bg-color);
   pointer-events: none;
-
 }
 .category__btn:hover .arrow-icon,
 .category__btn:focus .arrow-icon {
