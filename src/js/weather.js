@@ -1,4 +1,4 @@
-import { onSuccess, onSuccessToWeek, onError } from './api/weather-api';
+import { onSuccess, onError } from './api/weatherApi';
 
 getGeolocation();
 
@@ -8,11 +8,4 @@ function getGeolocation() {
   }
 }
 
-function onClick() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(onSuccessToWeek, onError);
-  }
-}
-
-export { onClick };
 export { getGeolocation };

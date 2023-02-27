@@ -133,74 +133,9 @@
       padding: 10px 12px;
     }
 }
-// weather to week
-.weather__table {
-  width: 100%;
-  margin: 0;
-}
-
-.weather__btn-close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  padding: 8px 10px;
-  background-color: rgba(254, 254, 255, 0.3);
-  color: $widget-text-color;
-  border: 1px solid $accent-color;
-  font-size: 12px;
-  line-height: 1.33;
-      @media screen and (min-width: 768px) {
-        font-size: 14px;
-      }
-}
 
 .weather__btn:hover,
 .weather__btn:focus {
   background-color: $widget-text-color;
   color: $lt-switcher-color;
 }
-
-.weather__location-week {
-  margin-top: 15px;
-  margin-bottom: 10px;
-  background-color: transparent;
-}
-
-.weather__week {
-  color: $widget-text-color;
-  font-size: 12px;
-  min-width: 50px;
-  text-align: left;
-  @media screen and (min-width: 768px) {
-    font-size: 14px;
-  }
-}
-
-.weather__week-last {
-  text-align: right;
-}
-
-.wheather__icon-week {
-  width: 50px;
-  height: 50px;
-    @media screen and (min-width: 768px) {
-  width: 60px;
-  height: 60px;
-  }
-
-}
-
-// class for list weather to week
-.news-gallery {
-  position: relative;
-}
-
-.is-active {
-  position: absolute;
-  top: 0;
-  right: 50%;
-  transform: translateX(50%);
-  z-index: 5;
-  box-shadow: -11px 15px 29px 1px rgba(32, 51, 77, 0.25);
-}
-

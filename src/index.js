@@ -11,8 +11,8 @@ import './js/switchMobile';
 import './js/search';
 import './js/calendar';
 import './js/weather';
-import './js/api/weather-api';
-import './js/markups/weather-markup';
+import './js/api/weatherApi';
+import './js/markups/weatherMarkup';
 // import './js/markups/markupNewsCard';
 
 import './js/addReadengNewsToLocalstorage'

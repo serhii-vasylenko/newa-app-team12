@@ -1,6 +1,6 @@
 import { getPopularNewsAPI } from './api/news-api.js';
-import { getMarkupWeather } from './markups/weather-markup.js';
-import { weatherData } from './markups/weather-markup.js';
+import { getMarkupWeather } from './markups/weatherMarkup.js';
+import { weatherData } from './markups/weatherMarkup.js';
 import { ref,
   valuePage,
   pagination,
@@ -64,7 +64,7 @@ async function getPopularProduct() {
   }
 }
 
-getPopularProduct();
+// getPopularProduct();
 window.addEventListener('resize', getPopularProduct);
 
 function getAmountCards(array) {
@@ -192,3 +192,5 @@ function createMarkupWithChunkArray(array) {
   checkFavCards();
   // console.log(markupNews);
 }
+
+export { getPopularProduct };
