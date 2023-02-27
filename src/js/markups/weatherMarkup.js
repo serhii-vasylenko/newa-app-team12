@@ -33,7 +33,7 @@ function getMarkupWeather({ data: weatherData }) {
     <p class="weather__temp">${tempRound}&#176;</p>
     <div class="weather__wrapper">
       <p class="weather__status">${weatherData.weather.main}</p>
-      <p class="weather__location">${name}</p>
+      <p class="weather__location">${weatherData.name}</p>
     </div>
   </div>
   <div>
