@@ -1,8 +1,8 @@
 import { getCategoryNewsAPI } from './api/news-api.js';
 import { markup } from './markups/newsCard.js';
 import { checkFavCards } from './addAndRemoveFromFavorite.js';
-import { getMarkupWeather } from './markups/weather-markup.js';
-import { weatherData } from './markups/weather-markup.js';
+import { getMarkupWeather } from './markups/weatherMarkup.js';
+import { weatherData } from './markups/weatherMarkup.js';
 import { valuePage, pagination } from './pagination.js';
 
 let currentCategory = '';

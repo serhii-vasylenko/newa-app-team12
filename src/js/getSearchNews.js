@@ -1,6 +1,6 @@
 import { getSearchNewsAPI } from './api/news-api';
-import { getMarkupWeather } from './markups/weather-markup.js';
-import { weatherData } from './markups/weather-markup.js';
+import { getMarkupWeather } from './markups/weatherMarkup.js';
+import { weatherData } from './markups/weatherMarkup.js';
 import { markup } from './markups/newsCard.js';
 import { checkFavCards } from './addAndRemoveFromFavorite';
 import { ref,
