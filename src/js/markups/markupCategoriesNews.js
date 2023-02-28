@@ -1,11 +1,14 @@
+import Notiflix from 'notiflix';
 import { getCategoriesAPI } from '../api/news-api.js';
 import { divideArrNews } from '../categories.js';
+
 
 const categoriesList = document.querySelector('.buttons-list');
 const categoriesBtn = document.querySelector('#btn-open-category');
 const categoriesMenu = document.querySelector('.category__menu');
 
 export async function markupCategories(categoriesMenu) {
+  try {
   const getCategories = await getCategoriesAPI();
   const categories = getCategories.results;
   if (window.matchMedia('(max-width: 767px)').matches) {
@@ -30,13 +33,14 @@ export async function markupCategories(categoriesMenu) {
       renderingButtons(categoriesArrs[0])
     );
   }
+} catch {
+  Notiflix.Notify.failure('Oops, categories did not load!');
+}
 }
 
 export function markupNameButton(currentButton) {
   if (categoriesMenu.classList.contains('is-open-categories')) {
     categoriesMenu.classList.remove('is-open-categories');
-    // console.log(currentButton.length);
-    // console.log(currentButton);
     if (currentButton.length < 18) {
       categoriesBtn.firstChild.textContent = currentButton;
     }

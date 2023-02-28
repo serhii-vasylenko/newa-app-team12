@@ -15,62 +15,39 @@ const KEYS = [
   'UOu0YdlrkIoRCSoKuTMZFGpumw0I0Y05',
   'pFLyeAOoTUkhEAUJsqJzz04Hc5pc9jB6',
   'no8t4JST8lO1h1HISonGqBJL9wN1oSkU',
-  '7cowQMjSOte3DmsL9oMIjLMUYjC2Fw6m'
+  '7cowQMjSOte3DmsL9oMIjLMUYjC2Fw6m',
 ];
 function getKey() {
-  return KEYS[Math.round(Math.random() * (KEYS.length - 1))]
+  return KEYS[Math.round(Math.random() * (KEYS.length - 1))];
 }
 
-// const KEY = 'ExFFGvT2fZBzTdDFtfXKysgryhCLXIkg';
-
 export async function getCategoriesAPI() {
-  const KEY = getKey()
+  const KEY = getKey();
   const BASE_URL =
     'https://api.nytimes.com/svc//news/v3/content/section-list.json';
-
-  try {
-    const response = await axios.get(`${BASE_URL}?api-key=${KEY}`);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
+  const response = await axios.get(`${BASE_URL}?api-key=${KEY}`);
+  return response.data;
 }
 
 export async function getCategoryNewsAPI(category) {
-  const KEY = getKey()
+  const KEY = getKey();
   const BASE_URL = `https://api.nytimes.com/svc//news/v3/content/all/${category}.json`;
-
-  try {
-    const response = await axios.get(
-      `${BASE_URL}?api-key=${KEY}&limit=500`
-    );
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
+  const response = await axios.get(`${BASE_URL}?api-key=${KEY}&limit=500`);
+  return response.data;
 }
 
 export async function getPopularNewsAPI() {
-  const KEY = getKey()
+  const KEY = getKey();
   const BASE_URL = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json`;
-
-  try {
-    const response = await axios.get(`${BASE_URL}?api-key=${KEY}`);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
+  const response = await axios.get(`${BASE_URL}?api-key=${KEY}`);
+  return response.data;
 }
 
 export async function getSearchNewsAPI(searchTerm) {
-  const KEY = getKey()
+  const KEY = getKey();
   const BASE_URL = `https://api.nytimes.com/svc/search/v2/articlesearch.json`;
-  try {
-    const response = await axios.get(
-      `${BASE_URL}?q=${searchTerm}&api-key=${KEY}`
-    );
-    return response;
-  } catch (error) {
-    console.log(error);
-  }
+  const response = await axios.get(
+    `${BASE_URL}?q=${searchTerm}&api-key=${KEY}`
+  );
+  return response;
 }

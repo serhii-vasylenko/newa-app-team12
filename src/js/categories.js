@@ -1,14 +1,14 @@
-const throttle = require('lodash.throttle');
 import { getCategoryNews } from './getCategoryNews.js';
 import {
   markupCategories,
   markupNameButton,
 } from './markups/markupCategoriesNews.js';
 
+const throttle = require('lodash.throttle');
+
 const categoriesMenu = document.querySelector('.category__menu');
 const categoriesBtn = document.querySelector('#btn-open-category');
 const categoriesList = document.querySelector('.buttons-list');
-const categoriesContainer = document.querySelector('.category');
 const arrowBtnCategories = document.querySelector('.arrow-icon');
 
 markupCategories(categoriesMenu);
@@ -60,10 +60,9 @@ function onSearchNewsMenu(event) {
 
   markupNameButton(decodeURIComponent(currentButtonValue));
   categoriesMenu.classList.remove('is-open-categories');
- 
+
   arrowBtnCategories.classList.add('open-categories');
   categoriesBtn.focus();
-
 }
 
 function clearCategoriesMenu() {
