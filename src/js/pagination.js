@@ -74,7 +74,7 @@ function pagination(obj) {
 
     // truncate
     if (totalPages >= 2 * range - 1) {
-      if (numberTruncateLeft > 3 && numberTruncateRight < totalPages - 3 + 1) {
+      if (numberTruncateLeft > 1 && numberTruncateRight < totalPages - 3 + 1) {
         // truncate 2 side
         if (pos >= numberTruncateLeft && pos <= numberTruncateRight) {
           renderTwoSide += renderPage(pos, active);
@@ -119,5 +119,5 @@ export {
   handleButtonRight,
   handleButtonLeft,
   handleButton,
-  goToTop
+  goToTop,
 };
