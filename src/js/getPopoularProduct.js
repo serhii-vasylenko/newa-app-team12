@@ -1,13 +1,15 @@
 import { getPopularNewsAPI } from './api/news-api.js';
 import { getMarkupWeather } from './markups/weatherMarkup.js';
 import { weatherData } from './markups/weatherMarkup.js';
-import { ref,
+import {
+  ref,
   valuePage,
   pagination,
   handleButtonRight,
   handleButtonLeft,
   handleButton,
-  goToTop } from './pagination.js';
+  goToTop,
+} from './pagination.js';
 import { markup } from './markups/newsCard.js';
 import { checkFavCards } from './addAndRemoveFromFavorite.js';
 
@@ -86,7 +88,25 @@ function getAmountCards(array) {
 
 let chunkNewsArr = [];
 
-ref.paginationEl.addEventListener('click', e => {
+ref.paginationContainerEl.addEventListener('click', onPaginationContainerEl);
+ref.paginationEl.addEventListener('click', onPaginationEl);
+
+export function onPaginationContainerEl(e) {
+  handleButton(e.target);
+
+  getPopularProductData()
+    .then(array => {
+      console.log(array);
+      renderNewsMarkup(array, valuePage.amountCards);
+    })
+    .catch(error => console.error(error));
+
+  goToTop();
+}
+
+
+
+ export function onPaginationEl(e) {
   const ele = e.target;
   // console.log(ele);
 
@@ -98,25 +118,13 @@ ref.paginationEl.addEventListener('click', e => {
   // console.log(valuePage.amountCards);
 
   getPopularProductData()
-  .then(array => {
-    renderNewsMarkup(array, valuePage.amountCards);
-  })
-  .catch(error => console.error(error));
-  
-  goToTop();
-});
-
-ref.paginationContainerEl.addEventListener('click', e => {
-  handleButton(e.target);
-
-  getPopularProductData()
-  .then(array => {console.log(array)
-    renderNewsMarkup(array, valuePage.amountCards);
-  })
-  .catch(error => console.error(error));
+    .then(array => {
+      renderNewsMarkup(array, valuePage.amountCards);
+    })
+    .catch(error => console.error(error));
 
   goToTop();
-});
+}
 
 async function getPopularProductData() {
   const getNews = await getPopularNewsAPI();
@@ -182,7 +190,7 @@ function createMarkupWithChunkArray(array) {
         markupNews += itemWeather;
       } else {
         markupNews += markup(array[i]);
-      }      
+      }
     }
     if (array.length === 2) {
       markupNews += itemWeather;
