@@ -15,11 +15,11 @@ import { checkFavCards } from './addAndRemoveFromFavorite.js';
 
 const popularNewsGallery = document.querySelector('.news-gallery');
 const notFoundPage = document.querySelector('.not-found');
-const spinner = document.querySelector('.loader');
+const loader = document.querySelector('.loader');
 
 async function getPopularProduct() {
   try {
-    spinner.classList.remove('visually-hidden');
+    loader.classList.remove('visually-hidden');
     const getNews = await getPopularNewsAPI();
     // console.log('Arr objects with mostpopular News', getNews.results);
     const newsArr = getNews.results;
@@ -67,7 +67,7 @@ async function getPopularProduct() {
     notFoundPage.classList.toggle('visually-hidden');
   }
   finally {
-    spinner.classList.add('visually-hidden');
+    loader.classList.add('visually-hidden');
   }
 }
 

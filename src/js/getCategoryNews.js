@@ -13,7 +13,7 @@ const todayBtn = document.querySelector('.today-btn');
 const paginator = document.querySelector('.pagination__container');
 const btnNextPage = document.querySelector('.next-btn');
 const btnPrevPage = document.querySelector('.prev-btn');
-const spinner = document.querySelector('.loader');
+const loader = document.querySelector('.loader');
 
 const valuePages = {
   curPage: 1,
@@ -45,7 +45,7 @@ export async function getCategoryNews(category) {
   let filteredNews = [];
   try {
     popularNewsGallery.innerHTML = '';
-    spinner.classList.remove('visually-hidden');
+    loader.classList.remove('visually-hidden');
     const getCategotyNews = await getCategoryNewsAPI(category);
 
     const dataNews = getCategotyNews.results;
@@ -80,7 +80,7 @@ export async function getCategoryNews(category) {
     notFoundPage.classList.toggle('visually-hidden');
   }
   finally {
-    spinner.classList.add('visually-hidden');
+    loader.classList.add('visually-hidden');
   }
 }
 
