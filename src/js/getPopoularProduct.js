@@ -15,9 +15,11 @@ import { checkFavCards } from './addAndRemoveFromFavorite.js';
 
 const popularNewsGallery = document.querySelector('.news-gallery');
 const notFoundPage = document.querySelector('.not-found');
+const spinner = document.querySelector('.loader');
 
 async function getPopularProduct() {
   try {
+    spinner.classList.remove('visually-hidden');
     const getNews = await getPopularNewsAPI();
     // console.log('Arr objects with mostpopular News', getNews.results);
     const newsArr = getNews.results;
@@ -63,6 +65,9 @@ async function getPopularProduct() {
     pagination(valuePage);
   } catch (error) {
     notFoundPage.classList.toggle('visually-hidden');
+  }
+  finally {
+    spinner.classList.add('visually-hidden');
   }
 }
 
@@ -127,7 +132,7 @@ export function onPaginationContainerEl(e) {
 }
 
 async function getPopularProductData() {
-  const getNews = await getPopularNewsAPI();
+    const getNews = await getPopularNewsAPI();
   // console.log('Arr objects with mostpopular News', getNews.results);
   const newsArr = await getNews.results;
   getAmountCards(newsArr);

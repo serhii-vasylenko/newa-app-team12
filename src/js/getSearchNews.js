@@ -24,6 +24,7 @@ const newsGallery = document.querySelector('.news-gallery');
 const pageNotFound = document.querySelector('.not-found');
 const form = document.querySelector('.search-form');
 form.addEventListener('submit', onEnterPush);
+const spinner = document.querySelector('.loader');
 
 
 function onEnterPush(e) {
@@ -36,6 +37,8 @@ function onEnterPush(e) {
 
 async function getSearchNews(search) {
   try {
+    newsGallery.innerHTML='';
+    spinner.classList.remove('visually-hidden');
     const getNews = await getSearchNewsAPI(search);
     const data = getNews.data.response.docs;
     const adaptedData = toAdaptData(data);
@@ -54,8 +57,11 @@ async function getSearchNews(search) {
 
     }
     return adaptedData;
-  } catch (err) {
-    console.log(err);
+  } catch {
+    notFoundPage.classList.toggle('visually-hidden');
+  }
+  finally {
+    spinner.classList.add('visually-hidden');
   }
 }
 
