@@ -2,21 +2,18 @@
 background: none repeat scroll 0 0 transparent;
 height: 100px;
 width: 100px;
-// position: fixed;
 margin-left: auto;
 margin-right: auto;
 bottom: 0;
 left: 0;
 right: 0;
 top: 0;
-// z-index: 9999;
 }
 .loader .loader_inner {
 animation: animate 1.5s linear infinite;
 clip: rect(0, 80px, 80px, 40px);
 height: 80px;
 width: 80px;
-// position: absolute;
 left: calc(50% - 40px);
 top: calc(50% - 40px);
 }
