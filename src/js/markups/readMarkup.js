@@ -24,9 +24,10 @@ function checkLocalStorage() {
 checkLocalStorage();
 
 function creatRevisionDataNew(array) {
-  // console.log(`Array.from(array)`);
-  // console.log(Object.keys(array));
-  const dates = [...array]
+  if (array.type) {
+    return;
+  }
+  const dates = array
     .map(({ date }) => date)
     .filter((course, index, array) => array.indexOf(course) === index);
   // console.log(dates);

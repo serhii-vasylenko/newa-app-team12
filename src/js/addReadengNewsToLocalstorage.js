@@ -18,15 +18,18 @@ function checkLocalStorageNew() {
 }
 function addToReaded(readedEl) {
   const date = new Date();
-  const currentDate = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
+  const currentDate = `${date.getDate()}/${String(date.getMonth() + 1).padStart(
+    2,
+    '0'
+  )}/${date.getFullYear()}`;
   const readedArticle = {
     date: currentDate,
     url: readedEl.href,
     markup: `${readedEl.closest('li.card-news__item').outerHTML}`,
   };
-    for (let i = 0; i < readedArray.length; i += 1) {
-      if (readedArray[i].url === readedArticle.url) return;
-    }
-    readedArray.push(readedArticle);
+  for (let i = 0; i < readedArray.length; i += 1) {
+    if (readedArray[i].url === readedArticle.url) return;
+  }
+  readedArray.push(readedArticle);
   localStorage.setItem(READED_KEY, JSON.stringify(readedArray));
 }
